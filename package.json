@@ -8,8 +8,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "electron-positioner": "^4.1.0",
     "vite-tsconfig-paths": "^4.3.1",
-    "vue": "^3.4.15"
+    "vue": "^3.4.15",
+    "vue-router": "^4.2.5"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.3.4",

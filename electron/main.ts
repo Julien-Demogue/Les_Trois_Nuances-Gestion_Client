@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow} from 'electron'
 import path from 'node:path'
 
 // The built directory structure
@@ -20,6 +20,8 @@ const VITE_DEV_SERVER_URL = process.env['VITE_DEV_SERVER_URL']
 
 function createWindow() {
   win = new BrowserWindow({
+    width:1920,
+    height:1080,
     backgroundColor: '#D5F0FF',
     fullscreen:true,
     frame: false,

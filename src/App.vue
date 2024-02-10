@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import TopBar from './components/TopBar.vue'
+import ContentHolder from './components/ContentHolder.vue'
 </script>
 
 <template>
   <div class="page">
-    <TopBar/>
+    <TopBar :showReturnBtn="false"/>
     <div class="page-content">
       <div class="left-bar"></div>
-      <div class="editable-div">
-
-      </div>
+      <ContentHolder title="Menu"/>
       <div class="right-bar"></div>
     </div>
   </div>

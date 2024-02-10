@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   color: white;
+  -webkit-user-select: none;
 }
 
 .btn{
@@ -11,4 +12,46 @@
 
 .btn:hover{
   background-color: #858585 !important;
+}
+
+.input{
+  width: 40%;
+  height: 5vh;
+  border-radius: 8px; 
+  border: #79C8F6 solid 2px;
+  margin-bottom: 1%;
+  text-indent: 10px;
+  color: black !important;
+}
+
+.input-half{
+  width: 48% !important;
+  margin-bottom: 0 !important;
+}
+
+.input-group{
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between  ; 
+  margin-bottom: 1%;    
+}
+
+.separator hr{
+  width: 80%;
+  background-color: white;
+  color:white;
+  border-width:0;
+  height: 3px;
+  border-radius: 2px;
+}
+
+.separator{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-top: 2%;
+  padding-bottom: 2%;
 }

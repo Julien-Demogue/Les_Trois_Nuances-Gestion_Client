@@ -1,17 +1,37 @@
 <script setup lang="ts">
-
+import { app } from 'electron';
 </script>
 
 <template>
     <div class="top-bar">
-        <div class="return-slot"><div class="return-btn"><button class="btn">&lt</button></div></div>
+        <div class="return-slot"><div class="return-btn" v-show="showReturnBtn"><button class="btn">&lt</button></div></div>
         <div class="firm-name">Les Trois Nuances - Salon de coiffure</div>
         <div class="top-btn-group">
-            <div class="menu-btn"><button class="btn">Menu</button></div>
-            <div class="exit-btn"><button class="btn">Quitter</button></div>
+            <div class="menu-btn"><button @click="backToMenu" class="btn">Menu</button></div>
+            <div class="exit-btn"><button @click="closeWindow" class="btn">Quitter</button></div>
         </div>
     </div>
 </template>
+
+<script lang="ts">
+export default {
+  props: {
+    showReturnBtn: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+  },
+};
+
+function backToMenu(){
+    alert("Back to menu");
+}
+
+function closeWindow() {
+    // app.quit()
+}
+</script>
 
 <style scoped>
     .top-bar{
