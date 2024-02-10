@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="all-page">
+        <div class="top-bar">
+            <div class="return-slot">
+                <div class="return-btn"><button onclick="window.location.href='index.html'" class="btn"><</button></div>
+            </div>
+            <div class="logo">Les Trois Nuances - Salon de coiffure</div>
+            <div class="btns">
+                <div class="menu-btn"><button onclick="window.location.href='index.html'" class="btn">Menu</button></div>
+                <div class="exit-btn"><button class="btn">Quitter</button></div>
+            </div>
+        </div>
+
+        <div class="page-bot">
+            <div class="left-bar"></div>
+            <div class="page-content">
+                <div class="content-title">
+                    <h1 class="title">
+                        Ajouter un client
+                    </h1>
+                </div>
+                
+                <div class="content">
+                    <div class="input-group">
+                        <input type="text" class="input input-half" name="nom" placeholder="nom" required>
+                        <input type="text" class="input input-half" name="prenom" placeholder="prenom" required>
+                    </div>
+                    <input type="text" class="input" name="dateNaissance" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date de naissance" required>
+                    <input type="email" class="input" name="email" placeholder="email">
+                    <div class="input-group">
+                        <input type="text" class="input input-half" name="ville" placeholder="ville">
+                        <input type="number" class="input input-half" name="cp" placeholder="code postal">
+                    </div>
+                    <input type="text" class="input" name="fonction" placeholder="fonction">
+                    <input type="text" class="input" name="dateInscription" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date d'inscription" >
+                    <div class="valid-btn"><button class="btn">Valider</button></div>
+                </div>
+            </div>
+            <div class="right-bar"></div>
+        </div>
+
+    </section>
+</body>
