@@ -5,7 +5,7 @@ import TopBar from "./TopBar.vue";
 
 <template>
 <div class="page">
-    <TopBar :showReturnBtn="true"/>
+    <TopBar :showReturnBtn=canReturn />
     <div class="page-content">
     <div class="left-bar"></div>
     <ContentHolder :title=pageTitle :getContent=contentToShow />
@@ -18,12 +18,17 @@ import TopBar from "./TopBar.vue";
 export default {
     props: {
         pageTitle: {
-            type: String,
-            required: true,
+          type: String,
+          required: true,
         },
         contentToShow: {
-            type:String,
-            required: true
+          type:String,
+          required: true
+        },
+        canReturn:{
+          type: Boolean,
+          required : false,
+          default : true
         }
     },
 };

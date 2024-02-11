@@ -3,5 +3,5 @@ import Page from '../components/Page.vue';
 </script>
 
 <template>
-    <Page pageTitle="Menu" contentToShow="menu" />    
+    <Page pageTitle="Menu" contentToShow="menu" :canReturn="false"/>    
 </template>
