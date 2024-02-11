@@ -4,7 +4,7 @@
 
 <template>
     <div class="content-holder">
-        <div class="title">{{ title }}</div>
+        <div class="title">{{title}}</div>
         <div class="content">
           <component :is="activeComp" />
         </div>
@@ -18,15 +18,14 @@ export default {
           type: String,
           required: true,
         },
-        contentToShow:{
+        getContent:{
           type: String,
-          required: false,
-          default: 'menu'
+          required: true,
         }
     },
     computed: {
       activeComp(){
-        return this.contentToShow;
+        return this.getContent;
       }
     }
 };

@@ -2,15 +2,13 @@ import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
 
-import MainMenu from './vues/MainMenu.vue';
-import AddClientForm from './vues/AddClient.vue';
-import SearchClient from './vues/SearchClient.vue';
+import MenuOptions from './components/MenuOptions.vue';
+import AddClientForm from './components/AddClientForm.vue';
 
 const app = createApp(App)
 
-app.component('menu',MainMenu);
+app.component('menu',MenuOptions);
 app.component('add', AddClientForm);
-app.component('search', SearchClient);
 
 app.mount('#app').$nextTick(() => {
   // Remove Preload scripts loading
