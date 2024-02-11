@@ -1,24 +1,34 @@
 <script setup lang="ts">
-import MainMenu from './MainMenu.vue'
+
 </script>
 
 <template>
     <div class="content-holder">
         <div class="title">{{ title }}</div>
         <div class="content">
-            <MainMenu/>
+          <component :is="activeComp" />
         </div>
     </div>
 </template>
 
 <script lang="ts">
 export default {
-  props: {
-    title: {
-      type: String,
-      required: true,
+    props: {
+        title: {
+          type: String,
+          required: true,
+        },
+        contentToShow:{
+          type: String,
+          required: false,
+          default: 'menu'
+        }
     },
-  },
+    computed: {
+      activeComp(){
+        return this.contentToShow;
+      }
+    }
 };
 </script>
     

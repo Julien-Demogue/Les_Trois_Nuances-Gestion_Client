@@ -4,14 +4,32 @@ import ContentHolder from './components/ContentHolder.vue'
 </script>
 
 <template>
-  <div class="page">
-    <TopBar :showReturnBtn="false"/>
-    <div class="page-content">
-      <div class="left-bar"></div>
-      <ContentHolder title="Menu"/>
-      <div class="right-bar"></div>
+    <!-- <div class="page">
+      <TopBar :showReturnBtn="false"/>
+      <div class="page-content">
+        <div class="left-bar"></div>
+        <ContentHolder title="Menu" contentToShow="menu"/>
+        <div class="right-bar"></div>
+      </div>
+    </div> -->
+
+    <div class="page">
+      <TopBar :showReturnBtn="true"/>
+      <div class="page-content">
+        <div class="left-bar"></div>
+        <ContentHolder title="Ajouter un client" contentToShow="add"/>
+        <div class="right-bar"></div>
+      </div>
     </div>
-  </div>
+
+    <!-- <div class="page">
+      <TopBar :showReturnBtn="true"/>
+      <div class="page-content">
+        <div class="left-bar"></div>
+        <ContentHolder title="Rechercher un client" contentToShow="search"/>
+        <div class="right-bar"></div>
+      </div>
+    </div> -->
 </template>
 
 <style scoped>

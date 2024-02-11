@@ -11,9 +11,10 @@
     "electron-positioner": "^4.1.0",
     "vite-tsconfig-paths": "^4.3.1",
     "vue": "^3.4.15",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.0.13"
   },
   "devDependencies": {
+    "@types/vue-router": "^2.0.0",
     "@vitejs/plugin-vue": "^4.3.4",
     "electron": "^26.1.0",
     "electron-builder": "^24.6.4",

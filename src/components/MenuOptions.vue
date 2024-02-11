@@ -1,10 +1,9 @@
 <template>
     <div class="content">
-    <div class="find-btn"><button class="btn">Rechercher un client</button></div>
-    <div class="separator"><hr></div>
-    <div class="add-btn"><button class="btn">Ajouter un client</button></div>
+        <div class="find-btn"><button class="btn">Rechercher un client</button></div>
+        <div class="separator"><hr></div>
+        <div class="add-btn"><button class="btn">Ajouter un client</button></div>
     </div>
-    
 </template>
 
 <style scoped>
