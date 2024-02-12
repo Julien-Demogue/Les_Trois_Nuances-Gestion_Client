@@ -23,7 +23,8 @@ export default {
         },
         contentToShow: {
           type:String,
-          required: true
+          required: false,
+          default:"blank"
         },
         canReturn:{
           type: Boolean,

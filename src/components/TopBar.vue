@@ -4,10 +4,10 @@ import { app } from 'electron';
 
 <template>
     <div class="top-bar">
-        <div class="return-slot"><div class="return-btn" v-show="showReturnBtn"><button class="btn">&lt</button></div></div>
+        <div class="return-slot"><div class="return-btn" v-show="showReturnBtn"><button @click="$router.go(-1)" class="btn">&lt</button></div></div>
         <div class="firm-name">Les Trois Nuances - Salon de coiffure</div>
         <div class="top-btn-group">
-            <div class="menu-btn"><button @click="backToMenu" class="btn">Menu</button></div>
+            <div class="menu-btn"><router-link to="/"><button class="btn">Menu</button></router-link></div>
             <div class="exit-btn"><button @click="closeWindow" class="btn">Quitter</button></div>
         </div>
     </div>
@@ -23,10 +23,6 @@ export default {
     },
   },
 };
-
-function backToMenu(){
-    alert("Back to menu");
-}
 
 function closeWindow() {
     // app.quit()
