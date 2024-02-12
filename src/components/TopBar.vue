@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { app } from 'electron';
+import { ipcRenderer } from 'electron';
 </script>
 
 <template>
@@ -25,7 +25,7 @@ export default {
 };
 
 function closeWindow() {
-    // app.quit()
+    // ipcRenderer.send('close');
 }
 </script>
 

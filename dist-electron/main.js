@@ -36,4 +36,7 @@ electron.app.on("activate", () => {
     createWindow();
   }
 });
+electron.ipcMain.on("close", () => {
+  electron.app.quit();
+});
 electron.app.whenReady().then(createWindow);
