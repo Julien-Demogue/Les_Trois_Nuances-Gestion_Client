@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import ClientLine from './ClientLine.vue';
+</script>
+
 <template>
     <div class="search-form">
         <div class="input-group">
@@ -6,7 +10,9 @@
         </div>
         <div class="results-count">X résultats / Y clients</div>
         <div class="results-container">
-            test
+            <ClientLine :id="1"/>
+            <ClientLine :id="2"/>
+            <ClientLine :id="3"/>
         </div>
     </div>
 </template>
@@ -29,8 +35,6 @@
 .results-container{
     width: 90%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
     align-items: center;
     background-color: #79C8F6;
     margin-top: 5vh;
