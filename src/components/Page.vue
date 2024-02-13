@@ -7,9 +7,9 @@ import TopBar from "./TopBar.vue";
 <div class="page">
     <TopBar :showReturnBtn=canReturn />
     <div class="page-content">
-    <div class="left-bar"></div>
-    <ContentHolder :title=pageTitle :getContent=contentToShow />
-    <div class="right-bar"></div>
+      <div class="left-bar"></div>
+      <ContentHolder :title=pageTitle :getContent=contentToShow />
+      <div class="right-bar"></div>
     </div>
 </div>
 </template>
@@ -46,7 +46,7 @@ export default {
   .page-content{
     display:grid;
     grid-template-columns: 1fr 4fr 1fr;
-    height: 100%;
+    height: 90vh;
   }
 
   .left-bar, .right-bar{
