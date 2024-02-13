@@ -35,7 +35,8 @@
     background-color: #79C8F6;
     margin-top: 5vh;
     padding: 2%;
-    border-radius: 8px;
+    border-radius: 12px;
     overflow-y: auto;
+    border: #5271FF solid 2px; 
 }
 </style>
