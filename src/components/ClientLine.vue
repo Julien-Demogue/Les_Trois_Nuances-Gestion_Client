@@ -1,14 +1,18 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 
-let line : any
-line = Element;
+const line = ref<HTMLElement | null>(null)
 
-const mouseEnter = () => {// Accéder à l'attribut `id` de l'élément
-    line.style.border = "2px solid black";
+const mouseEnter = () => {
+    if (line.value){
+        line.value.style.border = "2px solid black";
+    }
 };
 
-const mouseExit = () => {// Accéder à l'attribut `id` de l'élément
-    line.style.border = "";
+const mouseExit = () => {
+    if (line.value){
+        line.value.style.border = "";
+    }
 };
 </script>
 
