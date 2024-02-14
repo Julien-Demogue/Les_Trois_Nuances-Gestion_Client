@@ -30,6 +30,10 @@ export default {
           type: Boolean,
           required : false,
           default : true
+        },
+        clientID:{
+          type: Number,
+          required : false,
         }
     },
 };

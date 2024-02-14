@@ -36,7 +36,7 @@ export default {
     display: grid;
     grid-template-columns: 2fr 1fr;
     background-color: #C0E7FD;
-    height: 6vh;
+    min-height: 6vh;
     width: 100%;
     border-radius: 8px;
     align-items: center;
@@ -47,6 +47,7 @@ export default {
     border: rgba(0, 0, 0, 0.389) solid 0.5px; 
     width: 99%;
     box-shadow: 0 5px 5px rgba(128, 128, 128, 0.33);
+    background-color: #aadffd;
 }
 
 .left-side, .right-side{

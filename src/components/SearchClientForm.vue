@@ -13,6 +13,28 @@ import ClientLine from './ClientLine.vue';
             <ClientLine :id="1"/>
             <ClientLine :id="2"/>
             <ClientLine :id="3"/>
+            <ClientLine :id="4"/>
+            <ClientLine :id="5"/>
+            <ClientLine :id="6"/>
+            <ClientLine :id="7"/>
+            <ClientLine :id="8"/>
+            <ClientLine :id="9"/>
+            <ClientLine :id="10"/>
+            <ClientLine :id="11"/>
+            <ClientLine :id="12"/>
+            <ClientLine :id="1"/>
+            <ClientLine :id="2"/>
+            <ClientLine :id="3"/>
+            <ClientLine :id="4"/>
+            <ClientLine :id="5"/>
+            <ClientLine :id="6"/>
+            <ClientLine :id="7"/>
+            <ClientLine :id="8"/>
+            <ClientLine :id="9"/>
+            <ClientLine :id="10"/>
+            <ClientLine :id="11"/>
+            <ClientLine :id="12"/>
+            
         </div>
     </div>
 </template>
@@ -46,5 +68,13 @@ import ClientLine from './ClientLine.vue';
     overflow-y: auto;
     border: #5271FF solid 2px; 
     overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #5271FF;
+  border-radius: 2px;
 }
 </style>
