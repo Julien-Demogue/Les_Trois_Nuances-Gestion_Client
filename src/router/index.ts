@@ -8,7 +8,7 @@ const routes = [
   {name:"menu", path: '/',component: MainMenu,},
   {name:"add", path: '/add-client',component: AddClient,},
   {name:"search", path:'/search-client',component: SearchClient,},
-  {name:"client", path: '/search-client/client',component: Client,}
+  {name:"client", path: '/search-client/client/:clientId',component: Client,props:true}
 ];
 
 const router = createRouter({

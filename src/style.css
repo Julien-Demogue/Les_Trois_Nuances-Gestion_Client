@@ -7,7 +7,8 @@
 
 .btn{
   border-radius: 8px;
-  border: transparent solid;
+  border: rgba(0, 0, 0, 0.274) solid 1px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.158);
 }
 
 .btn:hover{
@@ -23,6 +24,7 @@
   text-indent: 10px;
   color: black !important;
   outline: none;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.158);
 }
 
 input:focus{
@@ -80,9 +82,10 @@ input:focus{
   padding: 3%;
 }
 
-.title{
+.title p{
   text-align: center;
   font-size: 2.3rem;
+  font-weight: bold;
   font-family:Arial, Helvetica, sans-serif;
   color:#5271FF ;
   padding-bottom: 10vh;

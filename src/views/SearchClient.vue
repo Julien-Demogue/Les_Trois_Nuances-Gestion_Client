@@ -10,7 +10,7 @@ import ClientLine from '../components/ClientLine.vue';
     <div class="page-content">
       <SideBar />
       <div class="content">
-        <div class="title">Rechercher un client</div>
+        <div class="title"><p>Rechercher un client</p></div>
         <div class="search-form">
         <div class="input-group">
             <input type="text" class="input input-half" name="nom" placeholder="nom" required>

@@ -9,7 +9,7 @@ import TopBar from '../components/TopBar.vue';
     <div class="page-content">
       <SideBar />
       <div class="content">
-        <div class="title">Ajouter un client</div>
+        <div class="title"><p>Ajouter un client</p></div>
         <div class="add-form">
             <div class="input-group">
                 <input type="text" class="input input-half" name="nom" placeholder="nom" required>
