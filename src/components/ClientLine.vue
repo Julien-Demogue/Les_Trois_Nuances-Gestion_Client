@@ -1,23 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
-const line = ref<HTMLElement | null>(null)
-
-const mouseEnter = () => {
-    if (line.value){
-        line.value.style.border = "2px solid black";
-    }
-};
-
-const mouseExit = () => {
-    if (line.value){
-        line.value.style.border = "";
-    }
+const mouseClick = () => {
+    alert("clicked");
 };
 </script>
 
 <template>
-<div class="line" id="line" @mouseenter="mouseEnter" @mouseleave="mouseExit">
+<div class="line" @click="mouseClick">
     <div class="left-side">
         <div class="id element">{{ id }}</div>
         <div class="sep element">|</div>
@@ -53,6 +41,12 @@ export default {
     border-radius: 8px;
     align-items: center;
     margin-bottom: 5px;
+}
+
+.line:hover{
+    border: rgba(0, 0, 0, 0.389) solid 0.5px; 
+    width: 99%;
+    box-shadow: 0 5px 5px rgba(128, 128, 128, 0.33);
 }
 
 .left-side, .right-side{

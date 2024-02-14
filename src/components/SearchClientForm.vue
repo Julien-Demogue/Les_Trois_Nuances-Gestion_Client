@@ -35,12 +35,16 @@ import ClientLine from './ClientLine.vue';
 .results-container{
     width: 90%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: top;
     background-color: #79C8F6;
     margin-top: 5vh;
     padding: 2%;
     border-radius: 12px;
     overflow-y: auto;
     border: #5271FF solid 2px; 
+    overflow-x: hidden;
 }
 </style>
