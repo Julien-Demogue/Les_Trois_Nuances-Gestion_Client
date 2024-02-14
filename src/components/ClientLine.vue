@@ -1,11 +1,11 @@
 <script setup lang="ts">
-const mouseClick = () => {
-    alert("clicked");
+const mouseClick = (id:number) => {
+    alert("clicked "+ id);
 };
 </script>
 
 <template>
-<div class="line" @click="mouseClick">
+<div class="line" @click="mouseClick(id)">
     <div class="left-side">
         <div class="id element">{{ id }}</div>
         <div class="sep element">|</div>
