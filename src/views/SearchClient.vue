@@ -1,7 +1,77 @@
 <script setup lang="ts">
-import Page from '../components/Page.vue';
+import SideBar from '../components/SideBar.vue';
+import TopBar from '../components/TopBar.vue';
+import ClientLine from '../components/ClientLine.vue';
 </script>
 
 <template>
-    <Page pageTitle="Rechercher un client" contentToShow="search" />    
+<div class="page">
+    <TopBar />
+    <div class="page-content">
+      <SideBar />
+      <div class="content">
+        <div class="title">Rechercher un client</div>
+        <div class="search-form">
+        <div class="input-group">
+            <input type="text" class="input input-half" name="nom" placeholder="nom" required>
+            <input type="text" class="input input-half" name="prenom" placeholder="prenom" required>
+        </div>
+        <div class="results-count">X résultats / Y clients</div>
+            <div class="results-container">
+                <ClientLine :id="1"/>
+                <ClientLine :id="2"/>
+                <ClientLine :id="3"/>
+                <ClientLine :id="4"/>
+                <ClientLine :id="5"/>
+                <ClientLine :id="6"/>
+                <ClientLine :id="7"/>
+                <ClientLine :id="8"/>
+                <ClientLine :id="9"/>
+                <ClientLine :id="10"/>                
+            </div>
+        </div>
+      </div>
+      <SideBar />
+    </div>
+</div>
 </template>
+
+<style scoped>
+.search-form {
+    width: 100%;
+    height: 65vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.results-count {
+    color: #9D9797;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.results-container{
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: top;
+    background-color: #79C8F6;
+    margin-top: 5vh;
+    padding: 2%;
+    border-radius: 12px;
+    overflow-y: auto;
+    border: #5271FF solid 2px; 
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #5271FF;
+  border-radius: 2px;
+}
+</style>
