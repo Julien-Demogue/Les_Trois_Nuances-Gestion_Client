@@ -23,13 +23,24 @@ import TopBar from '../components/TopBar.vue';
             </div>
                 <input type="text" class="input" name="fonction" placeholder="fonction">
                 <input type="text" class="input" name="dateInscription" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date d'inscription" >
-                <div class="valid-btn"><button class="btn">Valider</button></div>
+                <div class="valid-btn"><button class="btn" @click="addClient">Valider</button></div>
             </div>
       </div>
       <SideBar />
     </div>
 </div>
 </template>
+
+<script lang="ts">
+export default {
+    methods: {
+        addClient(){
+            alert('Le client à été ajouté avec succès !');
+            this.$router.push("/");
+        }
+    }
+}
+</script>
 
 <style scoped>
  .add-form{

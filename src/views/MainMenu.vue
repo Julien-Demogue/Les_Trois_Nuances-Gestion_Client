@@ -5,7 +5,7 @@ import TopBar from '../components/TopBar.vue';
 
 <template>
 <div class="page">
-    <TopBar />
+    <TopBar :showReturnBtn="false"/>
     <div class="page-content">
       <SideBar />
       <div class="content">

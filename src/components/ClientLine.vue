@@ -1,11 +1,8 @@
 <script setup lang="ts">
-const mouseClick = (id:number) => {
-    alert("clicked "+ id);
-};
 </script>
 
 <template>
-<div class="line" @click="mouseClick(id)">
+<div class="line" @click="openClientPage">
     <div class="left-side">
         <div class="id element">{{ id }}</div>
         <div class="sep element">|</div>
@@ -27,6 +24,11 @@ export default {
             type: Number,
             required: true
         }
+    },
+    methods: {
+        openClientPage(){
+            this.$router.push({ name: "client", params: { clientId: this.id } });
+        }
     }
 };
 </script>
@@ -44,7 +46,6 @@ export default {
 }
 
 .line:hover{
-    border: rgba(0, 0, 0, 0.389) solid 0.5px; 
     width: 99%;
     box-shadow: 0 5px 5px rgba(128, 128, 128, 0.33);
     background-color: #aadffd;
