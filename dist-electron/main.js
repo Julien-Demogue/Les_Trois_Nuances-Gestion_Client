@@ -1,21 +1,11 @@
 "use strict";
 const electron = require("electron");
 const path = require("node:path");
-const { MongoClient } = require("mongodb");
-const mongoURL = "mongodb://localhost:27017/Gestion_client";
 process.env.DIST = path.join(__dirname, "../dist");
 process.env.VITE_PUBLIC = electron.app.isPackaged ? process.env.DIST : path.join(process.env.DIST, "../public");
 let win;
 const VITE_DEV_SERVER_URL = process.env["VITE_DEV_SERVER_URL"];
 function createWindow() {
-  const client = new MongoClient(mongoURL, { useNewUrlParser: true, useUnifiedTopology: true });
-  client.connect((err, db) => {
-    if (err) {
-      console.error("Error connecting to MongoDB:", err);
-      return;
-    }
-    db.close();
-  });
   win = new electron.BrowserWindow({
     width: 1920,
     height: 1080,

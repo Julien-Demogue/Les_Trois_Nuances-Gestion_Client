@@ -13,6 +13,7 @@
 
 .btn:hover{
   background-color: #858585 !important;
+  cursor:pointer;
 }
 
 .input{

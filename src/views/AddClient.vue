@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
+import AddQueries from '../database/addQueries';
+import Cnx from '../database/cnx';
 </script>
 
 <template>
@@ -23,7 +25,7 @@ import TopBar from '../components/TopBar.vue';
             </div>
                 <input type="text" class="input" name="fonction" placeholder="fonction">
                 <input type="text" class="input" name="dateInscription" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date d'inscription" >
-                <div class="valid-btn"><button class="btn" @click="addClient">Valider</button></div>
+                <div class="valid-btn"><button class="btn" @click="onValidate">Valider</button></div>
             </div>
       </div>
       <SideBar />
@@ -34,7 +36,9 @@ import TopBar from '../components/TopBar.vue';
 <script lang="ts">
 export default {
     methods: {
-        addClient(){
+        onValidate(){
+            // Cnx.connect();
+            // AddQueries.addClient("test");
             alert('Le client à été ajouté avec succès !');
             this.$router.push("/");
         }
