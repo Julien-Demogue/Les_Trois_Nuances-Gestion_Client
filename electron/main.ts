@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain} from 'electron'
+import { app, BrowserWindow} from 'electron'
 import path from 'node:path'
 
 // The built directory structure
@@ -59,10 +59,6 @@ app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow()
   }
-})
-
-ipcMain.on('close', () => {
-  app.quit()
 })
 
 app.whenReady().then(createWindow)

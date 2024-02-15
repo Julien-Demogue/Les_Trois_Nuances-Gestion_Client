@@ -83,7 +83,7 @@ export default {
 }
 
 .delBtn button{
-  margin-top: 15vh;
+  margin-top: 10vh;
   width: 230px;
   height: 50px;
   background-color: #FD6666;
