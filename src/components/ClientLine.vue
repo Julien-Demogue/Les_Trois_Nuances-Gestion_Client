@@ -39,14 +39,14 @@ export default {
     grid-template-columns: 2fr 1fr;
     background-color: #C0E7FD;
     min-height: 6vh;
-    width: 100%;
+    width: 95%;
     border-radius: 8px;
     align-items: center;
     margin-bottom: 5px;
 }
 
 .line:hover{
-    width: 99%;
+    width: 94%;
     box-shadow: 0 5px 5px rgba(128, 128, 128, 0.33);
     background-color: #aadffd;
     cursor:pointer;
