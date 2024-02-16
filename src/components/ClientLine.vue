@@ -49,6 +49,7 @@ export default {
     width: 99%;
     box-shadow: 0 5px 5px rgba(128, 128, 128, 0.33);
     background-color: #aadffd;
+    cursor:pointer;
 }
 
 .left-side, .right-side{
