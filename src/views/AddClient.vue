@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
+import get from '../data/database.ts';
 // import addClient from '../database/addClient.ts';
 </script>
 
@@ -48,6 +49,7 @@ export default {
     },
     methods: {
         onValidate(){  
+            alert(get());
             // const firstName = this.firstName.trim();
             // const lastName = this.lastName.trim();
             // const birthDate = this.birthDate.trim();

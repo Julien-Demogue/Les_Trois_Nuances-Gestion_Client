@@ -2,13 +2,14 @@
   padding: 0;
   margin: 0;
   color: white;
-  -webkit-user-select: none;
+  -webkit-user-select:none;
+  user-select: none;
 }
 
 .btn{
   border-radius: 8px;
-  border: rgba(0, 0, 0, 0.274) solid 1px;
-  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.158);
+  border: rgba(0, 0, 0, 0.11) solid 1px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.158);
 }
 
 .btn:hover{
