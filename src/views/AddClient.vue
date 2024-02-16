@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
-import addClient from '../database/addClient.ts';
+// import addClient from '../database/addClient.ts';
 </script>
 
 <template>
@@ -48,32 +48,32 @@ export default {
     },
     methods: {
         onValidate(){  
-            const firstName = this.firstName.trim();
-            const lastName = this.lastName.trim();
-            const birthDate = this.birthDate.trim();
-            const email = this.email.trim();
-            const city = this.city.trim();
-            const postalCode = this.postalCode.trim();
-            const job = this.job.trim();
-            const registeryDate = this.registeryDate.trim();
+            // const firstName = this.firstName.trim();
+            // const lastName = this.lastName.trim();
+            // const birthDate = this.birthDate.trim();
+            // const email = this.email.trim();
+            // const city = this.city.trim();
+            // const postalCode = this.postalCode.trim();
+            // const job = this.job.trim();
+            // const registeryDate = this.registeryDate.trim();
 
-            if(firstName == '' || lastName == '' || birthDate == ''){
-                // alert('Veuillez remplir tous les champs obligatoires');
-            }
-            else{
-                addClient(
-                    firstName,
-                    lastName,
-                    birthDate,
-                    email,
-                    city,
-                    postalCode,
-                    job,
-                    registeryDate
-                );  
-                alert('Le client '+ lastName + " " + firstName +' à été ajouté avec succès !');
-                this.$router.push("/");
-            }
+            // if(firstName == '' || lastName == '' || birthDate == ''){
+            //     // alert('Veuillez remplir tous les champs obligatoires');
+            // }
+            // else{
+            //     addClient(
+            //         firstName,
+            //         lastName,
+            //         birthDate,
+            //         email,
+            //         city,
+            //         postalCode,
+            //         job,
+            //         registeryDate
+            //     );  
+            //     alert('Le client '+ lastName + " " + firstName +' à été ajouté avec succès !');
+            //     this.$router.push("/");
+            // }
         }
     }
 }
