@@ -1,0 +1,9 @@
+{
+    "clients":[
+        {"id":1, "name":"John"},
+        {"id":2, "name":"Didier"},
+        {"id":3, "name":"Bruno"},
+        {"id":4, "name":"Francis"},
+        {"id":5, "name":"Michel"}
+    ]
+}

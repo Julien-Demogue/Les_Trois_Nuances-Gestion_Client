@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
+import create from '../database/addClient.ts';
 </script>
 
 <template>
@@ -34,7 +35,8 @@ import TopBar from '../components/TopBar.vue';
 <script lang="ts">
 export default {
     methods: {
-        onValidate(){    
+        onValidate(){  
+            create();  
             alert('Le client à été ajouté avec succès !');
             this.$router.push("/");
         }
@@ -57,4 +59,4 @@ export default {
     background-color: #79C8F6;
     font-size: 1.2rem;
 }
-</style>../database/testDB.ts
+</style>../database/testDB.ts../database/addClient.ts
