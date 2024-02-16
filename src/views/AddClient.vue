@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
-import create from '../database/addClient.ts';
+import addClient from '../database/addClient.ts';
 </script>
 
 <template>
@@ -13,17 +13,17 @@ import create from '../database/addClient.ts';
         <div class="title"><p>Ajouter un client</p></div>
         <div class="add-form">
             <div class="input-group">
-                <input type="text" class="input input-half" name="nom" placeholder="nom" required>
-                <input type="text" class="input input-half" name="prenom" placeholder="prenom" required>
+                <input type="text" class="input input-half" name="firstName" placeholder="nom" v-model="firstName" >
+                <input type="text" class="input input-half" name="lastName" placeholder="prenom" v-model="lastName">
             </div>
-            <input type="text" class="input" name="dateNaissance" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date de naissance" required>
-            <input type="email" class="input" name="email" placeholder="email">
+            <input type="text" class="input" name="birthDate" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date de naissance" v-model="birthDate">
+            <input type="email" class="input" name="email" placeholder="email" v-model="email">
             <div class="input-group">
-                <input type="text" class="input input-half" name="ville" placeholder="ville">
-                <input type="number" class="input input-half" name="cp" placeholder="code postal">
+                <input type="text" class="input input-half" name="city" placeholder="ville" v-model="city">
+                <input type="number" class="input input-half" name="postalCode" placeholder="code postal" v-model="postalCode">
             </div>
-                <input type="text" class="input" name="fonction" placeholder="fonction">
-                <input type="text" class="input" name="dateInscription" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date d'inscription" >
+                <input type="text" class="input" name="job" placeholder="fonction" v-model="job">
+                <input type="text" class="input" name="registeryDate" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date d'inscription" v-model="registeryDate">
                 <div class="valid-btn"><button class="btn" @click="onValidate">Valider</button></div>
             </div>
       </div>
@@ -34,11 +34,46 @@ import create from '../database/addClient.ts';
 
 <script lang="ts">
 export default {
+    data() {
+        return{
+            firstName: '',
+            lastName: '',
+            birthDate: '',
+            email: '',
+            city: '',
+            postalCode: '',
+            job: '',
+            registeryDate: ''
+        }
+    },
     methods: {
         onValidate(){  
-            create();  
-            alert('Le client à été ajouté avec succès !');
-            this.$router.push("/");
+            const firstName = this.firstName.trim();
+            const lastName = this.lastName.trim();
+            const birthDate = this.birthDate.trim();
+            const email = this.email.trim();
+            const city = this.city.trim();
+            const postalCode = this.postalCode.trim();
+            const job = this.job.trim();
+            const registeryDate = this.registeryDate.trim();
+
+            if(firstName == '' || lastName == '' || birthDate == ''){
+                // alert('Veuillez remplir tous les champs obligatoires');
+            }
+            else{
+                addClient(
+                    firstName,
+                    lastName,
+                    birthDate,
+                    email,
+                    city,
+                    postalCode,
+                    job,
+                    registeryDate
+                );  
+                alert('Le client '+ lastName + " " + firstName +' à été ajouté avec succès !');
+                this.$router.push("/");
+            }
         }
     }
 }
@@ -59,4 +94,4 @@ export default {
     background-color: #79C8F6;
     font-size: 1.2rem;
 }
-</style>../database/testDB.ts../database/addClient.ts
+</style>
