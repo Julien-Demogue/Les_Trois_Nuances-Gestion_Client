@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
-import AddQueries from '../database/addQueries';
-import Cnx from '../database/cnx';
 </script>
 
 <template>
@@ -37,8 +35,6 @@ import Cnx from '../database/cnx';
 export default {
     methods: {
         onValidate(){
-            // Cnx.connect();
-            // AddQueries.addClient("test");
             alert('Le client à été ajouté avec succès !');
             this.$router.push("/");
         }
