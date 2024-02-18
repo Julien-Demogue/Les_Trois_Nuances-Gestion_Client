@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
+import {addClient} from '../data/dao';
 </script>
 
 <template>
@@ -32,8 +33,6 @@ import TopBar from '../components/TopBar.vue';
 </template>
 
 <script lang="ts">
-import {addClient} from '../data/dao';
-
 export default {
     data() {
         return {

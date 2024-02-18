@@ -1,7 +1,8 @@
 import fs from 'fs';
+import { Collection } from 'mongodb';
 const clientsFile = 'C:\\Users\\julien\\Desktop\\Gestion-client\\src\\data\\clients.json';
 
-export function addClient(client) {
+export function addClient(client:any) {
   // Lire le fichier JSON
   fs.readFile(clientsFile, 'utf8', (err, data) => {
     if (err) {
@@ -13,7 +14,7 @@ export function addClient(client) {
     const clients = JSON.parse(data);
 
     // Generer un nouvel ID unique
-    const newId = Math.max(...clients.map(client => client.id)) + 1;
+    const newId = Math.max(...clients.map((client:any) => client.id)) + 1;
 
     // ajouter le nouveau client a l'objet
     clients.push({ id: newId, ...client});
@@ -30,7 +31,7 @@ export function addClient(client) {
   });
 }
 
-export function removeClient(id) {
+export function removeClient(id:Number) {
   // Lire le fichier JSON
   fs.readFile(clientsFile, 'utf8', (err, data) => {
     if (err) {
@@ -42,7 +43,7 @@ export function removeClient(id) {
     const clients = JSON.parse(data);
 
     // Trouver l'index de la ligne a supprimer
-    const index = clients.findIndex(client => client.id === id);
+    const index = clients.findIndex((client:any) => client.id === id);
 
     // Si l'index est trouve, supprimer la ligne
     if (index !== -1) {
@@ -63,7 +64,7 @@ export function removeClient(id) {
   });
 }
 
-export function editClient(id, client) {
+export function editClient(id:Number, client:any) {
   // Lire le fichier JSON
   fs.readFile(clientsFile, 'utf8', (err, data) => {
     if (err) {
@@ -75,7 +76,7 @@ export function editClient(id, client) {
     const clients = JSON.parse(data);
 
     // Trouver l'index de la ligne a modifier
-    const index = clients.findIndex(client => client.id === id);
+    const index = clients.findIndex((client:any) => client.id === id);
 
     // Si l'index est trouve, modifier la ligne
     if (index !== -1) {
