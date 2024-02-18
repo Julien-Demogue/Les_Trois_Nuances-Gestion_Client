@@ -10,6 +10,7 @@ export interface Client{
   email:String;
   city:String;
   postalCode:String;
+  job:String;
   registrationDate:String;
   lastVisitDate:String;
 }
@@ -70,10 +71,10 @@ export function removeClient(id:Number) {
           return;
         }
 
-        alert(`Ligne '${id}' supprimee avec succes !`);
+        console.log(`Ligne '${id}' supprimee avec succes !`);
       });
     } else {
-      alert(`Ligne avec l'ID '${id}' non trouvee.`);
+      console.error(`Ligne avec l'ID '${id}' non trouvee.`);
     }
   });
 }
@@ -90,7 +91,7 @@ export function editClient(id:Number, client:Collection) {
     const clients = JSON.parse(data);
 
     // Trouver l'index de la ligne a modifier
-    const index = clients.findIndex((client:Client) => client.id === id);
+    const index = clients.findIndex((client:Client) => client.id == id);
 
     // Si l'index est trouve, modifier la ligne
     if (index !== -1) {
@@ -129,21 +130,21 @@ export function getClients(): Promise<Client[]> {
   });
 }
 
-// export function getClient(id: Number): Promise<Client> {
-//   return new Promise((resolve, reject) => {
-//     fs.readFile(clientsFile, 'utf8', (err, data) => {
-//       if (err) {
-//         reject(err);
-//         return;
-//       }
+export function getClient(id: Number): Promise<Client> {
+  return new Promise((resolve, reject) => {
+    fs.readFile(clientsFile, 'utf8', (err, data) => {
+      if (err) {
+        reject(err);
+        return;
+      }
 
-//       // analyser le JSON en objet
-//       const clients = JSON.parse(data);
+      // analyser le JSON en objet
+      const clients = JSON.parse(data);
 
-//       // Trouver l'index de la ligne a modifier
-//       const index = clients.findIndex((client:any) => client.id === id);
+      // Trouver l'index de la ligne a modifier
+      const index = clients.findIndex((client:any) => client.id == id);
 
-//       resolve(clients[index]); 
-      
-//   }
-// }
+      resolve(clients[index]); 
+    });  
+  });
+}

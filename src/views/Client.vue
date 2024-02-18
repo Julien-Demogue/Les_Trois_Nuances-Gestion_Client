@@ -2,7 +2,7 @@
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
 import EditBtn from '../components/EditBtn.vue';
-import { removeClient } from '../data/dao';
+import { removeClient,getClient,Client } from '../data/dao';
 </script>
 
 <template>
@@ -12,28 +12,28 @@ import { removeClient } from '../data/dao';
       <SideBar />
       <div class="content">
         <div class="title">
-          <p>Id : {{ clientId }}</p>
+          <p>{{ client.firstName }} {{ client.lastName }}</p>
           <!-- <EditBtn /> -->
         </div>
         <div class="informations">
           <div class="birthDate">
-            <p>[dateNaissance] ([age])</p>
+            <p>{{ client.birthday }} ([age])</p>
             <!-- <EditBtn /> -->
           </div>
           <div class="city">
-            <p>Ville : </p>
+            <p>Ville : {{ client.city }}</p>
             <!-- <EditBtn /> -->
           </div>
           <div class="cp">
-            <p>Code Postal : </p>
+            <p>Code Postal : {{ client.postalCode }}</p>
             <!-- <EditBtn /> -->
           </div>
           <div class="funcion">
-            <p>Fonction : </p>
+            <p>Fonction : {{ client.job }}</p>
             <!-- <EditBtn /> -->
           </div>
           <div class="lastConsultation">
-            <p>Dernier rendez-vous :</p> 
+            <p>Dernier rendez-vous : {{ client.lastVisitDate }}</p> 
             <!-- <EditBtn /> -->
           </div>
           <div class="loyaltyPoints">
@@ -50,6 +50,11 @@ import { removeClient } from '../data/dao';
 
 <script lang="ts">
 export default {
+    data() {
+      return {
+        client : {} as Client,
+      }
+    },
     props: {
         clientId:{
             type: Number,
@@ -62,6 +67,11 @@ export default {
         removeClient(this.clientId);
         this.$router.push({name: 'menu'});
       }
+    },
+    mounted(){
+      getClient(this.clientId).then((client) => {
+        this.client = client;
+      });
     }
 };
 </script>
