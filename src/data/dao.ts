@@ -11,6 +11,7 @@ export interface Client{
   city:String;
   postalCode:String;
   registrationDate:String;
+  lastVisitDate:String;
 }
 
 export function addClient(client:any) {
@@ -27,8 +28,11 @@ export function addClient(client:any) {
     // Generer un nouvel ID unique
     const newId = Math.max(...clients.map((client:any) => client.id)) + 1;
 
+    // Ajouter la date de derniere visite
+    const lastVisitDate = new Date().toLocaleDateString('fr-FR');
+
     // ajouter le nouveau client a l'objet
-    clients.push({ id: newId, ...client});
+    clients.push({ id: newId, ...client, lastVisitDate:lastVisitDate});
 
     // ecrire le nouveau contenu JSON dans le fichier
     fs.writeFile(clientsFile, JSON.stringify(clients,null,2), err => {

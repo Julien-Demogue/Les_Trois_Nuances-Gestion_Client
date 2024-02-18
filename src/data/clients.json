@@ -1,14 +1,15 @@
 [
   {
     "id": 1,
-    "firstName": "Demogue",
-    "lastName": "Julien",
+    "firstName": "Julien",
+    "lastName": "Demogue",
     "birthday": "2003-03-17",
     "email": "julien.demogue@sfr.fr",
     "city": "Rennes",
     "postalCode": "35200",
     "job": "Etudiant",
-    "registrationDate": ""
+    "registrationDate": "",
+    "lastVisitDate": "18/02/2024"
   },
   {
     "id": 2,
@@ -19,7 +20,8 @@
     "city": "Paris",
     "postalCode": "75000",
     "job": "Ingénieur",
-    "registrationDate": "2023-02-01"
+    "registrationDate": "2023-02-01",
+    "lastVisitDate": "18/02/2024"
   },
   {
     "id": 3,
@@ -30,7 +32,8 @@
     "city": "Lyon",
     "postalCode": "69000",
     "job": "Étudiante",
-    "registrationDate": "2023-09-15"
+    "registrationDate": "2023-09-15",
+    "lastVisitDate": "18/02/2024"
   },
   {
     "id": 4,
@@ -41,7 +44,8 @@
     "city": "Marseille",
     "postalCode": "13000",
     "job": "Commerçant",
-    "registrationDate": "2023-04-25"
+    "registrationDate": "2023-04-25",
+    "lastVisitDate": "18/02/2024"
   },
   {
     "id": 5,
@@ -52,7 +56,8 @@
     "city": "Bordeaux",
     "postalCode": "33000",
     "job": "Infirmière",
-    "registrationDate": "2023-06-08"
+    "registrationDate": "2023-06-08",
+    "lastVisitDate": "18/02/2024"
   },
   {
     "id": 6,
@@ -63,7 +68,8 @@
     "city": "Lille",
     "postalCode": "59000",
     "job": "Artisan",
-    "registrationDate": "2023-08-10"
+    "registrationDate": "2023-08-10",
+    "lastVisitDate": "18/02/2024"
   },
   {
     "id": 7,
@@ -74,7 +80,8 @@
     "city": "Nantes",
     "postalCode": "44000",
     "job": "Étudiante",
-    "registrationDate": "2023-10-01"
+    "registrationDate": "2023-10-01",
+    "lastVisitDate": "18/02/2024"
   },
   {
     "id": 8,
@@ -85,7 +92,8 @@
     "city": "Toulouse",
     "postalCode": "31000",
     "job": "Fonctionnaire",
-    "registrationDate": "2023-03-15"
+    "registrationDate": "2023-03-15",
+    "lastVisitDate": "18/02/2024"
   },
   {
     "id": 9,
@@ -96,7 +104,8 @@
     "city": "Montpellier",
     "postalCode": "34000",
     "job": "Avocate",
-    "registrationDate": "2023-05-20"
+    "registrationDate": "2023-05-20",
+    "lastVisitDate": "18/02/2024"
   },
   {
     "id": 10,
@@ -107,7 +116,8 @@
     "city": "Strasbourg",
     "postalCode": "67000",
     "job": "Comptable",
-    "registrationDate": "2023-07-12"
+    "registrationDate": "2023-07-12",
+    "lastVisitDate": "18/02/2024"
   },
   {
     "id": 11,
@@ -118,7 +128,8 @@
     "city": "Nice",
     "postalCode": "06000",
     "job": "Professeure",
-    "registrationDate": "2023-01-20"
+    "registrationDate": "2023-01-20",
+    "lastVisitDate": "18/02/2024"
   },
   {
     "id": 12,
@@ -129,7 +140,8 @@
     "city": "Bordeaux",
     "postalCode": "33000",
     "job": "Étudiant",
-    "registrationDate": "2023-12-10"
+    "registrationDate": "2023-12-10",
+    "lastVisitDate": "18/02/2024"
   },
   {
     "id": 13,
@@ -140,7 +152,8 @@
     "city": "Lyon",
     "postalCode": "69000",
     "job": "Infirmière",
-    "registrationDate": "2023-09-15"
+    "registrationDate": "2023-09-15",
+    "lastVisitDate": "18/02/2024"
   },
   {
     "id": 14,
@@ -151,7 +164,8 @@
     "city": "Nantes",
     "postalCode": "44000",
     "job": "Chef d'entreprise",
-    "registrationDate": "2023-02-14"
+    "registrationDate": "2023-02-14",
+    "lastVisitDate": "18/02/2024"
   },
   {
     "id": 15,
@@ -162,7 +176,8 @@
     "city": "Marseille",
     "postalCode": "13000",
     "job": "Graphiste",
-    "registrationDate": "2023-10-25"
+    "registrationDate": "2023-10-25",
+    "lastVisitDate": "18/02/2024"
   },
   {
     "id": 16,
@@ -173,7 +188,8 @@
     "city": "Lille",
     "postalCode": "59000",
     "job": "Commercial",
-    "registrationDate": "2023-04-01"
+    "registrationDate": "2023-04-01",
+    "lastVisitDate": "18/02/2024"
   },
   {
     "id": 17,
@@ -184,7 +200,8 @@
     "city": "Rennes",
     "postalCode": "35000",
     "job": "Étudiante",
-    "registrationDate": "2023-11-21"
+    "registrationDate": "2023-11-21",
+    "lastVisitDate": "18/02/2024"
   },
   {
     "id": 18,
@@ -195,6 +212,7 @@
     "city": "Toulouse",
     "postalCode": "31000",
     "job": "Ingénieur",
-    "registrationDate": "2023-05-18"
+    "registrationDate": "2023-05-18",
+    "lastVisitDate": "18/02/2024"
   }
 ]

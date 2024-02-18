@@ -13,8 +13,8 @@ import {addClient} from '../data/dao';
         <div class="title"><p>Ajouter un client</p></div>
         <div class="add-form">
             <div class="input-group">
-                <input type="text" class="input input-half" name="firstName" placeholder="nom" v-model="firstName" >
-                <input type="text" class="input input-half" name="lastName" placeholder="prenom" v-model="lastName">
+                <input type="text" class="input input-half" name="lastName" placeholder="prenom" v-model="firstName">
+                <input type="text" class="input input-half" name="firstName" placeholder="nom" v-model="lastName" >
             </div>
             <input type="text" class="input" name="birthday" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date de naissance" v-model="birthday">
             <input type="email" class="input" name="email" placeholder="email" v-model="email">

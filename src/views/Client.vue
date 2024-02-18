@@ -51,8 +51,9 @@ import EditBtn from '../components/EditBtn.vue';
 export default {
     props: {
         id:{
-            type: Object,
+            type: Number,
             required: true,
+            default: -1,
         }
     },
 };

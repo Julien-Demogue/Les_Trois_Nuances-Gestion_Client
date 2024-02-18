@@ -3,6 +3,7 @@ import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
 import ClientLine from '../components/ClientLine.vue';
 import { getClients,Client } from '../data/dao';
+
 </script>
 
 <template>
@@ -14,13 +15,13 @@ import { getClients,Client } from '../data/dao';
         <div class="title"><p>Rechercher un client</p></div>
         <div class="search-form">
         <div class="input-group">
-            <input type="text" class="input input-half" name="nom" placeholder="nom" required>
-            <input type="text" class="input input-half" name="prenom" placeholder="prenom" required>
+          <input type="text" class="input input-half" name="prenom" placeholder="prenom" v-model="firstName" @input="filterClients">
+          <input type="text" class="input input-half" name="nom" placeholder="nom" v-model="lastName" @input="filterClients">  
         </div>
-        <div class="results-count">X résultats / Y clients</div>
+        <div class="results-count">{{ filteredClients.length }} résultat(s) / {{ clients.length }} clients</div>
             <div class="results-container">
               <div class="results-scroll-area">
-                  <ClientLine :client=client v-for="(client) in clients" />
+                  <ClientLine v-for="(client,i) in filteredClients" :client=client :index=i+1 />
               </div>             
             </div>
         </div>
@@ -34,13 +35,33 @@ import { getClients,Client } from '../data/dao';
 export default {
   data() {
     return {
-      clients: [] as Client[]
+      clients: [] as Client[],
+      firstName: "",
+      lastName: ""
     }
   },
-  beforeMount() {
+  mounted() {
     getClients().then((clients) => {
       this.clients = clients;
     });
+  },
+  methods: {
+    filterClients() {
+      this.filteredClients = this.clients.filter((client) => {
+        const nomMatch = this.lastName ? client.lastName?.toLowerCase().includes(this.lastName.toLowerCase()) : true;
+        const prenomMatch = this.firstName ? client.firstName?.toLowerCase().includes(this.firstName.toLowerCase()) : true;
+        return nomMatch && prenomMatch;
+      });
+    },
+  },
+  computed:{
+    filteredClients() {
+      return this.clients.filter((client) => {
+        const nomMatch = this.lastName ? client.lastName?.toLowerCase().includes(this.lastName.toLowerCase()) : true;
+        const prenomMatch = this.firstName ? client.firstName?.toLowerCase().includes(this.firstName.toLowerCase()) : true;
+        return nomMatch && prenomMatch;
+      });
+    },
   }
 }
 </script>
@@ -56,7 +77,7 @@ export default {
 
 .results-count {
     color: #9D9797;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: bold;
 }
 

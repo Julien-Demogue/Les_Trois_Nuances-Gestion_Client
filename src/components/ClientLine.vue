@@ -4,7 +4,7 @@
 <template>
 <div class="line" @click="openClientPage">
     <div class="left-side">
-        <div class="id element">{{ client.id }}</div>
+        <div class="id element">{{ index }}</div>
         <div class="sep element">|</div>
         <div class="firstName element">{{ client.firstName }}</div>
         <div class="lastName element">{{ client.lastName }}</div>
@@ -14,7 +14,7 @@
 
     </div>
     <div class="right-side">
-        <div class="dateDerniereVisite element">[Date derniere visite]</div>
+        <div class="dateDerniereVisite element">{{ client.lastVisitDate }}</div>
     </div>
 </div>
 </template>
@@ -24,6 +24,10 @@ export default {
     props: {
         client:{
             type: Object,
+            required: true
+        },
+        index:{
+            type: Number,
             required: true
         }
     },
