@@ -2,6 +2,7 @@
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
 import ClientLine from '../components/ClientLine.vue';
+import { getClients,Client } from '../data/dao';
 </script>
 
 <template>
@@ -19,7 +20,7 @@ import ClientLine from '../components/ClientLine.vue';
         <div class="results-count">X résultats / Y clients</div>
             <div class="results-container">
               <div class="results-scroll-area">
-                  
+                  <ClientLine :client=client v-for="(client) in clients" />
               </div>             
             </div>
         </div>
@@ -28,6 +29,21 @@ import ClientLine from '../components/ClientLine.vue';
     </div>
 </div>
 </template>
+
+<script lang="ts">
+export default {
+  data() {
+    return {
+      clients: [] as Client[]
+    }
+  },
+  beforeMount() {
+    getClients().then((clients) => {
+      this.clients = clients;
+    });
+  }
+}
+</script>
 
 <style scoped>
 .search-form {

@@ -16,14 +16,14 @@ import {addClient} from '../data/dao';
                 <input type="text" class="input input-half" name="firstName" placeholder="nom" v-model="firstName" >
                 <input type="text" class="input input-half" name="lastName" placeholder="prenom" v-model="lastName">
             </div>
-            <input type="text" class="input" name="birthDate" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date de naissance" v-model="birthDate">
+            <input type="text" class="input" name="birthday" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date de naissance" v-model="birthday">
             <input type="email" class="input" name="email" placeholder="email" v-model="email">
             <div class="input-group">
                 <input type="text" class="input input-half" name="city" placeholder="ville" v-model="city">
                 <input type="number" class="input input-half" name="postalCode" placeholder="code postal" v-model="postalCode">
             </div>
                 <input type="text" class="input" name="job" placeholder="fonction" v-model="job">
-                <input type="text" class="input" name="registeryDate" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date d'inscription" v-model="registeryDate">
+                <input type="text" class="input" name="registrationDate" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date d'inscription" v-model="registrationDate">
                 <div class="valid-btn"><button class="btn" @click="onValidate">Valider</button></div>
             </div>
       </div>
@@ -38,38 +38,38 @@ export default {
         return {
             firstName: '',
             lastName: '',
-            birthDate: '',
+            birthday: '',
             email: '',
             city: '',
             postalCode: '',
             job: '',
-            registeryDate: ''
+            registrationDate: ''
         }
     },
     methods: {
         onValidate(){  
             const firstName = this.firstName.trim();
             const lastName = this.lastName.trim();
-            const birthDate = this.birthDate.trim();
+            const birthday = this.birthday.trim();
             const email = this.email.trim();
             const city = this.city.trim();
             const postalCode = this.postalCode.trim();
             const job = this.job.trim();
-            const registeryDate = this.registeryDate.trim();
+            const registrationDate = this.registrationDate.trim();
 
-            if(firstName == '' || lastName == '' || birthDate == ''){
+            if(firstName == '' || lastName == '' || birthday == ''){
                 alert('Veuillez remplir tous les champs obligatoires');
             }
             else{
                 const client = {
-                    "firstname":firstName,
-                    "lastname":lastName,
-                    "birthdate":birthDate,
+                    "firstName":firstName,
+                    "lastName":lastName,
+                    "birthday":birthday,
                     "email":email,
                     "city":city,
-                    "postalcode":postalCode,
+                    "postalCode":postalCode,
                     "job":job,
-                    "registerydate":registeryDate
+                    "registrationDate":registrationDate
                 }
                 addClient(client);  
                 alert('Le client '+ lastName + " " + firstName +' à été ajouté avec succès !');

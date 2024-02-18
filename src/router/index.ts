@@ -1,14 +1,14 @@
 import {createRouter, createWebHashHistory} from 'vue-router';
-import MainMenu from '../views/MainMenu.vue';
-import AddClient from '../views/AddClient.vue';
-import SearchClient from '../views/SearchClient.vue';
-import Client from '../views/Client.vue';
+import MainMenuVue from '../views/MainMenu.vue';
+import AddClientVue from '../views/AddClient.vue';
+import SearchClientVue from '../views/SearchClient.vue';
+import ClientVue from '../views/Client.vue';
 
 const routes = [
-  {name:"menu", path: '/',component: MainMenu,},
-  {name:"add", path: '/add-client',component: AddClient,},
-  {name:"search", path:'/search-client',component: SearchClient,},
-  {name:"client", path: '/search-client/client/:clientId',component: Client,props:true}
+  {name:"menu", path: '/',component: MainMenuVue,},
+  {name:"add", path: '/add-client',component: AddClientVue,},
+  {name:"search", path:'/search-client',component: SearchClientVue,},
+  {name:"client", path: '/search-client/client/:clientId',component: ClientVue,props:true}
 ];
 
 const router = createRouter({

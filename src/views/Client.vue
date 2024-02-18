@@ -11,7 +11,7 @@ import EditBtn from '../components/EditBtn.vue';
       <SideBar />
       <div class="content">
         <div class="title">
-          <p>Id : {{ clientId }}</p>
+          <p>Id : {{ id }}</p>
           <!-- <EditBtn /> -->
         </div>
         <div class="informations">
@@ -50,10 +50,9 @@ import EditBtn from '../components/EditBtn.vue';
 <script lang="ts">
 export default {
     props: {
-        clientId:{
-            type: Number,
+        id:{
+            type: Object,
             required: true,
-            default: -1
         }
     },
 };

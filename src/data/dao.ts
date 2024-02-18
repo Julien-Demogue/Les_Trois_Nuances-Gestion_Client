@@ -2,6 +2,17 @@ import fs from 'fs';
 import { Collection } from 'mongodb';
 const clientsFile = 'C:\\Users\\julien\\Desktop\\Gestion-client\\src\\data\\clients.json';
 
+export interface Client{
+  id:Number;
+  firstName:String;
+  lastName:String;
+  birthday:String;
+  email:String;
+  city:String;
+  postalCode:String;
+  registrationDate:String;
+}
+
 export function addClient(client:any) {
   // Lire le fichier JSON
   fs.readFile(clientsFile, 'utf8', (err, data) => {
@@ -64,7 +75,7 @@ export function removeClient(id:Number) {
   });
 }
 
-export function editClient(id:Number, client:any) {
+export function editClient(id:Number, client:Collection) {
   // Lire le fichier JSON
   fs.readFile(clientsFile, 'utf8', (err, data) => {
     if (err) {
@@ -97,18 +108,39 @@ export function editClient(id:Number, client:any) {
   });
 }
 
-export function getClients() {
+export function getClients(): Promise<Client[]> {
   // Lire le fichier JSON
-  fs.readFile(clientsFile, 'utf8', (err, data) => {
-    if (err) {
-      console.log(err);
-      return;
-    }
+  return new Promise((resolve, reject) => {
+    fs.readFile(clientsFile, 'utf8', (err, data) => {
+      if (err) {
+        reject(err);
+        return;
+      }
 
-    // analyser le JSON en objet
-    const clients = JSON.parse(data);
+      // Analyser le JSON en objet
+      const clients = JSON.parse(data);
 
-    // afficher la liste des clients
-    console.log(clients);
+      // Résoudre la promesse avec le tableau de clients
+      resolve(clients);
+    });
   });
 }
+
+// export function getClient(id: Number): Promise<Client> {
+//   return new Promise((resolve, reject) => {
+//     fs.readFile(clientsFile, 'utf8', (err, data) => {
+//       if (err) {
+//         reject(err);
+//         return;
+//       }
+
+//       // analyser le JSON en objet
+//       const clients = JSON.parse(data);
+
+//       // Trouver l'index de la ligne a modifier
+//       const index = clients.findIndex((client:any) => client.id === id);
+
+//       resolve(clients[index]); 
+      
+//   }
+// }

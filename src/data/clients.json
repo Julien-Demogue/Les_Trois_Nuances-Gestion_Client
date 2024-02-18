@@ -1,13 +1,200 @@
 [
   {
     "id": 1,
-    "firstname": "Demogue",
-    "lastname": "Julien",
-    "birthdate": "2003-03-17",
-    "email": "",
-    "city": "",
-    "postalcode": "",
-    "job": "",
-    "registerydate": ""
+    "firstName": "Demogue",
+    "lastName": "Julien",
+    "birthday": "2003-03-17",
+    "email": "julien.demogue@sfr.fr",
+    "city": "Rennes",
+    "postalCode": "35200",
+    "job": "Etudiant",
+    "registrationDate": ""
+  },
+  {
+    "id": 2,
+    "firstName": "Martin",
+    "lastName": "Dupont",
+    "birthday": "1985-05-12",
+    "email": "martin.dupont@example.com",
+    "city": "Paris",
+    "postalCode": "75000",
+    "job": "Ingénieur",
+    "registrationDate": "2023-02-01"
+  },
+  {
+    "id": 3,
+    "firstName": "Léa",
+    "lastName": "Robert",
+    "birthday": "1992-10-24",
+    "email": "lea.robert@example.com",
+    "city": "Lyon",
+    "postalCode": "69000",
+    "job": "Étudiante",
+    "registrationDate": "2023-09-15"
+  },
+  {
+    "id": 4,
+    "firstName": "Thomas",
+    "lastName": "Durand",
+    "birthday": "2000-01-01",
+    "email": "thomas.durand@example.com",
+    "city": "Marseille",
+    "postalCode": "13000",
+    "job": "Commerçant",
+    "registrationDate": "2023-04-25"
+  },
+  {
+    "id": 5,
+    "firstName": "Clara",
+    "lastName": "Martin",
+    "birthday": "1995-07-14",
+    "email": "clara.martin@example.com",
+    "city": "Bordeaux",
+    "postalCode": "33000",
+    "job": "Infirmière",
+    "registrationDate": "2023-06-08"
+  },
+  {
+    "id": 6,
+    "firstName": "Pierre",
+    "lastName": "Richard",
+    "birthday": "1978-12-25",
+    "email": "pierre.richard@example.com",
+    "city": "Lille",
+    "postalCode": "59000",
+    "job": "Artisan",
+    "registrationDate": "2023-08-10"
+  },
+  {
+    "id": 7,
+    "firstName": "Marie",
+    "lastName": "Durand",
+    "birthday": "2005-08-15",
+    "email": "marie.durand@example.com",
+    "city": "Nantes",
+    "postalCode": "44000",
+    "job": "Étudiante",
+    "registrationDate": "2023-10-01"
+  },
+  {
+    "id": 8,
+    "firstName": "Jean",
+    "lastName": "Dupont",
+    "birthday": "1980-06-01",
+    "email": "jean.dupont@example.com",
+    "city": "Toulouse",
+    "postalCode": "31000",
+    "job": "Fonctionnaire",
+    "registrationDate": "2023-03-15"
+  },
+  {
+    "id": 9,
+    "firstName": "Sophie",
+    "lastName": "Martin",
+    "birthday": "1990-02-04",
+    "email": "sophie.martin@example.com",
+    "city": "Montpellier",
+    "postalCode": "34000",
+    "job": "Avocate",
+    "registrationDate": "2023-05-20"
+  },
+  {
+    "id": 10,
+    "firstName": "Alexandre",
+    "lastName": "Lefèvre",
+    "birthday": "1997-09-22",
+    "email": "alexandre.lefevre@example.com",
+    "city": "Strasbourg",
+    "postalCode": "67000",
+    "job": "Comptable",
+    "registrationDate": "2023-07-12"
+  },
+  {
+    "id": 11,
+    "firstName": "Aurélie",
+    "lastName": "Thomas",
+    "birthday": "1987-04-10",
+    "email": "aurelie.thomas@example.com",
+    "city": "Nice",
+    "postalCode": "06000",
+    "job": "Professeure",
+    "registrationDate": "2023-01-20"
+  },
+  {
+    "id": 12,
+    "firstName": "Benjamin",
+    "lastName": "Robert",
+    "birthday": "2002-11-08",
+    "email": "benjamin.robert@example.com",
+    "city": "Bordeaux",
+    "postalCode": "33000",
+    "job": "Étudiant",
+    "registrationDate": "2023-12-10"
+  },
+  {
+    "id": 13,
+    "firstName": "Chloé",
+    "lastName": "Bernard",
+    "birthday": "1993-05-21",
+    "email": "chloe.bernard@example.com",
+    "city": "Lyon",
+    "postalCode": "69000",
+    "job": "Infirmière",
+    "registrationDate": "2023-09-15"
+  },
+  {
+    "id": 14,
+    "firstName": "David",
+    "lastName": "Moreau",
+    "birthday": "1975-03-13",
+    "email": "david.moreau@example.com",
+    "city": "Nantes",
+    "postalCode": "44000",
+    "job": "Chef d'entreprise",
+    "registrationDate": "2023-02-14"
+  },
+  {
+    "id": 15,
+    "firstName": "Élise",
+    "lastName": "Petit",
+    "birthday": "1998-07-29",
+    "email": "elise.petit@example.com",
+    "city": "Marseille",
+    "postalCode": "13000",
+    "job": "Graphiste",
+    "registrationDate": "2023-10-25"
+  },
+  {
+    "id": 16,
+    "firstName": "Fabien",
+    "lastName": "Dupond",
+    "birthday": "1982-01-06",
+    "email": "fabien.dupont@example.com",
+    "city": "Lille",
+    "postalCode": "59000",
+    "job": "Commercial",
+    "registrationDate": "2023-04-01"
+  },
+  {
+    "id": 17,
+    "firstName": "Hélène",
+    "lastName": "Durand",
+    "birthday": "2004-12-24",
+    "email": "helene.durand@example.com",
+    "city": "Rennes",
+    "postalCode": "35000",
+    "job": "Étudiante",
+    "registrationDate": "2023-11-21"
+  },
+  {
+    "id": 18,
+    "firstName": "Jérémy",
+    "lastName": "Martin",
+    "birthday": "1991-08-15",
+    "email": "jeremy.martin@example.com",
+    "city": "Toulouse",
+    "postalCode": "31000",
+    "job": "Ingénieur",
+    "registrationDate": "2023-05-18"
   }
 ]

@@ -4,12 +4,14 @@
 <template>
 <div class="line" @click="openClientPage">
     <div class="left-side">
-        <div class="id element">{{ id }}</div>
+        <div class="id element">{{ client.id }}</div>
         <div class="sep element">|</div>
-        <div class="nom element">[Nom]</div>
-        <div class="prenom element">[Prenom]</div>
-        <div class="ville element">[Ville]</div>
-        <div class="age element">[Age]</div>
+        <div class="firstName element">{{ client.firstName }}</div>
+        <div class="lastName element">{{ client.lastName }}</div>
+        <div class="element" v-if="client.postalCode != '' || client.city != ''">-</div>
+        <div class="postalCode element" v-if="client.postalCode != ''">{{ client.postalCode }}</div>
+        <div class="city element" v-if="client.city != ''">{{ client.city }}</div>
+
     </div>
     <div class="right-side">
         <div class="dateDerniereVisite element">[Date derniere visite]</div>
@@ -20,16 +22,16 @@
 <script lang="ts">
 export default {
     props: {
-        id:{
-            type: Number,
+        client:{
+            type: Object,
             required: true
         }
     },
     methods: {
         openClientPage(){
-            this.$router.push({ name: "client", params: { clientId: this.id } });
+            this.$router.push({ name: "client", params: { clientId: this.client.id } });
         }
-    }
+    },
 };
 </script>
 
