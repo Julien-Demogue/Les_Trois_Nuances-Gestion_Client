@@ -2,6 +2,7 @@
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
 import EditBtn from '../components/EditBtn.vue';
+import { removeClient } from '../data/dao';
 </script>
 
 <template>
@@ -11,7 +12,7 @@ import EditBtn from '../components/EditBtn.vue';
       <SideBar />
       <div class="content">
         <div class="title">
-          <p>Id : {{ id }}</p>
+          <p>Id : {{ clientId }}</p>
           <!-- <EditBtn /> -->
         </div>
         <div class="informations">
@@ -32,7 +33,7 @@ import EditBtn from '../components/EditBtn.vue';
             <!-- <EditBtn /> -->
           </div>
           <div class="lastConsultation">
-            <p>Dernière consultation :</p> 
+            <p>Dernier rendez-vous :</p> 
             <!-- <EditBtn /> -->
           </div>
           <div class="loyaltyPoints">
@@ -40,7 +41,7 @@ import EditBtn from '../components/EditBtn.vue';
             <!-- <EditBtn /> -->
           </div>
         </div>
-        <div class="delBtn"><button class="btn">Supprimer le client</button></div>
+        <div class="delBtn"><button @click="onRemove" class="btn">Supprimer le client</button></div>
       </div>
       <SideBar />
     </div>
@@ -50,12 +51,18 @@ import EditBtn from '../components/EditBtn.vue';
 <script lang="ts">
 export default {
     props: {
-        id:{
+        clientId:{
             type: Number,
             required: true,
             default: -1,
         }
     },
+    methods:{
+      onRemove(){
+        removeClient(this.clientId);
+        this.$router.push({name: 'menu'});
+      }
+    }
 };
 </script>
 

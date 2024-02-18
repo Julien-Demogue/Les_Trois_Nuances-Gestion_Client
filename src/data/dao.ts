@@ -26,7 +26,7 @@ export function addClient(client:any) {
     const clients = JSON.parse(data);
 
     // Generer un nouvel ID unique
-    const newId = Math.max(...clients.map((client:any) => client.id)) + 1;
+    const newId = Math.max(...clients.map((client:Client) => client.id)) + 1;
 
     // Ajouter la date de derniere visite
     const lastVisitDate = new Date().toLocaleDateString('fr-FR');
@@ -53,12 +53,11 @@ export function removeClient(id:Number) {
       console.error(err);
       return;
     }
-
     // analyser le JSON en objet
     const clients = JSON.parse(data);
 
     // Trouver l'index de la ligne a supprimer
-    const index = clients.findIndex((client:any) => client.id === id);
+    const index = clients.findIndex((client:Client) => client.id == id);
 
     // Si l'index est trouve, supprimer la ligne
     if (index !== -1) {
@@ -71,10 +70,10 @@ export function removeClient(id:Number) {
           return;
         }
 
-        console.log(`Ligne ${id} supprimee avec succes !`);
+        alert(`Ligne '${id}' supprimee avec succes !`);
       });
     } else {
-      console.log(`Ligne avec l'ID ${id} non trouvee.`);
+      alert(`Ligne avec l'ID '${id}' non trouvee.`);
     }
   });
 }
@@ -91,7 +90,7 @@ export function editClient(id:Number, client:Collection) {
     const clients = JSON.parse(data);
 
     // Trouver l'index de la ligne a modifier
-    const index = clients.findIndex((client:any) => client.id === id);
+    const index = clients.findIndex((client:Client) => client.id === id);
 
     // Si l'index est trouve, modifier la ligne
     if (index !== -1) {

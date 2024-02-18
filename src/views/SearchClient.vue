@@ -46,6 +46,7 @@ export default {
     });
   },
   methods: {
+    // Actualiser le filtre de clients
     filterClients() {
       this.filteredClients = this.clients.filter((client) => {
         const nomMatch = this.lastName ? client.lastName?.toLowerCase().includes(this.lastName.toLowerCase()) : true;
@@ -55,6 +56,7 @@ export default {
     },
   },
   computed:{
+    // Renvoir la liste des clients filtres
     filteredClients() {
       return this.clients.filter((client) => {
         const nomMatch = this.lastName ? client.lastName?.toLowerCase().includes(this.lastName.toLowerCase()) : true;
@@ -77,7 +79,7 @@ export default {
 
 .results-count {
     color: #9D9797;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     font-weight: bold;
 }
 
