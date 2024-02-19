@@ -13,6 +13,7 @@ export interface Client{
   job:String;
   registrationDate:String;
   lastVisitDate:String;
+  loyaltyPoints:Number;
 }
 
 export function addClient(client:any) {
@@ -132,6 +133,7 @@ export function getClients(): Promise<Client[]> {
 
 export function getClient(id: Number): Promise<Client> {
   return new Promise((resolve, reject) => {
+    // Lire le JSON
     fs.readFile(clientsFile, 'utf8', (err, data) => {
       if (err) {
         reject(err);

@@ -13,32 +13,31 @@ import { removeClient,getClient,Client } from '../data/dao';
       <div class="content">
         <div class="title">
           <p>{{ client.firstName }} {{ client.lastName }}</p>
-          <!-- <EditBtn /> -->
         </div>
         <div class="informations">
-          <div class="birthDate">
-            <p>{{ client.birthday }} ([age])</p>
-            <!-- <EditBtn /> -->
+          <div class="birthday info-block">
+            <p class="info-title">Age</p>
+            <p class="info">[age] ans ({{ client.birthday }})</p>
           </div>
-          <div class="city">
-            <p>Ville : {{ client.city }}</p>
-            <!-- <EditBtn /> -->
+          <div class="city info-block">
+            <p class="info-title">Ville</p>
+            <p class="info">{{ client.city }}</p>
           </div>
-          <div class="cp">
-            <p>Code Postal : {{ client.postalCode }}</p>
-            <!-- <EditBtn /> -->
+          <div class="cp info-block">
+            <p class="info-title">Code Postal</p>
+            <p class="info">{{ client.postalCode }}</p>
           </div>
-          <div class="funcion">
-            <p>Fonction : {{ client.job }}</p>
-            <!-- <EditBtn /> -->
+          <div class="funcion info-block">
+            <p class="info-title">Fonction</p>
+            <p class="info">{{ client.job }}</p>
           </div>
-          <div class="lastConsultation">
-            <p>Dernier rendez-vous : {{ client.lastVisitDate }}</p> 
-            <!-- <EditBtn /> -->
+          <div class="lastConsultation info-block">
+            <p class="info-title">Dernier rendez-vous</p> 
+            <p class="info">{{ client.lastVisitDate }}</p>
           </div>
-          <div class="loyaltyPoints">
-            <p>Point de fidélité : </p>
-            <!-- <EditBtn /> -->
+          <div class="loyaltyPoints info-block">
+            <div><p class="info-title">Points de fidélité</p></div>
+            <div><p class="info">{{ client.loyaltyPoints }}</p></div>
           </div>
         </div>
         <div class="delBtn"><button @click="onRemove" class="btn">Supprimer le client</button></div>
@@ -82,20 +81,13 @@ export default {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-}
-
-.informations div{
-  margin-bottom: 2rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  width: 80%;
 }
 
 .informations p{
   text-align: center;
-  color:#9D9797;
-  font-size: 2rem;
+  color:#5e5e5e;
+  font-size: 1.8rem;
   font-weight: bold;
 }
 
@@ -111,4 +103,17 @@ export default {
   display: flex;
   flex-direction: row;
 }
+
+.info-title{
+  color:#339adf !important;
+}
+
+.info-block{
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 </style>

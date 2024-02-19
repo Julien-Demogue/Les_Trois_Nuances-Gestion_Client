@@ -78,7 +78,7 @@ export default {
 }
 
 .results-count {
-    color: #9D9797;
+    color: #746c6c;
     font-size: 1.15rem;
     font-weight: bold;
 }

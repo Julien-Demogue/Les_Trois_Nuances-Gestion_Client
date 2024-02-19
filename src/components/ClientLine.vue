@@ -74,7 +74,7 @@ export default {
 
 .element{
     margin-right: 10px;
-    color: #9D9797;
+    color: #746c6c;
     font-size: 1.2rem;
     font-weight: bold;
 }
