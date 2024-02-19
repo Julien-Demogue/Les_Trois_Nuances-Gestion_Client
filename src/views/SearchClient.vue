@@ -109,12 +109,4 @@ export default {
   background-color: #79C8F6;
   overflow-y: auto;
 }
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-::-webkit-scrollbar-thumb {
-  background-color: #5271FF;
-  border-radius: 2px;
-}
 </style>

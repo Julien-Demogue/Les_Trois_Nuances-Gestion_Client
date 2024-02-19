@@ -99,5 +99,14 @@ input:focus{
   flex-direction: column;
   justify-content: top;
   align-items: center;
-  padding: 3%
+  padding: 3%;
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #5271FF;
+  border-radius: 2px;
 }

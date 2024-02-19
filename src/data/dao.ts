@@ -9,7 +9,7 @@ export interface Client{
   birthday:String;
   email:String;
   city:String;
-  postalCode:String;
+  postalCode:Number;
   job:String;
   registrationDate:String;
   lastVisitDate:String;

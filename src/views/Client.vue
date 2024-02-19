@@ -15,29 +15,37 @@ import { removeClient,getClient,Client } from '../data/dao';
           <p>{{ client.firstName }} {{ client.lastName }}</p>
         </div>
         <div class="informations">
-          <div class="birthday info-block">
+          <div class="birthday info-block" v-if="client.birthday != ''">
             <p class="info-title">Age</p>
             <p class="info">[age] ans ({{ client.birthday }})</p>
           </div>
-          <div class="city info-block">
+          <div class="city info-block" v-if="client.city != ''">
             <p class="info-title">Ville</p>
             <p class="info">{{ client.city }}</p>
           </div>
-          <div class="cp info-block">
+          <div class="cp info-block" v-if="client.postalCode != 0">
             <p class="info-title">Code Postal</p>
             <p class="info">{{ client.postalCode }}</p>
           </div>
-          <div class="funcion info-block">
+          <div class="funcion info-block" v-if="client.job != ''">
             <p class="info-title">Fonction</p>
             <p class="info">{{ client.job }}</p>
           </div>
-          <div class="lastConsultation info-block">
+          <div class="lastConsultation info-block" v-if="client.lastVisitDate != ''">
             <p class="info-title">Dernier rendez-vous</p> 
             <p class="info">{{ client.lastVisitDate }}</p>
           </div>
           <div class="loyaltyPoints info-block">
             <div><p class="info-title">Points de fidélité</p></div>
             <div><p class="info">{{ client.loyaltyPoints }}</p></div>
+          </div>
+          <div class="email info-block" v-if="client.email != ''">
+            <div><p class="info-title">Email</p></div>
+            <div><p class="info">{{ client.email }}</p></div>
+          </div>
+          <div class="registrationDate info-block" v-if="client.registrationDate != ''">
+            <div><p class="info-title">Date d'inscription</p></div>
+            <div><p class="info">{{ client.registrationDate }}</p></div>
           </div>
         </div>
         <div class="delBtn"><button @click="onRemove" class="btn">Supprimer le client</button></div>
@@ -55,11 +63,11 @@ export default {
       }
     },
     props: {
-        clientId:{
-            type: Number,
-            required: true,
-            default: -1,
-        }
+      clientId:{
+        type: Number,
+        required: true,
+        default: -1,
+      }
     },
     methods:{
       onRemove(){
@@ -86,8 +94,8 @@ export default {
 
 .informations p{
   text-align: center;
-  color:#5e5e5e;
-  font-size: 1.8rem;
+  color:#746c6c;
+  font-size: 1.9rem;
   font-weight: bold;
 }
 
@@ -109,11 +117,10 @@ export default {
 }
 
 .info-block{
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-
 </style>
