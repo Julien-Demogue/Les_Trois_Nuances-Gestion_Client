@@ -41,7 +41,7 @@ export default {
             birthday: '',
             email: '',
             city: '',
-            postalCode: '',
+            postalCode: null,
             job: '',
             registrationDate: ''
         }
@@ -53,7 +53,7 @@ export default {
             const birthday = this.birthday.trim();
             const email = this.email.trim();
             const city = this.city.trim();
-            const postalCode = this.postalCode.trim();
+            const postalCode = this.postalCode;
             const job = this.job.trim();
             const registrationDate = this.registrationDate.trim();
 
