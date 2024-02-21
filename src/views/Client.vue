@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
-import EditBtn from '../components/EditBtn.vue';
+// import EditBtn from '../components/EditBtn.vue';
 import { removeClient,getClient,Client } from '../data/dao';
 </script>
 
@@ -48,7 +48,11 @@ import { removeClient,getClient,Client } from '../data/dao';
             <div><p class="info">{{ client.registrationDate }}</p></div>
           </div>
         </div>
-        <div class="delBtn"><button @click="onRemove" class="btn">Supprimer le client</button></div>
+        <div class="btnGroup">
+          <div class="delBtn"><button @click="onRemove" class="btn">Supprimer le client</button></div>
+          <div class="editBtn"><button @click="" class="btn">Modifier le client</button></div>
+        </div>
+        
       </div>
       <SideBar />
     </div>
@@ -99,12 +103,31 @@ export default {
   font-weight: bold;
 }
 
-.delBtn button{
+.btnGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.delBtn,.editBtn {
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.delBtn button, .editBtn button {
   margin-top: 10vh;
   width: 230px;
   height: 50px;
-  background-color: #FD6666;
   font-size: 1.4rem;
+}
+
+.delBtn button{
+  background-color: #FD6666;
+}
+
+.editBtn button{
+  background-color: #F6DC73;
 }
 
 .title{
