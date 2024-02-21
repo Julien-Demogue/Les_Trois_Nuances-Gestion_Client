@@ -26,7 +26,7 @@ import {addClient} from '../data/dao';
                 <input type="text" class="input" name="registrationDate" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date d'inscription" v-model="registrationDate">
                 
                 <div class="lbl-input">
-                    <div class="txt-loyalty">Points de fidélité :&nbsp;</div>
+                    <div class="txt-loyalty">Points de fidélité :&nbsp;&nbsp;</div>
                     <input type="number" class="input input-mini" name="loyaltyPoints" v-model="loyaltyPoints">
                 </div>
                 <div class="valid-btn"><button class="btn" @click="onValidate">Valider</button></div>

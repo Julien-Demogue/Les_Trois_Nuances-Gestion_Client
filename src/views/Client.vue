@@ -43,14 +43,14 @@ import { removeClient,getClient,Client } from '../data/dao';
             <p class="info-title">Dernier rendez-vous</p> 
             <p class="info">{{ client.lastVisitDate }}</p>
           </div>
-          <div class="loyaltyPoints info-block">
-            <div><p class="info-title">Points de fidélité</p></div>
-            <div><p class="info">{{ client.loyaltyPoints }}</p></div>
-          </div>
           <div class="email info-block" v-if="client.email != '' || editMode">
             <div><p class="info-title">Email</p></div>
             <div><p class="info" v-if="!editMode">{{ client.email }}</p></div>
             <input type="email" class="input" name="email" v-model="client.email" v-if="editMode">
+          </div>
+          <div class="loyaltyPoints info-block">
+            <div><p class="info-title">Points de fidélité</p></div>
+            <div><p class="info">{{ client.loyaltyPoints }}</p></div>
           </div>
           <div class="registrationDate info-block" v-if="client.registrationDate != '' || editMode">
             <div><p class="info-title">Date d'inscription</p></div>
@@ -58,9 +58,13 @@ import { removeClient,getClient,Client } from '../data/dao';
             <input type="text" class="input" name="registrationDate" onfocus="(this.type='date')" onblur="(this.type='text')" v-model="client.registrationDate" v-if="editMode">
           </div>
         </div>
-        <div class="btnGroup">
+        <div class="btnGroup" v-if="!editMode">
           <div class="delBtn"><button @click="onRemove" class="btn">Supprimer le client</button></div>
-          <div class="editBtn"><button @click="SwitchEditMode" class="btn">Modifier le client</button></div>
+          <div class="editBtn"><button @click="switchEditMode(true)" class="btn">Modifier le client</button></div>
+        </div>
+        <div class="btnGroup" v-else>
+          <div class="cancelBtn"><button @click="cancelEdit" class="btn">Annuler</button></div>
+          <div class="validBtn"><button @click="applyChanges" class="btn">Valider</button></div>
         </div>
         
       </div>
@@ -89,9 +93,29 @@ export default {
         removeClient(this.clientId);
         this.$router.push({name: 'menu'});
       },
-      SwitchEditMode(){
-        this.editMode =!this.editMode;
+      switchEditMode(active:boolean){
+        this.editMode = active;
+      },
+      cancelEdit(){
+        this.reloadPage();
+      },
+      applyChanges(){
+        const client = {
+          "firstName":this.client.firstName,
+          "lastName":this.client.lastName,
+          "birthday":this.client.birthday,
+          "email":this.client.email,
+          "city":this.client.city,
+          "postalCode":this.client.postalCode,
+          "job":this.client.job,
+          "registrationDate":this.client.registrationDate,
+        }
+        this.reloadPage();
+      },
+      reloadPage(){
+        location.reload();
       }
+
     },
     mounted(){
       getClient(this.clientId).then((client) => {
@@ -124,24 +148,28 @@ export default {
   align-items: center;
 }
 
-.delBtn,.editBtn {
+.delBtn,.editBtn,.validBtn,.cancelBtn {
   margin-left: 3%;
   margin-right: 3%;
 }
 
-.delBtn button, .editBtn button {
+.delBtn button, .editBtn button, .validBtn button, .cancelBtn button {
   margin-top: 10vh;
   width: 230px;
   height: 50px;
   font-size: 1.4rem;
 }
 
-.delBtn button{
+.delBtn button, .cancelBtn button {
   background-color: #FD6666;
 }
 
 .editBtn button{
   background-color: #F6DC73;
+}
+
+.validBtn button{
+  background-color: #24e25d;
 }
 
 .title{
@@ -164,5 +192,12 @@ export default {
 .info-block input{
   text-align: center;
   text-indent: 0 !important;
+  width: 15vw !important;
+  height: 2.2vh !important;
+}
+
+.input-half{
+  height: 2.2vh !important;
+  text-align: center;
 }
 </style>

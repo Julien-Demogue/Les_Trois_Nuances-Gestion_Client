@@ -1,18 +1,5 @@
 [
   {
-    "id": 1,
-    "firstName": "Julien",
-    "lastName": "Demogue",
-    "birthday": "2003-03-17",
-    "email": "julien.demogue@sfr.fr",
-    "city": "Rennes",
-    "postalCode": "35200",
-    "job": "Etudiant",
-    "registrationDate": "17/02/2024",
-    "lastVisitDate": "18/02/2024",
-    "loyaltyPoints": 0
-  },
-  {
     "id": 2,
     "firstName": "Martin",
     "lastName": "Dupont",
