@@ -90,7 +90,7 @@ export default {
 
 <style scoped>
  .add-form{
-    width: 100%;
+    width: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -14,7 +14,7 @@ import { getClients,Client } from '../data/dao';
       <div class="content">
         <div class="title"><p>Rechercher un client</p></div>
         <div class="search-form">
-        <div class="input-group">
+        <div class="input-group search-input">
           <input type="text" class="input input-half" name="prenom" placeholder="prenom" v-model="firstName" @input="filterClients">
           <input type="text" class="input input-half" name="nom" placeholder="nom" v-model="lastName" @input="filterClients">  
         </div>
@@ -75,6 +75,10 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.search-input{
+  width: 40%;
 }
 
 .results-count {
