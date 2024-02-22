@@ -2,8 +2,8 @@
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
 import ClientLine from '../components/ClientLine.vue';
-import { getClients,Client } from '../data/dao';
-
+import { getClients } from '../data/dao';
+import {Client} from '../data/tools'
 </script>
 
 <template>

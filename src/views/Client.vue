@@ -2,7 +2,8 @@
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
 // import EditBtn from '../components/EditBtn.vue';
-import { removeClient,getClient,Client,editClient } from '../data/dao';
+import { removeClient,getClient,editClient } from '../data/dao';
+import {Client} from '../data/tools'
 </script>
 
 <template>

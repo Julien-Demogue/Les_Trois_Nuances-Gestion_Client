@@ -1,19 +1,6 @@
 import fs from 'fs';
 const clientsFile = 'C:\\Users\\julien\\Desktop\\Gestion-client\\src\\data\\clients.json';
-
-export interface Client{
-  id:Number;
-  firstName:String;
-  lastName:String;
-  birthday:String;
-  email:String;
-  city:String;
-  postalCode:Number;
-  job:String;
-  registrationDate:String;
-  lastVisitDate:String;
-  loyaltyPoints:Number;
-}
+import {Client} from './tools'
 
 export function addClient(client:Client) {
   // Lire le fichier JSON
@@ -141,7 +128,7 @@ export function getClient(id: Number): Promise<Client> {
       const clients = JSON.parse(data);
 
       // Trouver l'index de la ligne a modifier
-      const index = clients.findIndex((client:any) => client.id == id);
+      const index = clients.findIndex((client:Client) => client.id == id);
 
       resolve(clients[index]); 
     });  
