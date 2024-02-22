@@ -13,17 +13,17 @@ import {addClient,Client} from '../data/dao';
             <div class="title"><p>Ajouter un client</p></div>
             <div class="add-form">
                 <div class="input-group">
-                    <input type="text" class="input input-half" name="lastName" placeholder="prenom" v-model="client.firstName">
-                    <input type="text" class="input input-half" name="firstName" placeholder="nom" v-model="client.lastName" >
+                    <input type="text" class="input input-half" name="lastName" placeholder="prenom" v-model.trim="client.firstName">
+                    <input type="text" class="input input-half" name="firstName" placeholder="nom" v-model.trim="client.lastName" >
                 </div>
-                <input type="text" class="input" name="birthday" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date de naissance" v-model="client.birthday">
-                <input type="email" class="input" name="email" placeholder="email" v-model="client.email">
+                <input type="text" class="input" name="birthday" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date de naissance" v-model.trim="client.birthday">
+                <input type="email" class="input" name="email" placeholder="email" v-model.trim="client.email">
                 <div class="input-group">
-                    <input type="text" class="input input-half" name="city" placeholder="ville" v-model="client.city">
+                    <input type="text" class="input input-half" name="city" placeholder="ville" v-model.trim="client.city">
                     <input type="number" class="input input-half" name="postalCode" placeholder="code postal" v-model="client.postalCode">
                 </div>
-                <input type="text" class="input" name="job" placeholder="fonction" v-model="client.job">
-                <input type="text" class="input" name="registrationDate" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date d'inscription" v-model="client.registrationDate">
+                <input type="text" class="input" name="job" placeholder="fonction" v-model.trim="client.job">
+                <input type="text" class="input" name="registrationDate" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date d'inscription" v-model.trim="client.registrationDate">
                 
                 <div class="lbl-input">
                     <div class="txt-loyalty">Points de fidélité :&nbsp;&nbsp;</div>
@@ -46,13 +46,16 @@ export default {
     },
     methods: {
         onValidate(){  
-            if(this.client.firstName == '' || this.client.lastName == '' || this.client.birthday == ''){
+            if(this.client.firstName == undefined || this.client.lastName == undefined || this.client.birthday == undefined){
                 alert('Veuillez remplir tous les champs obligatoires');
                 return;
             }
             else{
                 // Ajouter la date de derniere visite
                 this.client.lastVisitDate = new Date().toLocaleDateString('fr-FR');
+                if(this.client.loyaltyPoints == undefined){
+                    this.client.loyaltyPoints = 0;
+                }
 
                 addClient(this.client);  
                 alert('Le client '+ this.client.lastName + " " + this.client.firstName +' à été ajouté avec succès !');

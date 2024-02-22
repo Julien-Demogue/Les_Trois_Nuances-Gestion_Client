@@ -19,31 +19,31 @@ import { removeClient,getClient,Client,editClient } from '../data/dao';
           </div>
         </div>
         <div class="informations">
-          <div class="birthday info-block" v-if="client.birthday != '' || editMode">
+          <div class="birthday info-block" v-if="client.birthday != undefined || editMode">
             <p class="info-title">Age</p>
             <p class="info" v-if="!editMode">[age] ans ({{ client.birthday }})</p>
             <input type="text" class="input" name="birthday" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date de naissance" v-model="client.birthday" v-if="editMode">
           </div>
-          <div class="city info-block" v-if="client.city != '' || editMode">
+          <div class="city info-block" v-if="client.city != undefined || editMode">
             <p class="info-title">Ville</p>
             <p class="info" v-if="!editMode">{{ client.city }}</p>
             <input type="text" class="input input-half" name="city" v-model="client.city" v-if="editMode">
           </div>
-          <div class="cp info-block" v-if="client.postalCode != null || editMode">
+          <div class="cp info-block" v-if="client.postalCode != undefined || editMode">
             <p class="info-title">Code Postal</p>
             <p class="info" v-if="!editMode">{{ client.postalCode }}</p>
             <input type="number" class="input input-half" name="postalCode" v-model="client.postalCode" v-if="editMode">
           </div>
-          <div class="funcion info-block" v-if="client.job != '' || editMode">
+          <div class="funcion info-block" v-if="client.job != undefined || editMode">
             <p class="info-title">Fonction</p>
             <p class="info" v-if="!editMode">{{ client.job }}</p>
             <input type="text" class="input" name="job" v-model="client.job" v-if="editMode">
           </div>
-          <div class="lastConsultation info-block" v-if="client.lastVisitDate != '' || editMode">
+          <div class="lastConsultation info-block" v-if="client.lastVisitDate != undefined || editMode">
             <p class="info-title">Dernier rendez-vous</p> 
             <p class="info">{{ client.lastVisitDate }}</p>
           </div>
-          <div class="email info-block" v-if="client.email != '' || editMode">
+          <div class="email info-block" v-if="client.email != undefined || editMode">
             <div><p class="info-title">Email</p></div>
             <div><p class="info" v-if="!editMode">{{ client.email }}</p></div>
             <input type="email" class="input" name="email" v-model="client.email" v-if="editMode">
@@ -52,7 +52,7 @@ import { removeClient,getClient,Client,editClient } from '../data/dao';
             <div><p class="info-title">Points de fidélité</p></div>
             <div><p class="info">{{ client.loyaltyPoints }}</p></div>
           </div>
-          <div class="registrationDate info-block" v-if="client.registrationDate != '' || editMode">
+          <div class="registrationDate info-block" v-if="client.registrationDate != undefined || editMode">
             <div><p class="info-title">Date d'inscription</p></div>
             <div><p class="info" v-if="!editMode">{{ client.registrationDate }}</p></div>
             <input type="text" class="input" name="registrationDate" onfocus="(this.type='date')" onblur="(this.type='text')" v-model="client.registrationDate" v-if="editMode">
