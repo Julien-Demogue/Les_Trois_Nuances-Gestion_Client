@@ -1,5 +1,4 @@
 import fs from 'fs';
-import { Collection } from 'mongodb';
 const clientsFile = 'C:\\Users\\julien\\Desktop\\Gestion-client\\src\\data\\clients.json';
 
 export interface Client{
@@ -16,7 +15,7 @@ export interface Client{
   loyaltyPoints:Number;
 }
 
-export function addClient(client:any) {
+export function addClient(client:Client) {
   // Lire le fichier JSON
   fs.readFile(clientsFile, 'utf8', (err, data) => {
     if (err) {
@@ -29,12 +28,10 @@ export function addClient(client:any) {
 
     // Generer un nouvel ID unique
     const newId = Math.max(...clients.map((client:Client) => client.id)) + 1;
-
-    // Ajouter la date de derniere visite
-    const lastVisitDate = new Date().toLocaleDateString('fr-FR');
+    client.id = newId;
 
     // ajouter le nouveau client a l'objet
-    clients.push({ id: newId, ...client, lastVisitDate:lastVisitDate});
+    clients.push({...client});
 
     // ecrire le nouveau contenu JSON dans le fichier
     fs.writeFile(clientsFile, JSON.stringify(clients,null,2), err => {
@@ -80,7 +77,7 @@ export function removeClient(id:Number) {
   });
 }
 
-export function editClient(id:Number, client:Collection) {
+export function editClient(id:Number, client:Client) {
   // Lire le fichier JSON
   fs.readFile(clientsFile, 'utf8', (err, data) => {
     if (err) {

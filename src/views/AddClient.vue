@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
-import {addClient} from '../data/dao';
+import {addClient,Client} from '../data/dao';
 </script>
 
 <template>
@@ -13,21 +13,21 @@ import {addClient} from '../data/dao';
             <div class="title"><p>Ajouter un client</p></div>
             <div class="add-form">
                 <div class="input-group">
-                    <input type="text" class="input input-half" name="lastName" placeholder="prenom" v-model="firstName">
-                    <input type="text" class="input input-half" name="firstName" placeholder="nom" v-model="lastName" >
+                    <input type="text" class="input input-half" name="lastName" placeholder="prenom" v-model="client.firstName">
+                    <input type="text" class="input input-half" name="firstName" placeholder="nom" v-model="client.lastName" >
                 </div>
-                <input type="text" class="input" name="birthday" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date de naissance" v-model="birthday">
-                <input type="email" class="input" name="email" placeholder="email" v-model="email">
+                <input type="text" class="input" name="birthday" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date de naissance" v-model="client.birthday">
+                <input type="email" class="input" name="email" placeholder="email" v-model="client.email">
                 <div class="input-group">
-                    <input type="text" class="input input-half" name="city" placeholder="ville" v-model="city">
-                    <input type="number" class="input input-half" name="postalCode" placeholder="code postal" v-model="postalCode">
+                    <input type="text" class="input input-half" name="city" placeholder="ville" v-model="client.city">
+                    <input type="number" class="input input-half" name="postalCode" placeholder="code postal" v-model="client.postalCode">
                 </div>
-                <input type="text" class="input" name="job" placeholder="fonction" v-model="job">
-                <input type="text" class="input" name="registrationDate" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date d'inscription" v-model="registrationDate">
+                <input type="text" class="input" name="job" placeholder="fonction" v-model="client.job">
+                <input type="text" class="input" name="registrationDate" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date d'inscription" v-model="client.registrationDate">
                 
                 <div class="lbl-input">
                     <div class="txt-loyalty">Points de fidélité :&nbsp;&nbsp;</div>
-                    <input type="number" class="input input-mini" name="loyaltyPoints" v-model="loyaltyPoints">
+                    <input type="number" class="input input-mini" name="loyaltyPoints" v-model="client.loyaltyPoints" min="0" placeholder="0">
                 </div>
                 <div class="valid-btn"><button class="btn" @click="onValidate">Valider</button></div>
             </div>
@@ -41,46 +41,21 @@ import {addClient} from '../data/dao';
 export default {
     data() {
         return {
-            firstName: '',
-            lastName: '',
-            birthday: '',
-            email: '',
-            city: '',
-            postalCode: null,
-            job: '',
-            registrationDate: '',
-            loyaltyPoints: 0,
+            client : {} as Client,
         }
     },
     methods: {
         onValidate(){  
-            const firstName = this.firstName.trim();
-            const lastName = this.lastName.trim();
-            const birthday = this.birthday.trim();
-            const email = this.email.trim();
-            const city = this.city.trim();
-            const postalCode = this.postalCode;
-            const job = this.job.trim();
-            const registrationDate = this.registrationDate.trim();
-            const loyaltyPoints = this.loyaltyPoints;
-
-            if(firstName == '' || lastName == '' || birthday == ''){
+            if(this.client.firstName == '' || this.client.lastName == '' || this.client.birthday == ''){
                 alert('Veuillez remplir tous les champs obligatoires');
+                return;
             }
             else{
-                const client = {
-                    "firstName":firstName,
-                    "lastName":lastName,
-                    "birthday":birthday,
-                    "email":email,
-                    "city":city,
-                    "postalCode":postalCode,
-                    "job":job,
-                    "registrationDate":registrationDate,
-                    "loyaltyPoints":loyaltyPoints
-                }
-                addClient(client);  
-                alert('Le client '+ lastName + " " + firstName +' à été ajouté avec succès !');
+                // Ajouter la date de derniere visite
+                this.client.lastVisitDate = new Date().toLocaleDateString('fr-FR');
+
+                addClient(this.client);  
+                alert('Le client '+ this.client.lastName + " " + this.client.firstName +' à été ajouté avec succès !');
                 this.$router.push("/");
             }
         }
@@ -105,8 +80,9 @@ export default {
 }
 
 .input-mini{
-    width: 3vw;
+    width: 2.3vw;
     text-align: center;
+    height: 3.7vh;
 }
 
 .txt-loyalty{

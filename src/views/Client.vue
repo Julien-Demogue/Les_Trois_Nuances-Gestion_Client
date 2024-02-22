@@ -2,7 +2,7 @@
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
 // import EditBtn from '../components/EditBtn.vue';
-import { removeClient,getClient,Client } from '../data/dao';
+import { removeClient,getClient,Client,editClient } from '../data/dao';
 </script>
 
 <template>
@@ -99,23 +99,13 @@ export default {
       cancelEdit(){
         this.reloadPage();
       },
-      applyChanges(){
-        const client = {
-          "firstName":this.client.firstName,
-          "lastName":this.client.lastName,
-          "birthday":this.client.birthday,
-          "email":this.client.email,
-          "city":this.client.city,
-          "postalCode":this.client.postalCode,
-          "job":this.client.job,
-          "registrationDate":this.client.registrationDate,
-        }
+      applyChanges(){       
+        editClient(this.clientId, this.client);
         this.reloadPage();
       },
       reloadPage(){
         location.reload();
       }
-
     },
     mounted(){
       getClient(this.clientId).then((client) => {
