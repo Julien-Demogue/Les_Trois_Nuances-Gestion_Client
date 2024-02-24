@@ -3,7 +3,6 @@ const handleClick = (method: Function | null) => {
   if (method) {
     method();
   }
-//   alert('Button clicked without a specific method');
 };
 </script>
 
@@ -44,7 +43,7 @@ export default {
         },
         acceptMethod:{
             type:Function,
-            required:false,  
+            required:true,  
             default:null 
         },
         cancelMethod:{

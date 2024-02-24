@@ -66,7 +66,8 @@ export default {
                 }
 
                 addClient(this.client);  
-                this.setPopup('Le client '+ this.client.firstName + " " + this.client.lastName +' à été ajouté avec succès !', this.clientAdded);
+                this.changePopupMethod(this.clientAdded)
+                this.setPopup('Le client '+ this.client.firstName + " " + this.client.lastName +' à été ajouté avec succès !');
             }else{
                 this.setPopup(errorList[0]);
             }
@@ -74,10 +75,12 @@ export default {
         hidePopup(){
             this.showPopup = false;
         },
-        setPopup(msg:string , method:Function = this.hidePopup){
+        changePopupMethod(method:Function){
+            this.popupAcceptMethod = method;
+        },
+        setPopup(msg:string){
             this.popupMsg = msg;
             this.showPopup = true;
-            this.popupAcceptMethod = method;
         },
         clientAdded(){
             this.hidePopup();

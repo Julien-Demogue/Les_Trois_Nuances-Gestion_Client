@@ -206,5 +206,14 @@
     "registrationDate": "2023-05-18",
     "lastVisitDate": "18/02/2024",
     "loyaltyPoints": 0
+  },
+  {
+    "firstName": "Julien",
+    "lastName": "Demogue",
+    "birthday": "17/03/2003",
+    "lastVisitDate": "24/02/2024",
+    "registrationDate": "24/02/2024",
+    "loyaltyPoints": 0,
+    "id": 19
   }
 ]
