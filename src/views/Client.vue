@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
-// import EditBtn from '../components/EditBtn.vue';
 import { removeClient,getClient,editClient } from '../data/dao';
 import {Client,calculateAge} from '../data/tools'
 </script>
 
 <template>
 <div class="page">
-    <TopBar />
+    <TopBar :showReturnBtn="false" v-if="editMode"/>
+    <TopBar v-else/>
     <div class="page-content">
       <SideBar />
       <div class="content">

@@ -2,7 +2,7 @@
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
 import {addClient} from '../data/dao';
-import {Client,getCurrentDate,verifyClientInfos,formatClient} from '../data/tools'
+import {Client,getCurrentDate,verifyClientInfos,formatClient,formatDate} from '../data/tools'
 </script>
 
 <template>
@@ -17,7 +17,7 @@ import {Client,getCurrentDate,verifyClientInfos,formatClient} from '../data/tool
                     <input type="text" class="input input-half" name="lastName" placeholder="prenom" v-model.trim="client.firstName">
                     <input type="text" class="input input-half" name="firstName" placeholder="nom" v-model.trim="client.lastName" >
                 </div>
-                <input type="text" class="input" name="birthday" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date de naissance" v-model.trim="client.birthday">
+                <input type="text" class="input" name="birthday" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date de naissance" v-model.trim="client.birthday" @input="client.birthday">
                 <input type="email" class="input" name="email" placeholder="email" v-model.trim="client.email">
                 <div class="input-group">
                     <input type="text" class="input input-half" name="city" placeholder="ville" v-model.trim="client.city">
