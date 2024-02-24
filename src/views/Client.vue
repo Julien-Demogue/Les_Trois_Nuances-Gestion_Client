@@ -3,7 +3,7 @@ import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
 // import EditBtn from '../components/EditBtn.vue';
 import { removeClient,getClient,editClient } from '../data/dao';
-import {Client} from '../data/tools'
+import {Client,calculateAge} from '../data/tools'
 </script>
 
 <template>
@@ -22,7 +22,7 @@ import {Client} from '../data/tools'
         <div class="informations">
           <div class="birthday info-block" v-if="client.birthday != undefined || editMode">
             <p class="info-title">Age</p>
-            <p class="info" v-if="!editMode">[age] ans ({{ client.birthday }})</p>
+            <p class="info" v-if="!editMode">{{ calculateAge(client.birthday) }} ans ({{ client.birthday }})</p>
             <input type="text" class="input" name="birthday" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date de naissance" v-model="client.birthday" v-if="editMode">
           </div>
           <div class="city info-block" v-if="client.city != undefined || editMode">

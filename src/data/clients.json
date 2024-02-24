@@ -218,5 +218,13 @@
     "job": "",
     "registrationDate": "",
     "lastVisitDate": "19/02/2024"
+  },
+  {
+    "firstName": "Julien",
+    "lastName": "Demogue",
+    "birthday": "2003-03-17",
+    "lastVisitDate": "24/02/2024",
+    "loyaltyPoints": 0,
+    "id": 20
   }
 ]

@@ -2,7 +2,7 @@
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
 import {addClient} from '../data/dao';
-import {Client} from '../data/tools'
+import {Client,getCurrentDate} from '../data/tools'
 </script>
 
 <template>
@@ -53,7 +53,7 @@ export default {
             }
             else{
                 // Ajouter la date de derniere visite
-                this.client.lastVisitDate = new Date().toLocaleDateString('fr-FR');
+                this.client.lastVisitDate = getCurrentDate();
                 if(this.client.loyaltyPoints == undefined){
                     this.client.loyaltyPoints = 0;
                 }
