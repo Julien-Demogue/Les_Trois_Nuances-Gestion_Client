@@ -2,7 +2,9 @@
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
 import {addClient} from '../data/dao';
-import {Client,getCurrentDate} from '../data/tools'
+import {Client,getCurrentDate,verifyClientInfos,formatClient} from '../data/tools'
+import DatePicker from 'vue-datepicker';
+import 'vue-datepicker/dist/vue-datepicker.min.css';
 </script>
 
 <template>
@@ -27,9 +29,9 @@ import {Client,getCurrentDate} from '../data/tools'
                 <input type="text" class="input" name="registrationDate" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date d'inscription" v-model.trim="client.registrationDate">
                 
                 <div class="lbl-input">
-                    <div class="txt-loyalty">Points de fidélité :&nbsp;&nbsp;</div>
-                    <input type="number" class="input input-mini" name="loyaltyPoints" v-model="client.loyaltyPoints" min="0" placeholder="0">
+                    <div class="txt-loyalty">Points de fidélité</div>
                 </div>
+                <input type="number" class="input input-mini" name="loyaltyPoints" v-model="client.loyaltyPoints" min="0" placeholder="0">
                 <div class="valid-btn"><button class="btn" @click="onValidate">Valider</button></div>
             </div>
         </div>
@@ -47,13 +49,14 @@ export default {
     },
     methods: {
         onValidate(){  
-            if(this.client.firstName == undefined || this.client.lastName == undefined || this.client.birthday == undefined){
-                alert('Veuillez remplir tous les champs obligatoires');
-                return;
-            }
-            else{
+            if(verifyClientInfos(this.client)){
+                formatClient(this.client);
+
                 // Ajouter la date de derniere visite
                 this.client.lastVisitDate = getCurrentDate();
+                if(this.client.registrationDate == undefined){
+                    this.client.registrationDate = getCurrentDate();
+                }
                 if(this.client.loyaltyPoints == undefined){
                     this.client.loyaltyPoints = 0;
                 }
@@ -100,5 +103,7 @@ export default {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-top: 1vh;
+    margin-bottom: .5vh;
 }
 </style>
