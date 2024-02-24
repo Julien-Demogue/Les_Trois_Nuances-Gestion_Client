@@ -21,18 +21,18 @@ export function verifyClientInfos(client:Client) : boolean{
   if((client.firstName!= undefined && client.lastName!= undefined && !verifyName(client.firstName) || !verifyName(client.lastName))){
     errorList.push("Nom invalide");
   }
-  // if(client.birthday != undefined && !verifyDate(client.birthday)){
-  //   errorList.push("Date de naissance invalide");
-  // }
+  if(client.birthday != undefined && !verifyDate(client.birthday)){
+    errorList.push("Date de naissance invalide");
+  }
   if(client.email != undefined && !verifyEmail(client.email)){
     errorList.push("Email invalide");
   }
   if(client.city != undefined && !verifyName(client.city)){
     errorList.push("Ville invalide");
   }
-  // if(client.postalCode != undefined && !verifyPostalCode(client.postalCode)){
-  //   errorList.push("Code postal invalide");
-  // }
+  if(client.postalCode != undefined && !verifyPostalCode(client.postalCode)){
+    errorList.push("Code postal invalide");
+  }
   if(client.registrationDate != undefined && !verifyDate(client.registrationDate)){
     errorList.push("Date d'enregistrement invalide");
   }
@@ -72,7 +72,7 @@ function verifyEmail(email:string): boolean{
 
 // verifie la validite d'une date
 function verifyDate(date:string) : boolean{
-  const regex = /^$/;
+  const regex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
   return regex.test(date);
 }
 
@@ -93,6 +93,9 @@ function formatName(name:string): string{
 
 // Formate une date
 export function formatDate(date:string) : string{
+  // Cas ou la date est deja valide
+  if(verifyDate(date)){return date}
+
   const parsedDate = new Date(date);
   return parsedDate.toLocaleDateString('fr-FR');
 }

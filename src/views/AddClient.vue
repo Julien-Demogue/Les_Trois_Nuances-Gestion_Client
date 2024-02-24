@@ -17,7 +17,7 @@ import {Client,getCurrentDate,verifyClientInfos,formatClient,formatDate} from '.
                     <input type="text" class="input input-half" name="lastName" placeholder="prenom" v-model.trim="client.firstName">
                     <input type="text" class="input input-half" name="firstName" placeholder="nom" v-model.trim="client.lastName" >
                 </div>
-                <input type="text" class="input" name="birthday" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date de naissance" v-model.trim="client.birthday" @input="client.birthday">
+                <input type="text" class="input" name="birthday" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date de naissance" v-model.trim="client.birthday" @blur="client.birthday = formatDate(client.birthday)">
                 <input type="email" class="input" name="email" placeholder="email" v-model.trim="client.email">
                 <div class="input-group">
                     <input type="text" class="input input-half" name="city" placeholder="ville" v-model.trim="client.city">
@@ -48,8 +48,8 @@ export default {
     methods: {
         onValidate(){  
             if(verifyClientInfos(this.client)){
-                formatClient(this.client);
-
+                this.client = formatClient(this.client);
+                
                 // Ajouter la date de derniere visite
                 this.client.lastVisitDate = getCurrentDate();
                 if(this.client.registrationDate == undefined){
