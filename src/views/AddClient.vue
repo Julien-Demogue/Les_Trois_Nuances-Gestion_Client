@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
+import Popup from '../components/Popup.vue';
 import {addClient} from '../data/dao';
 import {Client,getCurrentDate,verifyClientInfos,formatClient,formatDate} from '../data/tools'
 </script>
@@ -36,6 +37,7 @@ import {Client,getCurrentDate,verifyClientInfos,formatClient,formatDate} from '.
         <SideBar />
     </div>
 </div>
+<Popup msg="Message du popup" :confirmation="true"/>
 </template>
 
 <script lang="ts">
@@ -60,7 +62,7 @@ export default {
                 }
 
                 addClient(this.client);  
-                // alert('Le client '+ this.client.lastName + " " + this.client.firstName +' à été ajouté avec succès !');
+                alert('Le client '+ this.client.lastName + " " + this.client.firstName +' à été ajouté avec succès !');
                 this.$router.push("/");
             }
         }

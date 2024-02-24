@@ -39,7 +39,7 @@ export function verifyClientInfos(client:Client) : boolean{
 
   if(errorList.length > 0){
     errorList.forEach(error => {
-      // alert(error)
+      alert(error)
     });
     return false;
   }
@@ -99,7 +99,7 @@ export function formatDate(date:string) : string{
   const parsedDate = new Date(date);
 
   // Cas ou la date est invalide
-  if(parsedDate=="Invalid Date"){return date}
+  if(parsedDate.toString()=="Invalid Date"){return date}
 
   return parsedDate.toLocaleDateString('fr-FR');
 }

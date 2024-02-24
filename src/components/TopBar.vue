@@ -74,7 +74,7 @@ export default {
     }
 
     .menu-btn button{
-        background-color: #F6DC73;
+        background-color: #e7ca55;
     }
 
     .exit-btn button{

@@ -156,7 +156,7 @@ export default {
 }
 
 .editBtn button{
-  background-color: #F6DC73;
+  background-color: #e7ca55;
 }
 
 .validBtn button{
