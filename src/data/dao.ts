@@ -1,10 +1,12 @@
 import fs from 'fs';
-const clientsFile = 'C:\\Users\\julien\\Desktop\\Gestion-client\\src\\data\\clients.json';
 import {Client} from './tools'
+import path from 'path';
+const clientsFile = './src/data/clients.json';
+const absolutePath = path.resolve(clientsFile);
 
 export function addClient(client:Client) {
   // Lire le fichier JSON
-  fs.readFile(clientsFile, 'utf8', (err, data) => {
+  fs.readFile(absolutePath, 'utf8', (err, data) => {
     if (err) {
       console.error(err);
       return;
@@ -21,7 +23,7 @@ export function addClient(client:Client) {
     clients.push({...client});
 
     // ecrire le nouveau contenu JSON dans le fichier
-    fs.writeFile(clientsFile, JSON.stringify(clients,null,2), err => {
+    fs.writeFile(absolutePath, JSON.stringify(clients,null,2), err => {
       if (err) {
         console.error(err);
         return;
@@ -34,7 +36,7 @@ export function addClient(client:Client) {
 
 export function removeClient(id:Number) {
   // Lire le fichier JSON
-  fs.readFile(clientsFile, 'utf8', (err, data) => {
+  fs.readFile(absolutePath, 'utf8', (err, data) => {
     if (err) {
       console.error(err);
       return;
@@ -50,7 +52,7 @@ export function removeClient(id:Number) {
       clients.splice(index, 1);
 
       // ecrire le nouveau contenu JSON dans le fichier
-      fs.writeFile(clientsFile, JSON.stringify(clients,null,2), err => {
+      fs.writeFile(absolutePath, JSON.stringify(clients,null,2), err => {
         if (err) {
           console.error(err);
           return;
@@ -66,7 +68,7 @@ export function removeClient(id:Number) {
 
 export function editClient(id:Number, client:Client) {
   // Lire le fichier JSON
-  fs.readFile(clientsFile, 'utf8', (err, data) => {
+  fs.readFile(absolutePath, 'utf8', (err, data) => {
     if (err) {
       console.error(err);
       return;
@@ -83,7 +85,7 @@ export function editClient(id:Number, client:Client) {
       clients[index] = { ...client, id };
 
       // ecrire le nouveau contenu JSON dans le fichier
-      fs.writeFile(clientsFile, JSON.stringify(clients,null,2), err => {
+      fs.writeFile(absolutePath, JSON.stringify(clients,null,2), err => {
         if (err) {
           console.error(err);
           return;
@@ -100,7 +102,7 @@ export function editClient(id:Number, client:Client) {
 export function getClients(): Promise<Client[]> {
   // Lire le fichier JSON
   return new Promise((resolve, reject) => {
-    fs.readFile(clientsFile, 'utf8', (err, data) => {
+    fs.readFile(absolutePath, 'utf8', (err, data) => {
       if (err) {
         reject(err);
         return;
@@ -118,7 +120,7 @@ export function getClients(): Promise<Client[]> {
 export function getClient(id: Number): Promise<Client> {
   return new Promise((resolve, reject) => {
     // Lire le JSON
-    fs.readFile(clientsFile, 'utf8', (err, data) => {
+    fs.readFile(absolutePath, 'utf8', (err, data) => {
       if (err) {
         reject(err);
         return;

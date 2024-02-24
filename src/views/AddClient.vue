@@ -15,7 +15,7 @@ import {Client,getCurrentDate,verifyClientInfos,formatClient,formatDate} from '.
             <div class="title"><p>Ajouter un client</p></div>
             <div class="add-form">
                 <div class="input-group">
-                    <input type="text" class="input input-half" name="lastName" placeholder="prenom (obligatoire)" v-model.trim="client.firstName">
+                    <input type="text" class="input input-half" name="lastName" placeholder="prénom (obligatoire)" v-model.trim="client.firstName">
                     <input type="text" class="input input-half" name="firstName" placeholder="nom (obligatoire)" v-model.trim="client.lastName">
                 </div>
                 <input type="text" class="input" name="birthday" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date de naissance (obligatoire)" v-model.trim="client.birthday" @blur="client.birthday = formatDate(client.birthday)">
