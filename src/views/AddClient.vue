@@ -3,8 +3,6 @@ import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
 import {addClient} from '../data/dao';
 import {Client,getCurrentDate,verifyClientInfos,formatClient} from '../data/tools'
-import DatePicker from 'vue-datepicker';
-import 'vue-datepicker/dist/vue-datepicker.min.css';
 </script>
 
 <template>
