@@ -12,12 +12,12 @@ import {Client,getCurrentDate,verifyClientInfos,formatClient,formatDate} from '.
         <SideBar />
         <div class="content">
             <div class="title"><p>Ajouter un client</p></div>
-            <div class="add-form">
+            <form class="add-form">
                 <div class="input-group">
-                    <input type="text" class="input input-half" name="lastName" placeholder="prenom" v-model.trim="client.firstName">
-                    <input type="text" class="input input-half" name="firstName" placeholder="nom" v-model.trim="client.lastName" >
+                    <input type="text" class="input input-half" name="lastName" placeholder="prenom (obligatoire)" v-model.trim="client.firstName">
+                    <input type="text" class="input input-half" name="firstName" placeholder="nom (obligatoire)" v-model.trim="client.lastName">
                 </div>
-                <input type="text" class="input" name="birthday" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date de naissance" v-model.trim="client.birthday" @blur="client.birthday = formatDate(client.birthday)">
+                <input type="text" class="input" name="birthday" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date de naissance (obligatoire)" v-model.trim="client.birthday" @blur="client.birthday = formatDate(client.birthday)">
                 <input type="email" class="input" name="email" placeholder="email" v-model.trim="client.email">
                 <div class="input-group">
                     <input type="text" class="input input-half" name="city" placeholder="ville" v-model.trim="client.city">
@@ -31,7 +31,7 @@ import {Client,getCurrentDate,verifyClientInfos,formatClient,formatDate} from '.
                 </div>
                 <input type="number" class="input input-mini" name="loyaltyPoints" v-model="client.loyaltyPoints" min="0" placeholder="0">
                 <div class="valid-btn"><button class="btn" @click="onValidate">Valider</button></div>
-            </div>
+            </form>
         </div>
         <SideBar />
     </div>
@@ -49,7 +49,7 @@ export default {
         onValidate(){  
             if(verifyClientInfos(this.client)){
                 this.client = formatClient(this.client);
-                
+
                 // Ajouter la date de derniere visite
                 this.client.lastVisitDate = getCurrentDate();
                 if(this.client.registrationDate == undefined){
@@ -60,7 +60,7 @@ export default {
                 }
 
                 addClient(this.client);  
-                alert('Le client '+ this.client.lastName + " " + this.client.firstName +' à été ajouté avec succès !');
+                // alert('Le client '+ this.client.lastName + " " + this.client.firstName +' à été ajouté avec succès !');
                 this.$router.push("/");
             }
         }
@@ -104,4 +104,5 @@ export default {
     margin-top: 1vh;
     margin-bottom: .5vh;
 }
+
 </style>
