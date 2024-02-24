@@ -8,7 +8,7 @@ import {Client,calculateAge} from '../data/tools'
 <template>
 <div class="page">
     <TopBar :showReturnBtn="false" v-if="editMode"/>
-    <TopBar v-else/>
+    <TopBar previousPage="/search-client" v-else/>
     <div class="page-content">
       <SideBar />
       <div class="content">

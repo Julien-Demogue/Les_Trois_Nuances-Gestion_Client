@@ -8,7 +8,7 @@ import {Client} from '../data/tools'
 
 <template>
 <div class="page">
-    <TopBar />
+    <TopBar previousPage="/" />
     <div class="page-content">
       <SideBar />
       <div class="content">

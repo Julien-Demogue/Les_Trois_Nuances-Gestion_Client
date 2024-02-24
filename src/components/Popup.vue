@@ -1,4 +1,10 @@
 <script setup lang="ts">
+const handleClick = (method: Function | null) => {
+  if (method) {
+    method();
+  }
+//   alert('Button clicked without a specific method');
+};
 </script>
 
 <template>
@@ -11,11 +17,11 @@
                     </div>
                     <div class="popup-btn">
                         <div class="group-btn" v-if="confirmation">
-                            <div class="cancel-btn"><button class="btn" @click="closePopup">Non</button></div>
-                            <div class="accept-btn"><button class="btn" @click="closePopup">Oui</button></div>           
+                            <div class="cancel-btn"><button class="btn" @click="handleClick(cancelMethod)" >Annuler</button></div>
+                            <div class="accept-btn"><button class="btn" @click="handleClick(acceptMethod)" >Continuer</button></div>           
                         </div> 
                         <div class="ok-btn" v-else>
-                            <button class="btn">OK</button>
+                            <button class="btn" @click="handleClick(acceptMethod)" >OK</button>
                         </div>              
                     </div>
                 </div>
@@ -38,18 +44,15 @@ export default {
         },
         acceptMethod:{
             type:Function,
-            required:false
+            required:false,  
+            default:null 
         },
         cancelMethod:{
             type:Function,
-            required:false
+            required:false,
+            default:null
         }
     },
-    methods:{
-        closePopup(){
-            this.$emit('closePopup');
-        }
-    }
 };
 </script>
 
@@ -102,7 +105,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     padding-bottom: 3vh;
 }
 

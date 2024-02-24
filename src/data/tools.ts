@@ -12,38 +12,35 @@ export interface Client{
     loyaltyPoints:number;
 }
 
-// Verifie si les informations du client sont correctes
-export function verifyClientInfos(client:Client) : boolean{
+// Verifie si les informations du client sont correctes. renvoie une liste d'erreurs. vide si il tout est bon
+export function verifyClientInfos(client:Client) : Array<string> {
   let errorList = [];
   if(client.firstName == undefined || client.lastName == undefined || client.birthday == undefined){
-    errorList.push("Champs obligatoires non renseignés");
+    errorList.push("L'un des champs obligatoires n'a pas été rempli\n(nom,prénom ou date de naissance)");
   }
-  if((client.firstName!= undefined && client.lastName!= undefined && !verifyName(client.firstName) || !verifyName(client.lastName))){
-    errorList.push("Nom invalide");
+  if((client.firstName!= undefined &&  !verifyName(client.firstName))){
+    errorList.push("Le prénom entré est invalide");
+  }
+  if(client.lastName != undefined && !verifyName(client.lastName)){
+    errorList.push("Le nom entré est invalide");
   }
   if(client.birthday != undefined && !verifyDate(client.birthday)){
-    errorList.push("Date de naissance invalide");
+    errorList.push("La date de naissance entrée est invalide");
   }
   if(client.email != undefined && !verifyEmail(client.email)){
-    errorList.push("Email invalide");
+    errorList.push("L'email entré est invalide");
   }
   if(client.city != undefined && !verifyName(client.city)){
-    errorList.push("Ville invalide");
+    errorList.push("La ville entrée est invalide");
   }
   if(client.postalCode != undefined && !verifyPostalCode(client.postalCode)){
-    errorList.push("Code postal invalide");
+    errorList.push("Le code postal entré est invalide");
   }
   if(client.registrationDate != undefined && !verifyDate(client.registrationDate)){
-    errorList.push("Date d'enregistrement invalide");
+    errorList.push("La Date d'enregistrement entrée est invalide");
   }
 
-  if(errorList.length > 0){
-    errorList.forEach(error => {
-      alert(error)
-    });
-    return false;
-  }
-  return true;
+  return errorList;
 }
 
 // Formate les informations devant etre formatees d'un client

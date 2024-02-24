@@ -4,7 +4,7 @@
 
 <template>
     <div class="top-bar">
-        <div class="return-slot"><div class="return-btn" v-show="showReturnBtn"><button @click="$router.go(-1)" class="btn">&lt</button></div></div>
+        <div class="return-slot"><div class="return-btn" v-show="showReturnBtn"><button @click="changePage" class="btn">&lt</button></div></div>
         <div class="firm-name">Les Trois Nuances - Salon de coiffure</div>
         <div class="top-btn-group">
             <div class="menu-btn"><router-link to="/"><button class="btn">Menu</button></router-link></div>
@@ -21,11 +21,19 @@ export default {
       required: false,
       default: true,
     },
+    previousPage:{
+        type: String,
+        required: false,
+        default: '/'
+    }
   },
   methods: {
     closeWindow() {
       window.close();
     },
+    changePage(){
+        this.$router.push(this.previousPage);
+    }
   },
 };
 </script>
