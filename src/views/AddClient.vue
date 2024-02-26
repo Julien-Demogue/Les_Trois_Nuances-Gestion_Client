@@ -35,7 +35,7 @@ import {Client,getCurrentDate,verifyClientInfos,formatClient,formatDate} from '.
             </div>
         </div>
         <SideBar />
-        <Popup v-if="showPopup" :msg=popupMsg :acceptMethod=popupAcceptMethod v-click-outside />
+        <Popup v-if="showPopup" :msg=popupMsg :acceptMethod=popupAcceptMethod />
     </div>
 </div>
 </template>
@@ -66,9 +66,10 @@ export default {
                 }
 
                 addClient(this.client);  
-                this.changePopupMethod(this.clientAdded)
+                this.changePopupMethod(this.clientAdded);
                 this.setPopup('Le client '+ this.client.firstName + " " + this.client.lastName +' à été ajouté avec succès !');
             }else{
+                this.changePopupMethod(this.hidePopup);
                 this.setPopup(errorList[0]);
             }
         },
