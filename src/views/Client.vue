@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
+import Popup from '../components/Popup.vue';
 import { removeClient,getClient,editClient } from '../data/dao';
 import {Client,calculateAge} from '../data/tools'
 </script>
@@ -64,12 +65,13 @@ import {Client,calculateAge} from '../data/tools'
           <div class="editBtn"><button @click="switchEditMode(true)" class="btn">Modifier le client</button></div>
         </div>
         <div class="btnGroup" v-else>
-          <div class="cancelBtn"><button @click="cancelEdit" class="btn">Annuler</button></div>
-          <div class="validBtn"><button @click="applyChanges" class="btn">Valider</button></div>
+          <div class="cancelBtn"><button @click="onCancelEdit" class="btn">Annuler</button></div>
+          <div class="validBtn"><button @click="onApply" class="btn">Valider</button></div>
         </div>
         
       </div>
       <SideBar />
+      <Popup v-if="showPopup" :confirmation=confirmationPopup :msg=popupMsg :acceptMethod=popupAcceptMethod :cancelMethod=popupCancelMethod />
     </div>
 </div>
 </template>
@@ -80,6 +82,11 @@ export default {
       return {
         client : {} as Client,
         editMode : false as boolean,
+        showPopup : false as boolean,
+        popupMsg : "" as string,
+        popupAcceptMethod : this.hidePopup() as Function,
+        popupCancelMethod : this.hidePopup() as Function,
+        confirmationPopup : true as boolean
       }
     },
     props: {
@@ -91,28 +98,71 @@ export default {
     },
     methods:{
       onRemove(){
+        let msg = "Voulez vous vraiment supprimer le client " + this.client.firstName + " " + this.client.lastName + " ?";
+        msg += "<br><br>Cette action est définitive !";
+
+        this.changeAcceptPopupMethod(this.applyRemove);
+        this.changeCancelPopupMethod(this.hidePopup);
+
+        this.setPopup(msg,true);
+      },
+      applyRemove(){
+        let msg = "Le client " + this.client.firstName + " " + this.client.lastName + " a été supprimé ! ";
+
         removeClient(this.clientId);
-        this.$router.push({name: 'menu'});
+        this.setPopup(msg);
+        this.changeAcceptPopupMethod(this.appliedRemove);
+      },
+      appliedRemove(){
+        this.$router.push({name:'menu'});
       },
       switchEditMode(active:boolean){
         this.editMode = active;
       },
-      cancelEdit(){
+      onCancelEdit(){
+        let msg = "Voulez vous vraiment annuler les changements effectués ? ";
+
+        this.changeAcceptPopupMethod(this.applyCancelEdit);
+        this.changeCancelPopupMethod(this.hidePopup);
+        this.setPopup(msg,true);
+      },
+      applyCancelEdit(){
         this.reloadPage();
       },
-      applyChanges(){       
+      onApply(){       
+        let msg = "Voulez vous vraiment appliquer les changements effectués sur le client ?";
+
+        this.changeAcceptPopupMethod(this.applyChanges);
+        this.changeCancelPopupMethod(this.hidePopup);
+        this.setPopup(msg,true);
+      },
+      applyChanges(){
         editClient(this.clientId, this.client);
         this.reloadPage();
       },
       reloadPage(){
         location.reload();
-      }
+      },
+      hidePopup(){
+        this.showPopup = false;
+      },
+      changeAcceptPopupMethod(method:Function){
+        this.popupAcceptMethod = method;
+      },
+      changeCancelPopupMethod(method:Function){
+        this.popupCancelMethod = method;
+      },
+      setPopup(msg:string,confirmation:boolean = false){
+        this.popupMsg = msg;
+        this.showPopup = true;
+        this.confirmationPopup = confirmation;
+      },
     },
     mounted(){
       getClient(this.clientId).then((client) => {
         this.client = client;
       });
-    }
+    },
 };
 </script>
 

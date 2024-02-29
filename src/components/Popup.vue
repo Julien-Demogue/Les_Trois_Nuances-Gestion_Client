@@ -11,8 +11,8 @@ const handleClick = (method: Function | null) => {
         <div class="popup-bg">
             <div class="popup-wrapper">
                 <div class="popup-content">
-                    <div class="popup-msg">
-                        {{ msg }}
+                    <div v-html=msg class="popup-msg">
+                        
                     </div>
                     <div class="popup-btn">
                         <div class="group-btn" v-if="confirmation">
