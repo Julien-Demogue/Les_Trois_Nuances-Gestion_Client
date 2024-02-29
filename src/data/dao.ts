@@ -1,5 +1,5 @@
 import fs from 'fs';
-import {Client} from './tools'
+import {Client} from '../tools'
 import path from 'path';
 const clientsFile = './src/data/clients.json';
 const absolutePath = path.resolve(clientsFile);
@@ -16,7 +16,11 @@ export function addClient(client:Client) {
     const clients = JSON.parse(data);
 
     // Generer un nouvel ID unique
-    const newId = Math.max(...clients.map((client:Client) => client.id)) + 1;
+    const previousID = Math.max(...clients.map((client:Client) => client.id))
+    let newId = 0
+    if(previousID == null) {
+      newId = Math.max(...clients.map((client:Client) => client.id)) + 1;
+    }
     client.id = newId;
 
     // ajouter le nouveau client a l'objet

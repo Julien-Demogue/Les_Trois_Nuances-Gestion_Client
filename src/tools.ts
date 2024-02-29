@@ -5,7 +5,7 @@ export interface Client{
     birthday:string;
     email:string;
     city:string;
-    postalCode:number;
+    postalCode:string;
     job:string;
     registrationDate:string;
     lastVisitDate:string;
@@ -15,28 +15,28 @@ export interface Client{
 // Verifie si les informations du client sont correctes. renvoie une liste d'erreurs. vide si il tout est bon
 export function verifyClientInfos(client:Client) : Array<string> {
   let errorList = [];
-  if(client.firstName == undefined || client.lastName == undefined || client.birthday == undefined){
+  if(client.firstName == undefined || client.lastName == undefined || client.birthday == undefined || client.firstName == "" || client.lastName == "" || client.birthday == ""){
     errorList.push("L'un des champs obligatoires n'a pas été rempli\n(nom,prénom ou date de naissance)");
   }
-  if((client.firstName!= undefined &&  !verifyName(client.firstName))){
+  if((client.firstName != undefined && client.firstName != "" && !verifyName(client.firstName))){
     errorList.push("Le prénom entré est invalide");
   }
-  if(client.lastName != undefined && !verifyName(client.lastName)){
+  if(client.lastName != undefined && client.lastName != "" && !verifyName(client.lastName)){
     errorList.push("Le nom entré est invalide");
   }
-  if(client.birthday != undefined && !verifyDate(client.birthday)){
+  if(client.birthday != undefined && client.birthday != "" && !verifyDate(client.birthday)){
     errorList.push("La date de naissance entrée est invalide");
   }
-  if(client.email != undefined && !verifyEmail(client.email)){
+  if(client.email != undefined && client.email != "" && !verifyEmail(client.email)){
     errorList.push("L'email entré est invalide");
   }
-  if(client.city != undefined && !verifyName(client.city)){
+  if(client.city != undefined && client.city != "" && !verifyName(client.city)){
     errorList.push("La ville entrée est invalide");
   }
-  if(client.postalCode != undefined && !verifyPostalCode(client.postalCode)){
+  if(client.postalCode != undefined && client.postalCode != "" && !verifyPostalCode(client.postalCode)){
     errorList.push("Le code postal entré est invalide");
   }
-  if(client.registrationDate != undefined && !verifyDate(client.registrationDate)){
+  if(client.registrationDate != undefined && client.registrationDate != "" && !verifyDate(client.registrationDate)){
     errorList.push("La Date d'enregistrement entrée est invalide");
   }
 
@@ -48,10 +48,11 @@ export function formatClient(client:Client) : Client{
   client.firstName = formatName(client.firstName);
   client.lastName = formatName(client.lastName);
   client.birthday = formatDate(client.birthday);
-  if(client.email != undefined) client.email = formatEmail(client.email);
-  if(client.city != undefined) client.city = formatName(client.city);
-  if(client.job != undefined) client.job = formatName(client.job);
-  if(client.registrationDate != undefined) client.job = formatDate(client.registrationDate);
+  if(client.email != undefined) client.email = formatEmail(client.email); else client.email = "";
+  if(client.postalCode == undefined) client.postalCode = "";
+  if(client.city != undefined) client.city = formatName(client.city); else client.city = "";
+  if(client.job != undefined) client.job = formatName(client.job); else client.job = "";
+  if(client.registrationDate != undefined) client.registrationDate = formatDate(client.registrationDate); else client.registrationDate = "";
   return client;
 }
 
@@ -74,9 +75,9 @@ function verifyDate(date:string) : boolean{
 }
 
 // verifie la validite d'un code postal
-function verifyPostalCode(postalCode:number): boolean {
+function verifyPostalCode(postalCode:string): boolean {
   var regex = /^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$/;
-  return regex.test(postalCode.toString());
+  return regex.test(postalCode);
 }
 
 // Formate un nom

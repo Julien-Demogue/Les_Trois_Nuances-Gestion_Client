@@ -3,7 +3,7 @@ import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
 import Popup from '../components/Popup.vue';
 import {addClient} from '../data/dao';
-import {Client,getCurrentDate,verifyClientInfos,formatClient,formatDate} from '../data/tools'
+import {Client,getCurrentDate,verifyClientInfos,formatClient,formatDate} from '../tools'
 </script>
 
 <template>
@@ -22,7 +22,7 @@ import {Client,getCurrentDate,verifyClientInfos,formatClient,formatDate} from '.
                 <input type="email" class="input" name="email" placeholder="email" v-model.trim="client.email">
                 <div class="input-group">
                     <input type="text" class="input input-half" name="city" placeholder="ville" v-model.trim="client.city">
-                    <input type="number" class="input input-half" name="postalCode" placeholder="code postal" v-model="client.postalCode">
+                    <input type="text" class="input input-half" name="postalCode" placeholder="code postal" v-model="client.postalCode">
                 </div>
                 <input type="text" class="input" name="job" placeholder="fonction" v-model.trim="client.job">
                 <input type="text" class="input" name="registrationDate" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date d'inscription" v-model.trim="client.registrationDate" @blur="client.registrationDate = formatDate(client.registrationDate)">
@@ -58,7 +58,7 @@ export default {
 
                 // Ajouter la date de derniere visite
                 this.client.lastVisitDate = getCurrentDate();
-                if(this.client.registrationDate == undefined){
+                if(this.client.registrationDate == ""){
                     this.client.registrationDate = getCurrentDate();
                 }
                 if(this.client.loyaltyPoints == undefined){
@@ -128,4 +128,4 @@ export default {
     margin-bottom: .5vh;
 }
 
-</style>
+</style>../tools

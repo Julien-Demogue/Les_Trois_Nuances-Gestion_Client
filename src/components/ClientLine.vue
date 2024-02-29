@@ -8,9 +8,9 @@
         <div class="sep element">|</div>
         <div class="firstName element">{{ client.firstName }}</div>
         <div class="lastName element">{{ client.lastName }}</div>
-        <div class="element" v-if="client.postalCode != undefined || client.city != undefined">-</div>
-        <div class="postalCode element" v-if="client.postalCode != undefined">{{ client.postalCode }}</div>
-        <div class="city element" v-if="client.city != undefined">{{ client.city }}</div>
+        <div class="element" v-if="client.postalCode != '' || client.city != ''">-</div>
+        <div class="postalCode element" v-if="client.postalCode != ''">{{ client.postalCode }}</div>
+        <div class="city element" v-if="client.city != ''">{{ client.city }}</div>
 
     </div>
     <div class="right-side">

@@ -3,7 +3,7 @@ import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
 import ClientLine from '../components/ClientLine.vue';
 import { getClients } from '../data/dao';
-import {Client} from '../data/tools'
+import {Client} from '../tools'
 </script>
 
 <template>
@@ -113,4 +113,4 @@ export default {
   background-color: #79C8F6;
   overflow-y: auto;
 }
-</style>
+</style>../tools

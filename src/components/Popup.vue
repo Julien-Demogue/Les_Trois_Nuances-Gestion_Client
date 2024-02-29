@@ -116,7 +116,7 @@ export default {
 }
 
 .accept-btn button, .cancel-btn button, .ok-btn button{
-    width: 6vw;
+    width: 6.5vw;
     height: 2.5vw;
     font-size: 1.2rem;
 }
