@@ -18,7 +18,7 @@ export function addClient(client:Client) {
     // Generer un nouvel ID unique
     const previousID = Math.max(...clients.map((client:Client) => client.id))
     let newId = 0
-    if(previousID == null) {
+    if(previousID != -Infinity) {
       newId = Math.max(...clients.map((client:Client) => client.id)) + 1;
     }
     client.id = newId;
@@ -103,6 +103,39 @@ export function editClient(id:Number, client:Client) {
   });
 }
 
+export function editClientProperty(id: number, property: string, value: any) {
+  // Lire le fichier JSON
+  fs.readFile(absolutePath, 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+
+    // Analyser le JSON en objet
+    const clients = JSON.parse(data);
+
+    // Trouver l'index du client a modifier
+    const index = clients.findIndex((client: Client) => client.id === id);
+
+    // Si l'index est trouve, modifier la propriete
+    if (index !== -1) {
+      clients[index][property] = value;
+
+      // Ecrire le nouveau contenu JSON dans le fichier
+      fs.writeFile(absolutePath, JSON.stringify(clients, null, 2), err => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+
+        console.log(`Propriete "${property}" du client ${id} modifiee avec succes !`);
+      });
+    } else {
+      console.log(`Client avec l'ID ${id} non trouve.`);
+    }
+  });
+}
+
 export function getClients(): Promise<Client[]> {
   // Lire le fichier JSON
   return new Promise((resolve, reject) => {
@@ -115,7 +148,7 @@ export function getClients(): Promise<Client[]> {
       // Analyser le JSON en objet
       const clients = JSON.parse(data);
 
-      // Résoudre la promesse avec le tableau de clients
+      // Resoudre la promesse avec le tableau de clients
       resolve(clients);
     });
   });

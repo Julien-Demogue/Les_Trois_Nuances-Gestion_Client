@@ -16,8 +16,8 @@ const handleClick = (method: Function | null) => {
                     </div>
                     <div class="popup-btn">
                         <div class="group-btn" v-if="confirmation">
-                            <div class="cancel-btn"><button class="btn" @click="handleClick(cancelMethod)" >Annuler</button></div>
-                            <div class="accept-btn"><button class="btn" @click="handleClick(acceptMethod)" >Continuer</button></div>           
+                            <div class="cancel-btn"><button class="btn" @click="handleClick(cancelMethod)" >Non</button></div>
+                            <div class="accept-btn"><button class="btn" @click="handleClick(acceptMethod)" >Oui</button></div>           
                         </div> 
                         <div class="ok-btn" v-else>
                             <button class="btn" @click="handleClick(acceptMethod)" >OK</button>

@@ -2,8 +2,8 @@
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
 import Popup from '../components/Popup.vue';
-import { removeClient,getClient,editClient } from '../data/dao';
-import {Client,calculateAge,verifyClientInfos,formatClient,formatDate} from '../tools'
+import { removeClient,getClient,editClient,editClientProperty } from '../data/dao';
+import {Client,calculateAge,verifyClientInfos,formatClient,formatDate, getCurrentDate} from '../tools'
 </script>
 
 <template>
@@ -42,7 +42,11 @@ import {Client,calculateAge,verifyClientInfos,formatClient,formatDate} from '../
             <input type="text" class="input" name="job" v-model.trim="client.job" v-if="editMode">
           </div>
           <div class="lastConsultation info-block" v-if="client.lastVisitDate != '' || editMode">
-            <p class="info-title">Dernier rendez-vous</p> 
+            <div class="info-line">
+              <p class="info-title">Dernier rendez-vous</p>
+              <div class="fast-edit-btn"><button class="btn resetPts" @click="onRefreshLastVisit"><img class="icon" src="../img/refresh.png" alt="Refresh icons created by Dave Gandy - Flaticon"></button></div> 
+            </div>
+             
             <p class="info">{{ client.lastVisitDate }}</p>
           </div>
           <div class="email info-block" v-if="client.email != '' || editMode">
@@ -51,8 +55,15 @@ import {Client,calculateAge,verifyClientInfos,formatClient,formatDate} from '../
             <input type="email" class="input" name="email" v-model.trim="client.email" v-if="editMode">
           </div>
           <div class="loyaltyPoints info-block">
-            <div><p class="info-title">Points de fidélité</p></div>
-            <div><p class="info">{{ client.loyaltyPoints }}</p></div>
+            <div class="info-line">
+              <div><p class="info-title">Points de fidélité</p></div>
+              <div class="fast-edit-btn"><button class="btn resetPts" @click="onResetLP"><img class="icon" src="../img/refresh.png" alt="Refresh icons created by Dave Gandy - Flaticon"></button></div>
+            </div> 
+            <div class="info-line">
+              <div class="fast-edit-btn"><button class="btn removePts" @click="removeLP"><img class="icon" src="../img/moins.png" alt="Minus icons created by Freepik - Flaticon"></button></div>
+              <div><p class="info">{{ client.loyaltyPoints }}</p></div>
+              <div class="fast-edit-btn"><button class="btn addPts" @click="addLP"><img class="icon" src="../img/plus.png" alt="Plus icons created by srip - Flaticon"></button></div>
+            </div>     
           </div>
           <div class="registrationDate info-block" v-if="client.registrationDate != '' || editMode">
             <div><p class="info-title">Date d'inscription</p></div>
@@ -97,6 +108,39 @@ export default {
       }
     },
     methods:{
+      onResetLP(){
+        let msg = "Voulez-vous vraiment réinitialiser les points de fidélité de ce client ?";
+        this.changeAcceptPopupMethod(this.resetLP);
+        this.changeCancelPopupMethod(this.hidePopup);
+        this.setPopup(msg,true);
+      },
+      onRefreshLastVisit(){
+        let msg = "Êtes-vous sûr de vouloir actualiser la date de dernière visite du client ?";
+        this.changeAcceptPopupMethod(this.refreshLastVisit);
+        this.changeCancelPopupMethod(this.hidePopup);
+        this.setPopup(msg,true);
+      },
+      addLP(){
+        editClientProperty(this.client.id,"loyaltyPoints",this.client.loyaltyPoints+1);
+        this.client.loyaltyPoints++;
+      },
+      removeLP(){
+        if(this.client.loyaltyPoints > 0){
+          editClientProperty(this.client.id,"loyaltyPoints",this.client.loyaltyPoints-1);
+          this.client.loyaltyPoints--;
+        }
+      },
+      resetLP(){
+        editClientProperty(this.client.id,"loyaltyPoints",0);
+        this.client.loyaltyPoints = 0;
+        this.hidePopup();
+      },
+      refreshLastVisit(){
+        let today = getCurrentDate();
+        editClientProperty(this.client.id,"lastVisitDate",today);
+        this.client.lastVisitDate = today;
+        this.hidePopup();
+      },
       onRemove(){
         let msg = "Voulez vous vraiment supprimer le client " + this.client.firstName + " " + this.client.lastName + " ?";
         msg += "<br><br>Cette action est définitive !";
@@ -214,11 +258,11 @@ export default {
 }
 
 .editBtn button{
-  background-color: #e7ca55;
+  background-color: #F6DC73;
 }
 
 .validBtn button{
-  background-color: #24e25d;
+  background-color: #8DEF0F;
 }
 
 .title{
@@ -245,8 +289,47 @@ export default {
   height: 2.2vh !important;
 }
 
+.info-line{
+  display: flex;
+  gap: 10px;
+}
+
 .input-half{
   height: 2.2vh !important;
   text-align: center;
+}
+
+.fast-edit-btn button{
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+}
+
+.fast-edit-btn{
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.addPts{
+  background-color: #8DEF0F;
+}
+
+.removePts{
+  background-color: #FD6666;
+}
+
+.resetPts{
+  background-color: #F6DC73;
+}
+
+.refreshLC{
+  background-color: #F6DC73;
+}
+
+.icon{
+  margin-top: 10%;
+  height: 70%;
 }
 </style>../tools
