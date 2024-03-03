@@ -9,7 +9,7 @@
     "job": "Etudiant",
     "registrationDate": "29/02/2024",
     "lastVisitDate": "03/03/2024",
-    "loyaltyPoints": 0,
+    "loyaltyPoints": 1,
     "id": "0"
   },
   {
@@ -18,7 +18,7 @@
     "birthday": "08/09/2006",
     "email": "quantin.demogue@sfr.fr",
     "postalCode": "56890",
-    "city": "Saint - Ave",
+    "city": "Saint-Ave",
     "job": "Lyceen",
     "registrationDate": "29/02/2024",
     "lastVisitDate": "29/02/2024",

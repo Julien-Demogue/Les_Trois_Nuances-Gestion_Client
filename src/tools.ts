@@ -82,11 +82,19 @@ function verifyPostalCode(postalCode:string): boolean {
 
 // Formate un nom
 function formatName(name:string): string{
-  const nameParts = name.split(/([ -])+/);
-  const formattedParts = nameParts.map(part => {
-    return part.substring(0, 1).toUpperCase() + part.substring(1).toLowerCase();
+  const nameWithoutDashes = name.replace("-"," ");
+  const nameWithoutMultipleSpaces = nameWithoutDashes.replace(/\s+/g, " "); 
+  const nameWithDashes = nameWithoutMultipleSpaces.replace(/\s/g, "-");
+
+  const nameParts = nameWithDashes.split(/(-)/);
+  const formattedParts = nameParts.map((part) => {
+    if (part === "-") {
+      return "-";
+    }
+    return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
   });
-  return formattedParts.join(' ');
+
+  return formattedParts.join("");
 }
 
 // Formate une date
