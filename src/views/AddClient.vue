@@ -15,17 +15,21 @@ import {Client,getCurrentDate,verifyClientInfos,formatClient,formatDate} from '.
             <div class="title"><p>Ajouter un client</p></div>
             <div class="add-form">
                 <div class="input-group">
-                    <input type="text" class="input input-half" name="lastName" placeholder="prénom (obligatoire)" v-model.trim="client.firstName">
-                    <input type="text" class="input input-half" name="firstName" placeholder="nom (obligatoire)" v-model.trim="client.lastName">
+                    <input type="text" class="input input-half" name="lastName" placeholder="Prénom (obligatoire)" v-model.trim="client.firstName">
+                    <input type="text" class="input input-half" name="firstName" placeholder="Nom (obligatoire)" v-model.trim="client.lastName">
                 </div>
-                <input type="text" class="input" name="birthday" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date de naissance (obligatoire)" v-model.trim="client.birthday" @blur="client.birthday = formatDate(client.birthday)">
-                <input type="email" class="input" name="email" placeholder="email" v-model.trim="client.email">
+                <input type="text" class="input" name="birthday" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Date de naissance (obligatoire)" v-model.trim="client.birthday" @blur="client.birthday = formatDate(client.birthday)">
                 <div class="input-group">
-                    <input type="text" class="input input-half" name="city" placeholder="ville" v-model.trim="client.city">
-                    <input type="text" class="input input-half" name="postalCode" placeholder="code postal" v-model="client.postalCode">
+                    <input type="email" class="input input-half" name="email" placeholder="Email" v-model.trim="client.email">
+                    <input type="tel" class="input input-half" name="telephone" placeholder="Téléphone" v-model.trim="client.telephone">
                 </div>
-                <input type="text" class="input" name="job" placeholder="fonction" v-model.trim="client.job">
-                <input type="text" class="input" name="registrationDate" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date d'inscription" v-model.trim="client.registrationDate" @blur="client.registrationDate = formatDate(client.registrationDate)">
+                <input type="text" class="input" name="address" placeholder="Adresse" v-model.trim="client.address">
+                <div class="input-group">
+                    <input type="text" class="input input-half" name="city" placeholder="Ville" v-model.trim="client.city">
+                    <input type="text" class="input input-half" name="postalCode" placeholder="Code postal" v-model="client.postalCode">
+                </div>
+                <input type="text" class="input" name="job" placeholder="Situation" v-model.trim="client.job">
+                <input type="text" class="input" name="registrationDate" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Date d'inscription" v-model.trim="client.registrationDate" @blur="client.registrationDate = formatDate(client.registrationDate)">
                 
                 <div class="lbl-input">
                     <div class="txt-loyalty">Points de fidélité</div>
@@ -100,7 +104,7 @@ export default {
  }
 
 .valid-btn button{ 
-    margin-top: 6vh;   
+    margin-top: 5vh;   
     height: 50px;
     width: 200px;
     background-color: #79C8F6;

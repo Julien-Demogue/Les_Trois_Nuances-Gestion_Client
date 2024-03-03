@@ -1,18 +1,5 @@
 [
   {
-    "firstName": "Julien",
-    "lastName": "Demogue",
-    "birthday": "17/03/2003",
-    "email": "julien.demogue@sfr.fr",
-    "postalCode": "35200",
-    "city": "Rennes",
-    "job": "Etudiant",
-    "registrationDate": "29/02/2024",
-    "lastVisitDate": "03/03/2024",
-    "loyaltyPoints": 1,
-    "id": "0"
-  },
-  {
     "firstName": "Quentin",
     "lastName": "Demogue",
     "birthday": "08/09/2006",
@@ -23,6 +10,22 @@
     "registrationDate": "29/02/2024",
     "lastVisitDate": "29/02/2024",
     "loyaltyPoints": 0,
-    "id": "1"
+    "id": "1",
+    "address": ""
+  },
+  {
+    "firstName": "Julien",
+    "lastName": "Demogue",
+    "birthday": "17/03/2003",
+    "email": "julien.demogue@sfr.fr",
+    "telephone": "07 69 33 81 73",
+    "address": "6 rue des Saules",
+    "city": "Rennes",
+    "postalCode": "56890",
+    "job": "Etudiant",
+    "registrationDate": "03/03/2024",
+    "lastVisitDate": "03/03/2024",
+    "loyaltyPoints": 0,
+    "id": "2"
   }
 ]

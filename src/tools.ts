@@ -4,6 +4,8 @@ export interface Client{
     lastName:string;
     birthday:string;
     email:string;
+    telephone:string;
+    address:string;
     city:string;
     postalCode:string;
     job:string;
@@ -30,6 +32,9 @@ export function verifyClientInfos(client:Client) : Array<string> {
   if(client.email != undefined && client.email != "" && !verifyEmail(client.email)){
     errorList.push("L'email entré est invalide");
   }
+  if(client.telephone != undefined && client.telephone != "" && !verifyTel(client.telephone)){
+    errorList.push("Le numéro de téléphone entré est invalide");
+  }
   if(client.city != undefined && client.city != "" && !verifyName(client.city)){
     errorList.push("La ville entrée est invalide");
   }
@@ -49,6 +54,8 @@ export function formatClient(client:Client) : Client{
   client.lastName = formatName(client.lastName);
   client.birthday = formatDate(client.birthday);
   if(client.email != undefined) client.email = formatEmail(client.email); else client.email = "";
+  if(client.telephone != undefined) client.telephone = formatTelephone(client.telephone); else client.telephone = "";
+  if(client.address == undefined) client.address = "";
   if(client.postalCode == undefined) client.postalCode = "";
   if(client.city != undefined) client.city = formatName(client.city); else client.city = "";
   if(client.job != undefined) client.job = formatName(client.job); else client.job = "";
@@ -66,6 +73,12 @@ function verifyName(name:string) : boolean{
 function verifyEmail(email:string): boolean{
   const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   return regex.test(email);
+}
+
+// Verifie la validite d'un telephone
+function verifyTel(telephone:string): boolean{
+  const regex = /^0[1-9](\d{2}){4}$/;
+  return regex.test(telephone);
 }
 
 // verifie la validite d'une date
@@ -88,7 +101,7 @@ function formatName(name:string): string{
 
   const nameParts = nameWithDashes.split(/(-)/);
   const formattedParts = nameParts.map((part) => {
-    if (part === "-") {
+    if (part == "-") {
       return "-";
     }
     return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
@@ -113,6 +126,12 @@ export function formatDate(date:string) : string{
 // Formate un email
 function formatEmail(email:string) : string{
   return email.toLowerCase();
+}
+
+// Formate un telephone
+function formatTelephone(telephone:string) : string{
+  const cleanedNumber = telephone.replace(/\D/g, '');
+  return cleanedNumber.replace(/^0(\d{1})(\d{2})(\d{2})(\d{2})(\d{2})$/, '0$1 $2 $3 $4 $5');
 }
 
 // Calcule l'age a partire d'une date de naissance

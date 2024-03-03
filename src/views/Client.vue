@@ -21,38 +21,12 @@ import {Client,calculateAge,verifyClientInfos,formatClient,formatDate, getCurren
           </div>
         </div>
         <div class="informations">
-          <div class="birthday info-block" v-if="client.birthday != '' || editMode">
-            <p class="info-title">Age</p>
-            <p class="info" v-if="!editMode">{{ calculateAge(client.birthday) }} ans ({{ client.birthday }})</p>
-            <input type="text" class="input" name="birthday" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date de naissance (obligatoire)" v-model.trim.trim="client.birthday" @blur="client.birthday = formatDate(client.birthday)" v-if="editMode">
-          </div>
-          <div class="city info-block" v-if="client.city != '' || editMode">
-            <p class="info-title">Ville</p>
-            <p class="info" v-if="!editMode">{{ client.city }}</p>
-            <input type="text" class="input input-half" name="city" v-model.trim="client.city" v-if="editMode">
-          </div>
-          <div class="cp info-block" v-if="client.postalCode != '' || editMode">
-            <p class="info-title">Code Postal</p>
-            <p class="info" v-if="!editMode">{{ client.postalCode }}</p>
-            <input type="text" class="input input-half" name="postalCode" v-model.trim="client.postalCode" v-if="editMode">
-          </div>
-          <div class="funcion info-block" v-if="client.job != '' || editMode">
-            <p class="info-title">Fonction</p>
-            <p class="info" v-if="!editMode">{{ client.job }}</p>
-            <input type="text" class="input" name="job" v-model.trim="client.job" v-if="editMode">
-          </div>
           <div class="lastConsultation info-block" v-if="client.lastVisitDate != '' || editMode">
             <div class="info-line">
               <p class="info-title">Dernier rendez-vous</p>
               <div class="fast-edit-btn"><button class="btn resetPts" @click="onRefreshLastVisit"><img class="icon" src="../img/refresh.png" alt="Refresh icons created by Dave Gandy - Flaticon"></button></div> 
             </div>
-             
             <p class="info">{{ client.lastVisitDate }}</p>
-          </div>
-          <div class="email info-block" v-if="client.email != '' || editMode">
-            <div><p class="info-title">Email</p></div>
-            <div><p class="info" v-if="!editMode">{{ client.email }}</p></div>
-            <input type="email" class="input" name="email" v-model.trim="client.email" v-if="editMode">
           </div>
           <div class="loyaltyPoints info-block">
             <div class="info-line">
@@ -64,6 +38,41 @@ import {Client,calculateAge,verifyClientInfos,formatClient,formatDate, getCurren
               <div><p class="info">{{ client.loyaltyPoints }}</p></div>
               <div class="fast-edit-btn"><button class="btn addPts" @click="addLP"><img class="icon" src="../img/plus.png" alt="Plus icons created by srip - Flaticon"></button></div>
             </div>     
+          </div>
+          <div class="birthday info-block" v-if="client.birthday != '' || editMode">
+            <p class="info-title">Age</p>
+            <p class="info" v-if="!editMode">{{ calculateAge(client.birthday) }} ans ({{ client.birthday }})</p>
+            <input type="text" class="input" name="birthday" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date de naissance (obligatoire)" v-model.trim.trim="client.birthday" @blur="client.birthday = formatDate(client.birthday)" v-if="editMode">
+          </div>
+          <div class="funcion info-block" v-if="client.job != '' || editMode">
+            <p class="info-title">Situation</p>
+            <p class="info" v-if="!editMode">{{ client.job }}</p>
+            <input type="text" class="input" name="job" v-model.trim="client.job" v-if="editMode">
+          </div>
+          <div class="address info-block" v-if="client.address != '' || editMode">
+            <p class="info-title">Adresse</p>
+            <p class="info" v-if="!editMode">{{ client.address }}</p>
+            <input type="text" class="input input-half" name="address" v-model.trim="client.address" v-if="editMode">
+          </div>
+          <div class="city info-block" v-if="client.city != '' || editMode">
+            <p class="info-title">Ville</p>
+            <p class="info" v-if="!editMode">{{ client.city }}</p>
+            <input type="text" class="input input-half" name="city" v-model.trim="client.city" v-if="editMode">
+          </div>
+          <div class="cp info-block" v-if="client.postalCode != '' || editMode">
+            <p class="info-title">Code Postal</p>
+            <p class="info" v-if="!editMode">{{ client.postalCode }}</p>
+            <input type="text" class="input input-half" name="postalCode" v-model.trim="client.postalCode" v-if="editMode">
+          </div>
+          <div class="email info-block" v-if="client.email != '' || editMode">
+            <div><p class="info-title">Email</p></div>
+            <div><p class="info" v-if="!editMode">{{ client.email }}</p></div>
+            <input type="email" class="input" name="email" v-model.trim="client.email" v-if="editMode">
+          </div>
+          <div class="telephone info-block" v-if="client.telephone != '' || editMode">
+            <div><p class="info-title">Téléphone</p></div>
+            <div><p class="info" v-if="!editMode">{{ client.telephone }}</p></div>
+            <input type="tel" class="input" name="telephone" v-model.trim="client.telephone" v-if="editMode">
           </div>
           <div class="registrationDate info-block" v-if="client.registrationDate != '' || editMode">
             <div><p class="info-title">Date d'inscription</p></div>
