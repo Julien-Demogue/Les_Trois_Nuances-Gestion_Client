@@ -8,10 +8,11 @@
     "city": "Saint-Ave",
     "job": "Lyceen",
     "registrationDate": "29/02/2024",
-    "lastVisitDate": "29/02/2024",
-    "loyaltyPoints": 0,
+    "lastVisitDate": "03/03/2024",
+    "loyaltyPoints": 6,
     "id": "1",
-    "address": ""
+    "address": "",
+    "telephone": ""
   },
   {
     "firstName": "Julien",

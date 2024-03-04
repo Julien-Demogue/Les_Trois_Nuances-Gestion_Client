@@ -19,6 +19,7 @@ import {Client,getCurrentDate,verifyClientInfos,formatClient,formatDate} from '.
                     <input type="text" class="input input-half" name="firstName" placeholder="Nom (obligatoire)" v-model.trim="client.lastName">
                 </div>
                 <input type="text" class="input" name="birthday" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Date de naissance (obligatoire)" v-model.trim="client.birthday" @blur="client.birthday = formatDate(client.birthday)">
+                <input type="text" class="input" name="job" placeholder="Situation" v-model.trim="client.job">
                 <div class="input-group">
                     <input type="email" class="input input-half" name="email" placeholder="Email" v-model.trim="client.email">
                     <input type="tel" class="input input-half" name="telephone" placeholder="Téléphone" v-model.trim="client.telephone">
@@ -28,7 +29,6 @@ import {Client,getCurrentDate,verifyClientInfos,formatClient,formatDate} from '.
                     <input type="text" class="input input-half" name="city" placeholder="Ville" v-model.trim="client.city">
                     <input type="text" class="input input-half" name="postalCode" placeholder="Code postal" v-model="client.postalCode">
                 </div>
-                <input type="text" class="input" name="job" placeholder="Situation" v-model.trim="client.job">
                 <input type="text" class="input" name="registrationDate" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Date d'inscription" v-model.trim="client.registrationDate" @blur="client.registrationDate = formatDate(client.registrationDate)">
                 
                 <div class="lbl-input">

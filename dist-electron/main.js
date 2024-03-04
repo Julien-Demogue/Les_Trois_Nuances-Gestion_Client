@@ -7,6 +7,7 @@ let win;
 const VITE_DEV_SERVER_URL = process.env["VITE_DEV_SERVER_URL"];
 function createWindow() {
   win = new electron.BrowserWindow({
+    icon: "./logo.png",
     width: 1920,
     height: 1080,
     backgroundColor: "#D5F0FF",

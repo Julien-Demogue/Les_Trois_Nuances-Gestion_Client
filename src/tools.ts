@@ -18,7 +18,7 @@ export interface Client{
 export function verifyClientInfos(client:Client) : Array<string> {
   let errorList = [];
   if(client.firstName == undefined || client.lastName == undefined || client.birthday == undefined || client.firstName == "" || client.lastName == "" || client.birthday == ""){
-    errorList.push("L'un des champs obligatoires n'a pas été rempli\n(nom,prénom ou date de naissance)");
+    errorList.push("L'un des champs obligatoires n'a pas été rempli."+"<br>"+"(nom,prénom ou date de naissance)");
   }
   if((client.firstName != undefined && client.firstName != "" && !verifyName(client.firstName))){
     errorList.push("Le prénom entré est invalide");

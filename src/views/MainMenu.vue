@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
+import {sendEmail} from '../mailSender';
 </script>
 
 <template>
@@ -13,6 +14,8 @@ import TopBar from '../components/TopBar.vue';
         <div class="find-btn"><router-link to="/search-client"><button class="btn">Rechercher un client</button></router-link></div>
         <div class="separator"><hr></div>
         <div class="add-btn"><router-link to="/add-client"><button class="btn">Ajouter un client</button></router-link></div>
+
+        <!-- <div class="save-data-btn"><button class="btn" @click="sendEmail()">Sauvegarder les données</button></div> -->
       </div>
       <SideBar />
     </div>
@@ -25,5 +28,18 @@ import TopBar from '../components/TopBar.vue';
     width: 400px;
     background-color: #79C8F6;
     font-size: 1.4rem;
+}
+
+.save-data-btn{
+  position: absolute;
+  bottom: 0;
+  padding-bottom: 5vh;
+}
+
+.save-data-btn button{
+  height: 40px;
+  width: 250px;
+  background-color: #e7ca55;
+  font-size: 1.2rem;
 }
 </style>

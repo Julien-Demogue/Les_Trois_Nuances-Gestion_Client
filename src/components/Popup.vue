@@ -11,8 +11,7 @@ const handleClick = (method: Function | null) => {
         <div class="popup-bg">
             <div class="popup-wrapper">
                 <div class="popup-content">
-                    <div v-html=msg class="popup-msg">
-                        
+                    <div v-html=msg class="popup-msg">     
                     </div>
                     <div class="popup-btn">
                         <div class="group-btn" v-if="confirmation">
@@ -86,7 +85,7 @@ export default {
 }
 
 .popup-content{
-    width: 20%;
+    width: 25%;
     margin: 0px auto;
     padding: 20px 30px;
     background-color: #79C8F6;
