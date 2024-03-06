@@ -96,6 +96,7 @@ const exportData = () => {
   }
 };
 
+// Methode ouvrant un menu permettant d'importer un fichier de donnees client 
 const importData = () => {
   const options = {
     title: 'Importer les données client',
@@ -112,10 +113,6 @@ const importData = () => {
         const filePath = result.filePaths[0];
         const data = await fs.promises.readFile(filePath, 'utf-8');
         const jsonData = JSON.parse(data);
-
-        const clients = await fs.promises.readFile('./src/data/clients.json', 'utf-8');
-        const clientsData = JSON.parse(clients);
-        const mergedData = [...clientsData, ...jsonData];
 
         await fs.promises.writeFile('./src/data/clients.json', JSON.stringify(jsonData, null, 2));
 

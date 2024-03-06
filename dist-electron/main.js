@@ -82,9 +82,6 @@ const importData = () => {
         const filePath = result.filePaths[0];
         const data = await fs.promises.readFile(filePath, "utf-8");
         const jsonData = JSON.parse(data);
-        const clients = await fs.promises.readFile("./src/data/clients.json", "utf-8");
-        const clientsData = JSON.parse(clients);
-        [...clientsData, ...jsonData];
         await fs.promises.writeFile("./src/data/clients.json", JSON.stringify(jsonData, null, 2));
         console.log(`Fichier importe : ${filePath}`);
       } else {
