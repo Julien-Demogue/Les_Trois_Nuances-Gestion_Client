@@ -4,3 +4,6 @@ package-lock.json
 package.json
 dist-electron
 out/
+gestion-client-win32-x64
+build
+release

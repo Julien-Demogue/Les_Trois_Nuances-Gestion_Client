@@ -1,0 +1,28 @@
+{
+  "appId": "com.gestion.app",
+  "productName": "Les Trois Nuances",
+  "electronVersion": "10.2.4",
+  "directories": {
+    "output": "release",
+    "buildResources": "build"
+  },
+  "files": [
+    "**/*",
+    "!node_modules/**",
+    "!public/dist/**"
+  ],
+  "win": {
+    "target": [
+      "nsis",
+      "portable"
+    ],
+    "icon": "build/icon.ico"
+  },
+  "nsis": {
+    "oneClick": true,
+    "allowElevation": true,
+    "installerIcon": "build/icon.ico",
+    "uninstallerIcon": "build/icon.ico",
+    "license": "LICENSE.txt"
+  } 
+}

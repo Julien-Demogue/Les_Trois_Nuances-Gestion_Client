@@ -22,6 +22,7 @@ const VITE_DEV_SERVER_URL = process.env['VITE_DEV_SERVER_URL']
 
 function createWindow() {
   win = new BrowserWindow({
+    icon: 'icon.ico',
     width:1920,
     height:1080,
     backgroundColor: '#D5F0FF',
@@ -55,7 +56,7 @@ app.on('window-all-closed', () => {
     app.quit()
     win = null
   }
-})
+});
 
 app.on('activate', () => {
   // On OS X it's common to re-create a window in the app when the
@@ -63,11 +64,13 @@ app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow()
   }
-})
+});
+
+app.whenReady().then(createWindow)
 
 // Methode ouvrant un menu permettant d'enregistrer les donnees client 
 const exportData = () => {
-  const date = new Date().toLocaleDateString('fr-FR').replaceAll("/","-");
+  const date = new Date().toLocaleDateString('fr-FR').split("/").join("-");
   const options = {
     title: 'Sauvegarder les données client',
     defaultPath: app.getPath('downloads') + ("/fichier_client (" + date +")"),
@@ -125,12 +128,10 @@ const importData = () => {
   }
 };
 
-ipcMain.on('export-data', (event, arg) => {
+ipcMain.on('export-data', (_event, _arg) => {
   exportData();
 })
 
-ipcMain.on('import-data', (event, arg) => {
+ipcMain.on('import-data', (_event, _arg) => {
   importData();
 });
-
-app.whenReady().then(createWindow)

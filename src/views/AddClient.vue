@@ -2,7 +2,7 @@
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
 import Popup from '../components/Popup.vue';
-import {addClient} from '../data/dao';
+import {addClient} from '../dao';
 import {Client,getCurrentDate,verifyClientInfos,formatClient,formatDate} from '../tools'
 </script>
 
@@ -132,4 +132,4 @@ export default {
     margin-bottom: .5vh;
 }
 
-</style>../tools
+</style>../tools../../public/data/dao../dao

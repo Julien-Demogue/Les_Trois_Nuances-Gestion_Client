@@ -2,7 +2,7 @@
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
 import Popup from '../components/Popup.vue';
-import { removeClient,getClient,editClient,editClientProperty } from '../data/dao';
+import { removeClient,getClient,editClient,editClientProperty } from '../dao';
 import {Client,calculateAge,verifyClientInfos,formatClient,formatDate, getCurrentDate} from '../tools'
 </script>
 
@@ -336,4 +336,4 @@ export default {
 .icon{
   height: 70%;
 }
-</style>../tools
+</style>../tools../../public/data/dao../dao

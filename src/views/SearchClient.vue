@@ -2,7 +2,7 @@
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
 import ClientLine from '../components/ClientLine.vue';
-import { getClients } from '../data/dao';
+import { getClients } from '../dao';
 import {Client} from '../tools'
 </script>
 
@@ -113,4 +113,4 @@ export default {
   background-color: #79C8F6;
   overflow-y: auto;
 }
-</style>../tools
+</style>../tools../../public/data/dao../dao
