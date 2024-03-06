@@ -66,7 +66,7 @@ app.on('activate', () => {
 })
 
 // Methode ouvrant un menu permettant d'enregistrer les donnees client 
-const saveFile = () => {
+const exportData = () => {
   const date = new Date().toLocaleDateString('fr-FR').replaceAll("/","-");
   const options = {
     title: 'Sauvegarder les données client',
@@ -96,8 +96,44 @@ const saveFile = () => {
   }
 };
 
-ipcMain.on('save-data', (event, arg) => {
-  saveFile();
+const importData = () => {
+  const options = {
+    title: 'Importer les données client',
+    defaultPath: app.getPath('downloads'),
+    filters: [
+      { name: 'Fichiers json', extensions: ['json'] },
+      { name: 'Tous les fichiers', extensions: ['*'] },
+    ],
+  };
+
+  if (win) {
+    dialog.showOpenDialog(win, options).then(async (result) => {
+      if (result.filePaths.length > 0) {
+        const filePath = result.filePaths[0];
+        const data = await fs.promises.readFile(filePath, 'utf-8');
+        const jsonData = JSON.parse(data);
+
+        const clients = await fs.promises.readFile('./src/data/clients.json', 'utf-8');
+        const clientsData = JSON.parse(clients);
+        const mergedData = [...clientsData, ...jsonData];
+
+        await fs.promises.writeFile('./src/data/clients.json', JSON.stringify(jsonData, null, 2));
+
+        console.log(`Fichier importe : ${filePath}`);
+
+      } else {
+        console.log('Importation annulee');
+      }
+    });
+  }
+};
+
+ipcMain.on('export-data', (event, arg) => {
+  exportData();
 })
+
+ipcMain.on('import-data', (event, arg) => {
+  importData();
+});
 
 app.whenReady().then(createWindow)

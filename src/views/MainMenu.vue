@@ -15,7 +15,11 @@ const { ipcRenderer  } = require ("electron");
         <div class="separator"><hr></div>
         <div class="add-btn"><router-link to="/add-client"><button class="btn">Ajouter un client</button></router-link></div>
 
-        <div class="save-data-btn"><button class="btn" @click="ipcRenderer.send('save-data')">Sauvegarder les données</button></div>
+        <div class="data-manager-group">
+          <div class="export-data-btn"><button class="btn" @click="ipcRenderer.send('export-data')">Exporter les données</button></div>
+          <div class="import-data-btn"><button class="btn" @click="ipcRenderer.send('import-data')">Importer des données</button></div>
+        </div>
+        
       </div>
       <SideBar />
     </div>
@@ -30,16 +34,18 @@ const { ipcRenderer  } = require ("electron");
     font-size: 1.4rem;
 }
 
-.save-data-btn{
+.data-manager-group{
+  display: flex;
   position: absolute;
   bottom: 0;
   padding-bottom: 5vh;
+  gap: 15px;
 }
 
-.save-data-btn button{
+.export-data-btn button,.import-data-btn button{
   height: 40px;
   width: 250px;
-  background-color: #e7ca55;
+  background-color: #e7b455;
   font-size: 1.2rem;
 }
 </style>

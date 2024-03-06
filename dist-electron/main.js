@@ -39,7 +39,7 @@ electron.app.on("activate", () => {
     createWindow();
   }
 });
-const saveFile = () => {
+const exportData = () => {
   const date = (/* @__PURE__ */ new Date()).toLocaleDateString("fr-FR").replaceAll("/", "-");
   const options = {
     title: "Sauvegarder les données client",
@@ -67,7 +67,36 @@ const saveFile = () => {
     });
   }
 };
-electron.ipcMain.on("save-data", (event, arg) => {
-  saveFile();
+const importData = () => {
+  const options = {
+    title: "Importer les données client",
+    defaultPath: electron.app.getPath("downloads"),
+    filters: [
+      { name: "Fichiers json", extensions: ["json"] },
+      { name: "Tous les fichiers", extensions: ["*"] }
+    ]
+  };
+  if (win) {
+    electron.dialog.showOpenDialog(win, options).then(async (result) => {
+      if (result.filePaths.length > 0) {
+        const filePath = result.filePaths[0];
+        const data = await fs.promises.readFile(filePath, "utf-8");
+        const jsonData = JSON.parse(data);
+        const clients = await fs.promises.readFile("./src/data/clients.json", "utf-8");
+        const clientsData = JSON.parse(clients);
+        [...clientsData, ...jsonData];
+        await fs.promises.writeFile("./src/data/clients.json", JSON.stringify(jsonData, null, 2));
+        console.log(`Fichier importe : ${filePath}`);
+      } else {
+        console.log("Importation annulee");
+      }
+    });
+  }
+};
+electron.ipcMain.on("export-data", (event, arg) => {
+  exportData();
+});
+electron.ipcMain.on("import-data", (event, arg) => {
+  importData();
 });
 electron.app.whenReady().then(createWindow);
