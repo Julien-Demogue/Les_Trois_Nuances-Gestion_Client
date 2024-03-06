@@ -329,16 +329,11 @@ export default {
   background-color: #FD6666;
 }
 
-.resetPts{
-  background-color: #F6DC73;
-}
-
-.refreshLC{
+.resetPts,.refreshLC{
   background-color: #F6DC73;
 }
 
 .icon{
-  margin-top: 10%;
   height: 70%;
 }
 </style>../tools

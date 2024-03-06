@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
-import {sendEmail} from '../mailSender';
+const { ipcRenderer  } = require ("electron");
 </script>
 
 <template>
@@ -15,7 +15,7 @@ import {sendEmail} from '../mailSender';
         <div class="separator"><hr></div>
         <div class="add-btn"><router-link to="/add-client"><button class="btn">Ajouter un client</button></router-link></div>
 
-        <!-- <div class="save-data-btn"><button class="btn" @click="sendEmail()">Sauvegarder les données</button></div> -->
+        <div class="save-data-btn"><button class="btn" @click="ipcRenderer.send('save-data')">Sauvegarder les données</button></div>
       </div>
       <SideBar />
     </div>

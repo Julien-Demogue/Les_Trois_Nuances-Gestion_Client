@@ -1,5 +1,7 @@
-import { app, BrowserWindow} from 'electron'
-import path from 'node:path'
+import { app, BrowserWindow,dialog,ipcMain} from 'electron';
+import path from 'node:path';
+import fs from 'fs';
+
 
 // The built directory structure
 //
@@ -61,6 +63,41 @@ app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow()
   }
+})
+
+// Methode ouvrant un menu permettant d'enregistrer les donnees client 
+const saveFile = () => {
+  const date = new Date().toLocaleDateString('fr-FR').replaceAll("/","-");
+  const options = {
+    title: 'Sauvegarder les données client',
+    defaultPath: app.getPath('downloads') + ("/fichier_client (" + date +")"),
+    filters: [
+      { name: 'Fichiers json', extensions: ['json'] },
+      { name: 'Tous les fichiers', extensions: ['*'] },
+    ],
+  };
+
+  if(win){
+    dialog.showSaveDialog(win , options).then(async (result) => {
+      if (result.filePath) {
+        try {
+          const data = await fs.promises.readFile('./src/data/clients.json', 'utf-8');
+          await fs.writeFile(result.filePath, data, err => {
+            console.error(err);
+          });
+          console.log(`Fichier enregistre : ${result.filePath}`);
+        } catch (error:any) {
+          console.error(`Erreur lors de l'enregistrement du fichier : ${error.message}`);
+        }
+      } else {
+        console.log('Enregistrement annule');
+      }
+    });
+  }
+};
+
+ipcMain.on('save-data', (event, arg) => {
+  saveFile();
 })
 
 app.whenReady().then(createWindow)
