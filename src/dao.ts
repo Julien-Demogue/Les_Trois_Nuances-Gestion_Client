@@ -1,7 +1,7 @@
 import fs from 'fs';
 import {Client} from './tools'
 import path from 'path';
-const clientsFile = './public/clients.json';
+const clientsFile = 'clients.json';
 const absolutePath = path.resolve(clientsFile);
 
 export function addClient(client:Client) {

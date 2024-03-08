@@ -1,6 +1,7 @@
 import { app, BrowserWindow,dialog,ipcMain} from 'electron';
 import path from 'node:path';
 import fs from 'fs';
+import fsP from 'fs/promises';
 
 
 // The built directory structure
@@ -66,7 +67,25 @@ app.on('activate', () => {
   }
 });
 
-app.whenReady().then(createWindow)
+app.whenReady().then(async () => {
+  await initClientsFile();
+  createWindow();
+})
+
+// Initialiser le fichier de donnees client si il n'existe pas encore
+async function initClientsFile(){
+  const clientsFilePath = 'clients.json';
+  try {
+    await fsP.access(clientsFilePath, fsP.constants.F_OK);
+  } catch (err:any) {
+    if (err.code === 'ENOENT') {
+      await fsP.writeFile(clientsFilePath, '[]');
+      console.log(`Created clients.json file at ${clientsFilePath}`);
+    } else {
+      console.error(`Error checking for clients.json file: ${err}`);
+    }
+  }
+}
 
 // Methode ouvrant un menu permettant d'enregistrer les donnees client 
 const exportData = () => {
@@ -84,7 +103,7 @@ const exportData = () => {
     dialog.showSaveDialog(win , options).then(async (result) => {
       if (result.filePath) {
         try {
-          const data = await fs.promises.readFile('./src/data/clients.json', 'utf-8');
+          const data = await fs.promises.readFile('clients.json', 'utf-8');
           await fs.writeFile(result.filePath, data, err => {
             console.error(err);
           });
@@ -117,7 +136,7 @@ const importData = () => {
         const data = await fs.promises.readFile(filePath, 'utf-8');
         const jsonData = JSON.parse(data);
 
-        await fs.promises.writeFile('./src/data/clients.json', JSON.stringify(jsonData, null, 2));
+        await fs.promises.writeFile('clients.json', JSON.stringify(jsonData, null, 2));
 
         console.log(`Fichier importe : ${filePath}`);
 
