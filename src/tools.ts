@@ -65,7 +65,7 @@ export function formatClient(client:Client) : Client{
 
 // Verifie la validite d'un nom
 function verifyName(name:string) : boolean{
-  const regex = /^[a-zA-Z -]*$/;
+  const regex = /^[a-zA-Zéèêëïîôùûüÿ -]*$/;
   return regex.test(name);
 }
 
