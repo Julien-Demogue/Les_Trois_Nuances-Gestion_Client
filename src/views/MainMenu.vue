@@ -14,6 +14,8 @@ const { ipcRenderer  } = require ("electron");
         <div class="find-btn"><router-link to="/search-client"><button class="btn">Rechercher un client</button></router-link></div>
         <div class="separator"><hr></div>
         <div class="add-btn"><router-link to="/add-client"><button class="btn">Ajouter un client</button></router-link></div>
+        <div class="separator"><hr></div>
+        <div class="stats-btn"><router-link to="/stats"><button class="btn">Statistiques</button></router-link></div>
 
         <div class="data-manager-group">
           <div class="export-data-btn"><button class="btn" @click="ipcRenderer.send('export-data')">Exporter les données</button></div>
@@ -27,7 +29,7 @@ const { ipcRenderer  } = require ("electron");
 </template>
 
 <style scoped>
-.find-btn button, .add-btn button{
+.find-btn button, .add-btn button, .stats-btn button{
     height: 70px;
     width: 400px;
     background-color: #ff87f9;

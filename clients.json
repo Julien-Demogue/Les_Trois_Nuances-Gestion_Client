@@ -1,7 +1,7 @@
 [
   {
     "firstName": "Julien",
-    "lastName": "Demogue",
+    "lastName": "Dems",
     "birthday": "",
     "email": "",
     "telephone": "",
@@ -10,13 +10,16 @@
     "city": "",
     "job": "",
     "registrationDate": "23/03/2024",
+    "gender": "",
+    "specifications": "",
     "lastVisitDate": "23/03/2024",
     "loyaltyPoints": 0,
     "id": 0
   },
   {
-    "firstName": "Test",
-    "lastName": "Test",
+    "firstName": "Qsfdq",
+    "lastName": "Qsfqf",
+    "specifications": "qnfoksnfvksjndgvjksqnvkpsjcnpsodjcnscccscscscscscscscscscscscscscscscscscscscscscscscscscscscscsclksfcjs^^^^¨¨KPQODSSSSSSSSSSSSSSSS",
     "birthday": "",
     "email": "",
     "telephone": "",
@@ -25,8 +28,26 @@
     "city": "",
     "job": "",
     "registrationDate": "23/03/2024",
+    "gender": "",
     "lastVisitDate": "23/03/2024",
     "loyaltyPoints": 0,
-    "id": 1
+    "id": "1"
+  },
+  {
+    "firstName": "Julien",
+    "lastName": "Demogue",
+    "birthday": "17/03/2003",
+    "job": "Etudiant",
+    "email": "julien.demogue@sfr.fr",
+    "telephone": "07 69 33 81 73",
+    "address": "3 carre de saxe",
+    "city": "Rennes",
+    "postalCode": "35200",
+    "registrationDate": "23/03/2024",
+    "specifications": "j'aime beaucoup les cornichons \npro player lol\nvoila",
+    "gender": "Homme",
+    "lastVisitDate": "23/03/2024",
+    "loyaltyPoints": 0,
+    "id": "2"
   }
 ]

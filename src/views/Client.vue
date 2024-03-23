@@ -42,7 +42,15 @@ import {Client,calculateAge,verifyClientInfos,formatClient,formatDate, getCurren
           <div class="birthday info-block" v-if="client.birthday != '' || editMode">
             <p class="info-title">Age</p>
             <p class="info" v-if="!editMode">{{ calculateAge(client.birthday) }} ans ({{ client.birthday }})</p>
-            <input type="text" class="input" name="birthday" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date de naissance (obligatoire)" v-model.trim.trim="client.birthday" @blur="client.birthday = formatDate(client.birthday)" v-if="editMode">
+            <input type="text" class="input" name="birthday" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date de naissance" v-model.trim.trim="client.birthday" @blur="client.birthday = formatDate(client.birthday)" v-if="editMode">
+          </div>
+          <div class="gender radio-info-block" v-if="client.gender != '' || editMode">
+            <p class="info-title">Genre</p>
+            <p class="info" v-if="!editMode">{{ client.gender }}</p>
+            <div class="radio-input" v-if="editMode">
+                <div class="radio"><input type="radio" name="gender" value="Homme" v-model="client.gender"> Homme</div>
+                <div class="radio"><input type="radio" name="gender" value="Femme" v-model="client.gender"> Femme</div>
+            </div>
           </div>
           <div class="funcion info-block" v-if="client.job != '' || editMode">
             <p class="info-title">Situation</p>
@@ -73,6 +81,11 @@ import {Client,calculateAge,verifyClientInfos,formatClient,formatDate, getCurren
             <div><p class="info-title">Téléphone</p></div>
             <div><p class="info" v-if="!editMode">{{ client.telephone }}</p></div>
             <input type="tel" class="input" name="telephone" v-model.trim="client.telephone" v-if="editMode">
+          </div>
+          <div class="specifications info-block" v-if="client.specifications != '' || editMode">
+            <div><p class="info-title">Spécifications</p></div>
+            <div style="width: 100%;"><p class="info textarea-display" v-if="!editMode">{{ client.specifications }}</p></div>
+            <textarea class="text-area" placeholder="Spécifications sur le client" v-model.trim="client.specifications" v-if="editMode" ></textarea>
           </div>
           <div class="registrationDate info-block" v-if="client.registrationDate != '' || editMode">
             <div><p class="info-title">Date d'inscription</p></div>
@@ -236,6 +249,12 @@ export default {
   width: 80%;
 }
 
+.textarea-display {
+  text-align: left !important;
+  white-space: pre-line;
+  word-wrap: break-word;
+}
+
 .informations p{
   text-align: center;
   color:#746c6c;
@@ -284,11 +303,15 @@ export default {
 }
 
 .info-block{
-  margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 80%;
+}
+
+.radio-info-block, .info-block{
+  margin-bottom: 2rem;
 }
 
 .info-block input{
@@ -296,6 +319,10 @@ export default {
   text-indent: 0 !important;
   width: 15vw !important;
   height: 2.2vh !important;
+}
+
+.info-block textarea {
+  width: 15vw!important;
 }
 
 .info-line{

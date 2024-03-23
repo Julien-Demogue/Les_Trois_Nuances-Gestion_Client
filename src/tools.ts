@@ -11,7 +11,9 @@ export interface Client{
     job:string;
     registrationDate:string;
     lastVisitDate:string;
+    gender:string;
     loyaltyPoints:number;
+    specifications:string;
 }
 
 // Verifie si les informations du client sont correctes. renvoie une liste d'erreurs. vide si il tout est bon
@@ -60,6 +62,8 @@ export function formatClient(client:Client) : Client{
   if(client.city != undefined) client.city = formatName(client.city); else client.city = "";
   if(client.job != undefined) client.job = formatName(client.job); else client.job = "";
   if(client.registrationDate != undefined) client.registrationDate = formatDate(client.registrationDate); else client.registrationDate = "";
+  if(client.gender == undefined) client.gender = "";
+  if(client.specifications == undefined) client.specifications = "";
   return client;
 }
 
