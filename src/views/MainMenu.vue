@@ -30,7 +30,7 @@ const { ipcRenderer  } = require ("electron");
 .find-btn button, .add-btn button{
     height: 70px;
     width: 400px;
-    background-color: #79C8F6;
+    background-color: #ff87f9;
     font-size: 1.4rem;
 }
 
@@ -45,7 +45,7 @@ const { ipcRenderer  } = require ("electron");
 .export-data-btn button,.import-data-btn button{
   height: 40px;
   width: 250px;
-  background-color: #e7b455;
+  background-color: #f5a9ff;
   font-size: 1.2rem;
 }
 </style>

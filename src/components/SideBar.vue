@@ -4,6 +4,6 @@
 
 <style scoped>
 .side-bar {
-    background-color: #C1E7FD;
+    background-color: #f5a9ff;
 }
 </style>

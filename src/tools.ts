@@ -17,8 +17,8 @@ export interface Client{
 // Verifie si les informations du client sont correctes. renvoie une liste d'erreurs. vide si il tout est bon
 export function verifyClientInfos(client:Client) : Array<string> {
   let errorList = [];
-  if(client.firstName == undefined || client.lastName == undefined || client.birthday == undefined || client.firstName == "" || client.lastName == "" || client.birthday == ""){
-    errorList.push("L'un des champs obligatoires n'a pas été rempli."+"<br>"+"(nom,prénom ou date de naissance)");
+  if(client.firstName == undefined || client.lastName == undefined || client.firstName == "" || client.lastName == ""){
+    errorList.push("L'un des champs obligatoires n'a pas été rempli."+"<br>"+"(nom ou prénom)");
   }
   if((client.firstName != undefined && client.firstName != "" && !verifyName(client.firstName))){
     errorList.push("Le prénom entré est invalide");
@@ -52,7 +52,7 @@ export function verifyClientInfos(client:Client) : Array<string> {
 export function formatClient(client:Client) : Client{
   client.firstName = formatName(client.firstName);
   client.lastName = formatName(client.lastName);
-  client.birthday = formatDate(client.birthday);
+  if (client.birthday != undefined) client.birthday = formatDate(client.birthday); else client.birthday = "";
   if(client.email != undefined) client.email = formatEmail(client.email); else client.email = "";
   if(client.telephone != undefined) client.telephone = formatTelephone(client.telephone); else client.telephone = "";
   if(client.address == undefined) client.address = "";

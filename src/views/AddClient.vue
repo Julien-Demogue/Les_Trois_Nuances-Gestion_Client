@@ -18,7 +18,7 @@ import {Client,getCurrentDate,verifyClientInfos,formatClient,formatDate} from '.
                     <input type="text" class="input input-half" name="lastName" placeholder="Prénom (obligatoire)" v-model.trim="client.firstName">
                     <input type="text" class="input input-half" name="firstName" placeholder="Nom (obligatoire)" v-model.trim="client.lastName">
                 </div>
-                <input type="text" class="input" name="birthday" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Date de naissance (obligatoire)" v-model.trim="client.birthday" @blur="client.birthday = formatDate(client.birthday)">
+                <input type="text" class="input" name="birthday" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Date de naissance" v-model.trim="client.birthday" @blur="client.birthday = formatDate(client.birthday)">
                 <input type="text" class="input" name="job" placeholder="Situation" v-model.trim="client.job">
                 <div class="input-group">
                     <input type="email" class="input input-half" name="email" placeholder="Email" v-model.trim="client.email">
@@ -107,7 +107,7 @@ export default {
     margin-top: 5vh;   
     height: 50px;
     width: 200px;
-    background-color: #79C8F6;
+    background-color: #ff87f9;
     font-size: 1.2rem;
 }
 

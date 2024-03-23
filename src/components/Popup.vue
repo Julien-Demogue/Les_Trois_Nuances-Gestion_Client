@@ -88,12 +88,12 @@ export default {
     width: 25%;
     margin: 0px auto;
     padding: 20px 30px;
-    background-color: #79C8F6;
+    background-color: #f5a9ff;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
     transition: all 0.3s ease;
     font-family: Helvetica, Arial, sans-serif;
-    border: #339adf solid 3px;
+    border: #fd2cf3 solid 3px;
 }
 
 .popup-msg{

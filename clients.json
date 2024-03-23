@@ -1,0 +1,32 @@
+[
+  {
+    "firstName": "Julien",
+    "lastName": "Demogue",
+    "birthday": "",
+    "email": "",
+    "telephone": "",
+    "address": "",
+    "postalCode": "",
+    "city": "",
+    "job": "",
+    "registrationDate": "23/03/2024",
+    "lastVisitDate": "23/03/2024",
+    "loyaltyPoints": 0,
+    "id": 0
+  },
+  {
+    "firstName": "Test",
+    "lastName": "Test",
+    "birthday": "",
+    "email": "",
+    "telephone": "",
+    "address": "",
+    "postalCode": "",
+    "city": "",
+    "job": "",
+    "registrationDate": "23/03/2024",
+    "lastVisitDate": "23/03/2024",
+    "loyaltyPoints": 0,
+    "id": 1
+  }
+]

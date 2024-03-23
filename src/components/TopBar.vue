@@ -40,7 +40,7 @@ export default {
 
 <style scoped>
     .top-bar{
-        background-color: #B0DAF1;
+        background-color: #ff87f9;
         height: 10vh;
         width: 100%;
         display: grid;

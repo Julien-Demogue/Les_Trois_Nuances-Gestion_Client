@@ -43,7 +43,7 @@ export default {
 .line{
     display: grid;
     grid-template-columns: 2fr 1fr;
-    background-color: #C0E7FD;
+    background-color: #ffcef0;
     min-height: 6vh;
     width: 95%;
     border-radius: 8px;
@@ -54,7 +54,7 @@ export default {
 .line:hover{
     width: 94%;
     box-shadow: 0 5px 5px rgba(128, 128, 128, 0.33);
-    background-color: #aadffd;
+    background-color: #fdc1eb;
     cursor:pointer;
 }
 

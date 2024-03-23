@@ -26,7 +26,6 @@ function createWindow() {
     icon: 'icon.ico',
     width:1920,
     height:1080,
-    backgroundColor: '#D5F0FF',
     fullscreen:true,
     frame: false,
     webPreferences: {

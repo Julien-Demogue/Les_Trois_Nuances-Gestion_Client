@@ -1,1 +1,116 @@
-"use strict";const e=require("electron"),a=require("node:path"),r=require("fs"),c=require("fs/promises");process.env.DIST=a.join(__dirname,"../dist");process.env.VITE_PUBLIC=e.app.isPackaged?process.env.DIST:a.join(process.env.DIST,"../public");let n;const d=process.env.VITE_DEV_SERVER_URL;function p(){n=new e.BrowserWindow({icon:"icon.ico",width:1920,height:1080,backgroundColor:"#D5F0FF",fullscreen:!0,frame:!1,webPreferences:{preload:a.join(__dirname,"preload.js"),nodeIntegration:!0,contextIsolation:!1}}),n.webContents.on("did-finish-load",()=>{n==null||n.webContents.send("main-process-message",new Date().toLocaleString())}),d?n.loadURL(d):n.loadFile(a.join(process.env.DIST,"index.html"))}e.app.on("window-all-closed",()=>{process.platform!=="darwin"&&(e.app.quit(),n=null)});e.app.on("activate",()=>{e.BrowserWindow.getAllWindows().length===0&&p()});e.app.whenReady().then(async()=>{await f(),p()});async function f(){const o="clients.json";try{await c.access(o,c.constants.F_OK)}catch(t){t.code==="ENOENT"?(await c.writeFile(o,"[]"),console.log(`Created clients.json file at ${o}`)):console.error(`Error checking for clients.json file: ${t}`)}}const h=()=>{const o=new Date().toLocaleDateString("fr-FR").split("/").join("-"),t={title:"Sauvegarder les données client",defaultPath:e.app.getPath("downloads")+("/fichier_client ("+o+")"),filters:[{name:"Fichiers json",extensions:["json"]},{name:"Tous les fichiers",extensions:["*"]}]};n&&e.dialog.showSaveDialog(n,t).then(async i=>{if(i.filePath)try{const s=await r.promises.readFile("clients.json","utf-8");await r.writeFile(i.filePath,s,l=>{console.error(l)}),console.log(`Fichier enregistre : ${i.filePath}`)}catch(s){console.error(`Erreur lors de l'enregistrement du fichier : ${s.message}`)}else console.log("Enregistrement annule")})},g=()=>{const o={title:"Importer les données client",defaultPath:e.app.getPath("downloads"),filters:[{name:"Fichiers json",extensions:["json"]},{name:"Tous les fichiers",extensions:["*"]}]};n&&e.dialog.showOpenDialog(n,o).then(async t=>{if(t.filePaths.length>0){const i=t.filePaths[0],s=await r.promises.readFile(i,"utf-8"),l=JSON.parse(s);await r.promises.writeFile("clients.json",JSON.stringify(l,null,2)),console.log(`Fichier importe : ${i}`)}else console.log("Importation annulee")})};e.ipcMain.on("export-data",(o,t)=>{h()});e.ipcMain.on("import-data",(o,t)=>{g()});
+"use strict";
+const electron = require("electron");
+const path = require("node:path");
+const fs = require("fs");
+const fsP = require("fs/promises");
+process.env.DIST = path.join(__dirname, "../dist");
+process.env.VITE_PUBLIC = electron.app.isPackaged ? process.env.DIST : path.join(process.env.DIST, "../public");
+let win;
+const VITE_DEV_SERVER_URL = process.env["VITE_DEV_SERVER_URL"];
+function createWindow() {
+  win = new electron.BrowserWindow({
+    icon: "icon.ico",
+    width: 1920,
+    height: 1080,
+    fullscreen: true,
+    frame: false,
+    webPreferences: {
+      preload: path.join(__dirname, "preload.js"),
+      nodeIntegration: true,
+      contextIsolation: false
+    }
+  });
+  win.webContents.on("did-finish-load", () => {
+    win == null ? void 0 : win.webContents.send("main-process-message", (/* @__PURE__ */ new Date()).toLocaleString());
+  });
+  if (VITE_DEV_SERVER_URL) {
+    win.loadURL(VITE_DEV_SERVER_URL);
+  } else {
+    win.loadFile(path.join(process.env.DIST, "index.html"));
+  }
+}
+electron.app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") {
+    electron.app.quit();
+    win = null;
+  }
+});
+electron.app.on("activate", () => {
+  if (electron.BrowserWindow.getAllWindows().length === 0) {
+    createWindow();
+  }
+});
+electron.app.whenReady().then(async () => {
+  await initClientsFile();
+  createWindow();
+});
+async function initClientsFile() {
+  const clientsFilePath = "clients.json";
+  try {
+    await fsP.access(clientsFilePath, fsP.constants.F_OK);
+  } catch (err) {
+    if (err.code === "ENOENT") {
+      await fsP.writeFile(clientsFilePath, "[]");
+      console.log(`Created clients.json file at ${clientsFilePath}`);
+    } else {
+      console.error(`Error checking for clients.json file: ${err}`);
+    }
+  }
+}
+const exportData = () => {
+  const date = (/* @__PURE__ */ new Date()).toLocaleDateString("fr-FR").split("/").join("-");
+  const options = {
+    title: "Sauvegarder les données client",
+    defaultPath: electron.app.getPath("downloads") + ("/fichier_client (" + date + ")"),
+    filters: [
+      { name: "Fichiers json", extensions: ["json"] },
+      { name: "Tous les fichiers", extensions: ["*"] }
+    ]
+  };
+  if (win) {
+    electron.dialog.showSaveDialog(win, options).then(async (result) => {
+      if (result.filePath) {
+        try {
+          const data = await fs.promises.readFile("clients.json", "utf-8");
+          await fs.writeFile(result.filePath, data, (err) => {
+            console.error(err);
+          });
+          console.log(`Fichier enregistre : ${result.filePath}`);
+        } catch (error) {
+          console.error(`Erreur lors de l'enregistrement du fichier : ${error.message}`);
+        }
+      } else {
+        console.log("Enregistrement annule");
+      }
+    });
+  }
+};
+const importData = () => {
+  const options = {
+    title: "Importer les données client",
+    defaultPath: electron.app.getPath("downloads"),
+    filters: [
+      { name: "Fichiers json", extensions: ["json"] },
+      { name: "Tous les fichiers", extensions: ["*"] }
+    ]
+  };
+  if (win) {
+    electron.dialog.showOpenDialog(win, options).then(async (result) => {
+      if (result.filePaths.length > 0) {
+        const filePath = result.filePaths[0];
+        const data = await fs.promises.readFile(filePath, "utf-8");
+        const jsonData = JSON.parse(data);
+        await fs.promises.writeFile("clients.json", JSON.stringify(jsonData, null, 2));
+        console.log(`Fichier importe : ${filePath}`);
+      } else {
+        console.log("Importation annulee");
+      }
+    });
+  }
+};
+electron.ipcMain.on("export-data", (_event, _arg) => {
+  exportData();
+});
+electron.ipcMain.on("import-data", (_event, _arg) => {
+  importData();
+});

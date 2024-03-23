@@ -1,0 +1,6 @@
+rose pastel : #f5a9ff
+rose flash : #ff87f9
+rose clair : #f7d2fc
+
+titre : #fd78b0
+titre 2 : #fd4d97

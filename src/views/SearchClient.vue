@@ -94,12 +94,12 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: top;
-    background-color: #79C8F6;
+    background-color: #f5a9ff;
     margin-top: 5vh;
     padding: 2%;
     border-radius: 12px;
     overflow-y: hiden;
-    border: #5271FF solid 2px; 
+    border: #ff87f9 solid 2px; 
     overflow-x: hidden;
 }
 
@@ -110,7 +110,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: top;
-  background-color: #79C8F6;
+  background-color: #f5a9ff;
   overflow-y: auto;
 }
 </style>../tools../../public/data/dao../dao

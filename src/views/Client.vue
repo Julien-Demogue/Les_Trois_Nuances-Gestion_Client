@@ -271,7 +271,7 @@ export default {
 }
 
 .validBtn button{
-  background-color: #8DEF0F;
+  background-color: #24e25d;
 }
 
 .title{
@@ -280,7 +280,7 @@ export default {
 }
 
 .info-title{
-  color:#339adf !important;
+  color:#fd4d97 !important;
 }
 
 .info-block{
