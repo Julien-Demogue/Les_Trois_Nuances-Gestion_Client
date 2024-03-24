@@ -145,6 +145,6 @@ input:focus, textarea:focus{
   width: 10px;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: #5271FF;
+  background-color: #cc23ff;
   border-radius: 2px;
 }

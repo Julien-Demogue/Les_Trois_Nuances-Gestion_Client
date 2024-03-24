@@ -250,7 +250,7 @@ export default {
 }
 
 .textarea-display {
-  text-align: left !important;
+  /* text-align: left !important; */
   white-space: pre-line;
   word-wrap: break-word;
 }

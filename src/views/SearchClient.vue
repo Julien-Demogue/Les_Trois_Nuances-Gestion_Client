@@ -15,8 +15,8 @@ import {Client} from '../tools'
         <div class="title"><p>Rechercher un client</p></div>
         <div class="search-form">
         <div class="input-group search-input">
-          <input type="text" class="input input-half" name="prenom" placeholder="prenom" v-model="firstName" @input="filterClients">
-          <input type="text" class="input input-half" name="nom" placeholder="nom" v-model="lastName" @input="filterClients">  
+          <input type="text" class="input input-half" name="prenom" placeholder="Prénom" v-model="firstName" @input="filterClients">
+          <input type="text" class="input input-half" name="nom" placeholder="Nom" v-model="lastName" @input="filterClients">  
         </div>
         <div class="results-count">{{ filteredClients.length }} résultat(s) / {{ clients.length }} clients</div>
             <div class="results-container">

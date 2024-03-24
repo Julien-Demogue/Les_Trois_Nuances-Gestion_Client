@@ -47,7 +47,7 @@ const { ipcRenderer  } = require ("electron");
 .export-data-btn button,.import-data-btn button{
   height: 40px;
   width: 250px;
-  background-color: #f5a9ff;
+  background-color: #e7ca55;
   font-size: 1.2rem;
 }
 </style>

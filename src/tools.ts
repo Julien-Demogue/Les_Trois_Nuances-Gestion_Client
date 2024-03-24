@@ -81,7 +81,7 @@ function verifyEmail(email:string): boolean{
 
 // Verifie la validite d'un telephone
 function verifyTel(telephone:string): boolean{
-  const regex = /^0[1-9](\d{2}){4}$/;
+  const regex = /^0[1-9](\s?\d{2}){4}$/;
   return regex.test(telephone);
 }
 
