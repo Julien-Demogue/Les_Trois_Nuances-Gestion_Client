@@ -56,7 +56,7 @@ export default {
     },
   },
   computed:{
-    // Renvoir la liste des clients filtres
+    // Renvoie la liste des clients filtres
     filteredClients() {
       return this.clients.filter((client) => {
         const nomMatch = this.lastName ? client.lastName?.toLowerCase().includes(this.lastName.toLowerCase()) : true;

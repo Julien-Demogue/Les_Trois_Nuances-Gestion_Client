@@ -2,6 +2,8 @@
 import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
 import StatSlot from '../components/StatSlot.vue';
+import { getClients } from '../dao';
+import * as tools from '../tools'
 </script>
 
 <template>
@@ -12,19 +14,34 @@ import StatSlot from '../components/StatSlot.vue';
       <div class="content">
         <div class="title"><p>Statistiques</p></div>
         <div class="stats-group">
-          <StatSlot title="Nombre de clients total" content="52" />
-          <StatSlot title="Age moyen des clients" content="34 ans" />
-          <StatSlot title="Nombre de clients vus dans l'année" content="45" />
-          <StatSlot title="Taux de femmes" content="40%" />
-          <StatSlot title="Taux d'hommes" content="60%" />
-          <StatSlot title="Provenance principale des clients" content="56890" />
-          <StatSlot title="Nombre de nouveaux clients dans l'année" content="3" />
+          <StatSlot title="Nombre total de clients" :content=clients.length.toString() />
+          <StatSlot title="Age moyen des clients" :content=tools.getAverageAge(clients).toString() />
+          <StatSlot title="Pourcentage de clients venus dans l'année" :content="tools.getRecentlySeenClientsPercent(clients).toString() + '%'" />
+          <StatSlot title="Pourcentage de femmes" :content="tools.getFemaleAmount(clients).toString() + '%'" />
+          <StatSlot title="Pourcentage d'hommes" :content="tools.getMaleAmount(clients).toString() + '%'" />
+          <StatSlot title="Provenance principale des clients" :content=tools.getDepartmentalProvenance(clients) />
+          <StatSlot title="Nombre de nouveaux clients (moins d'un an)" :content=tools.getNewClientsAmount(clients).toString() />
         </div>
       </div>
       <SideBar />
     </div>
 </div>
 </template>
+
+<script lang="ts">
+export default {
+  data() {
+    return {
+      clients: [] as tools.Client[],
+    }
+  },
+  mounted() {
+    getClients().then((clients) => {
+      this.clients = clients;
+    })
+  },
+}
+</script>
 
 <style scoped>
 .stats-group{

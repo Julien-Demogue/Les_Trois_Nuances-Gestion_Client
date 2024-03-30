@@ -150,7 +150,7 @@ export function calculateAge(birthday:string) : number{
 
   // Si c'est l'anniversaire de la personne
   if(now.getUTCDate() == birthdayDate.getUTCDate() && now.getUTCMonth() == birthdayDate.getUTCMonth()){
-    alert("Annversaire !");
+    // alert("Annversaire !");
     years+=1;
   }
 
@@ -160,4 +160,170 @@ export function calculateAge(birthday:string) : number{
 // Recupere la date actuelle en format fr-FR
 export function getCurrentDate() : string{
   return new Date().toLocaleDateString('fr-FR');
+}
+
+// Permet de recuperer l'age moyen d'une liste de clients
+export function getAverageAge(clients:Client[]) : number {
+  // initialiser les valeurs a 0
+  let totalAge = 0;
+  let clientsAmount = 0;
+
+  // Parcourir la liste de clients
+  clients.forEach(client => {
+    // Verifier si le client a une date d'anniversaire renseignee
+    if(client.birthday != ""){
+      // Incrementer les valeurs
+      clientsAmount++;
+      totalAge += calculateAge(client.birthday);
+    }
+  });
+
+  if(clientsAmount > 0){
+    // Renvoyer la moyenne d'age
+    return totalAge/clientsAmount;
+  }
+  return 0;
+}
+
+// Permet de recuperer le pourcentage d'un genre specifique dans la base
+function getAmountOfGender(clients:Client[],gender:string) : number {
+  // Initialiser les valeurs
+  let amount = 0;
+  const totalClients = clients.length;
+  
+  // Parcourir les clients
+  clients.forEach(client => {
+    // Incrementer le nombre du genre 
+    if(client.gender == gender){
+      amount++;
+    }
+  });
+
+  if(totalClients > 0){
+    // Renvoyer le pourcentage du genre
+    return (amount/totalClients)*100;
+  }
+  return 0;
+}
+
+// Permet d'obtenir le pourcentage d'hommes dans la base
+export function getMaleAmount(clients:Client[]) : number {
+  return getAmountOfGender(clients,"Homme");
+}
+
+// Permet d'obtenir le pourcentage de femmes dans la base
+export function getFemaleAmount(clients:Client[]) : number {
+  return getAmountOfGender(clients,"Femme");
+}
+
+// Permet d'obtenir le pourcentage de genre inconnus dans la base
+export function getUnknownGenderAmount(clients:Client[]) : number {
+  return getAmountOfGender(clients,"");
+}
+
+// Permet d'obtenir le pourcentage de clients qui ont ete vus dans l'annee passee
+export function getRecentlySeenClientsPercent(clients:Client[]) : number {
+  // Arreter si aucun client n'est dans la liste
+  if(clients.length == 0) {return 0;}
+
+  // Initialiser le nombre a zero
+  let amount = 0;
+
+  // parcourir les clients
+  clients.forEach(client => {
+    // Recuperer la date actuelle
+    const now = new Date();
+
+    // Separer les jours, mois et annees pour creer un objet date
+    const parts = client.lastVisitDate.split("/");
+    const lastVisitDate = new Date(parts[2]+"-"+parts[1]+"-"+parts[0]);
+
+    // Calculer la différence en annees entre la derniere visite et maintenant
+    var diff = (now.getTime() - lastVisitDate.getTime()) / 1000;
+    diff /= (60*60*24);
+    const diffInYear = Math.abs(Math.round(diff/365.25));
+
+    // Incrementer le nombre de clients venus il y a moins d'un an
+    if(diffInYear <= 0){
+      amount++;
+    }
+  })
+
+  // Renvoyer le pourcentage de clients venus dans l'annee
+  return (amount/clients.length)*100;
+}
+
+// Permet d'obtenir le nombre de clients de clients inscrits dans l'annee
+export function getNewClientsAmount(clients: Client[]): number {
+  // Arreter si aucun client n'est dans la liste
+  if(clients.length == 0) {return 0;}
+
+  // Initialiser le nombre a zero
+  let amount = 0;
+
+  // parcourir les clients
+  clients.forEach(client => {
+    // Recuperer la date actuelle
+    const now = new Date();
+
+    // Separer les jours, mois et annees pour creer un objet date
+    const parts = client.registrationDate.split("/");
+    const registrationDate = new Date(parts[2]+"-"+parts[1]+"-"+parts[0]);
+
+    // Calculer la différence en annees entre l'inscription et maintenant
+    var diff = (now.getTime() - registrationDate.getTime()) / 1000;
+    diff /= (60*60*24);
+    const diffInYear = Math.abs(Math.round(diff/365.25));
+
+    // Incrementer le nombre de clients inscrits il y a moins d'un an
+    if(diffInYear <= 0){
+      amount++;
+    }
+  })
+
+  // Renvoyer le nombre de clients inscrits dans l'annee
+  return amount;
+}
+
+// Permet d'obtenir la provenence departementale principale des clients
+export function getDepartmentalProvenance(clients: Client[]): string {
+  // Arreter si aucun client n'est dans la liste
+  if(clients.length == 0) {return "...";}
+
+  // Initialiser le dictionaire
+  const dico = {};
+
+  // Parcourir les clients
+  clients.forEach(client => {
+    if(client.postalCode != ""){
+      // Regarder si le code postal a deja ete ajoute dans le dictionaire
+      if(dico.hasOwnProperty(client.postalCode)){
+        // Incrementer le nombre de code postal de ce type
+        dico[client.postalCode] += 1;
+      }
+      else{
+        // Initialiser le nombre de code postal de ce type
+        dico[client.postalCode] = 1;
+      }
+    }
+  });
+
+  // Arreter si aucun code postal n'a ete trouve
+  if(Object.keys(dico).length == 0) {return "..."};
+
+  // Initialiser les variables pour determiner le code postal le plus utilise
+  let maxAmount = -Infinity;
+  let postalCodeMax = "";
+
+  // Parcourir le dictionaire
+  for (const [key, value] of Object.entries(dico)) {
+    // Determiner le code postal qui reviens le plus
+    if(value > maxAmount) {
+      maxAmount = value;
+      postalCodeMax = key;
+    }
+  }
+
+  // Renvoyer le code postal le frequent
+  return postalCodeMax;
 }

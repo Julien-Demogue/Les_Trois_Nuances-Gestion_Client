@@ -82,7 +82,7 @@ export default {
     }
 
     .menu-btn button{
-        background-color: #e7ca55;
+        background-color: #f5b937;
     }
 
     .exit-btn button{
