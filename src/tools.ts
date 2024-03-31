@@ -157,6 +157,22 @@ export function calculateAge(birthday:string) : number{
   return years;
 }
 
+// Permet d'obtenir la difference en annee entre deux dates
+function getYearsDiffBetween(date1:Date, date2:Date):number{
+  var diff = (date1.getTime() - date2.getTime()) / 1000;
+  diff /= (60*60*24);
+  const diffInYear = Math.abs(Math.round(diff/365.25));
+
+  return diffInYear;
+}
+
+// Permet de transformer un string au au format jj/mm/yyyy en objet date 
+function stringToDate(dateString : string) : Date{
+  // Separer les jours, mois et annees pour creer un objet date
+  const parts = dateString.split("/");
+  return (new Date(parts[2]+"-"+parts[1]+"-"+parts[0]));
+}
+
 // Recupere la date actuelle en format fr-FR
 export function getCurrentDate() : string{
   return new Date().toLocaleDateString('fr-FR');
@@ -180,7 +196,7 @@ export function getAverageAge(clients:Client[]) : number {
 
   if(clientsAmount > 0){
     // Renvoyer la moyenne d'age
-    return totalAge/clientsAmount;
+    return Math.round(totalAge/clientsAmount);
   }
   return 0;
 }
@@ -201,7 +217,7 @@ function getAmountOfGender(clients:Client[],gender:string) : number {
 
   if(totalClients > 0){
     // Renvoyer le pourcentage du genre
-    return (amount/totalClients)*100;
+    return Math.round((amount/clients.length)*100);
   }
   return 0;
 }
@@ -234,23 +250,81 @@ export function getRecentlySeenClientsPercent(clients:Client[]) : number {
     // Recuperer la date actuelle
     const now = new Date();
 
-    // Separer les jours, mois et annees pour creer un objet date
-    const parts = client.lastVisitDate.split("/");
-    const lastVisitDate = new Date(parts[2]+"-"+parts[1]+"-"+parts[0]);
-
-    // Calculer la différence en annees entre la derniere visite et maintenant
-    var diff = (now.getTime() - lastVisitDate.getTime()) / 1000;
-    diff /= (60*60*24);
-    const diffInYear = Math.abs(Math.round(diff/365.25));
+    // Recuperer la date de derniere visite
+    const lastVisitDate = stringToDate(client.lastVisitDate);
 
     // Incrementer le nombre de clients venus il y a moins d'un an
-    if(diffInYear <= 0){
+    if(getYearsDiffBetween(now,lastVisitDate) <= 0){
       amount++;
     }
   })
 
   // Renvoyer le pourcentage de clients venus dans l'annee
-  return (amount/clients.length)*100;
+  return Math.round((amount/clients.length)*100);
+}
+
+// Permet d'obtenir le pourcentage de clients hommes qui ont ete vus dans l'annee passee
+export function getRecentlySeenMalePercent(clients: Client[]) : number{
+  // Arreter si aucun client n'est dans la liste
+  if(clients.length == 0) {return 0;}
+
+  // Initialiser le nombre a zero
+  let amount = 0;
+  let maleAmount = 0;
+
+  // parcourir les clients
+  clients.forEach(client => {
+    // Verifier que le client est un homme
+    if(client.gender == "Homme"){
+      maleAmount++;
+
+      // Recuperer la date actuelle
+      const now = new Date();
+
+      // Recuperer la date de derniere visite
+      const lastVisitDate = stringToDate(client.lastVisitDate);
+
+      // Incrementer le nombre d'hommes venus il y a moins d'un an
+      if(getYearsDiffBetween(now,lastVisitDate) <= 0){
+        amount++;
+      }
+    }
+  })
+
+  // Renvoyer le pourcentage d'hommes venus dans l'annee
+  return Math.round((amount/maleAmount)*100);
+}
+
+// Permet d'obtenir le pourcentage de clientes femmes qui ont ete vues dans l'annee passee
+export function getRecentlySeenFemalePercent(clients: Client[]) : number{
+  // Arreter si aucun client n'est dans la liste
+  if(clients.length == 0) {return 0;}
+
+  // Initialiser le nombre a zero
+  let amount = 0;
+  let femaleAmount = 0;
+
+  // parcourir les clients
+  clients.forEach(client => {
+    // Verifier que le client est un homme
+    if(client.gender == "Femme"){
+      femaleAmount++;
+
+      // Recuperer la date actuelle
+      const now = new Date();
+
+      // Recuperer la date de derniere visite
+      const lastVisitDate = stringToDate(client.lastVisitDate);
+
+      // Incrementer le nombre d'hommes venus il y a moins d'un an
+      if(getYearsDiffBetween(now,lastVisitDate) <= 0){
+        amount++;
+      }
+    }
+  })
+
+  // Renvoyer le pourcentage d'hommes venus dans l'annee
+  return Math.round((amount/femaleAmount)*100);
 }
 
 // Permet d'obtenir le nombre de clients de clients inscrits dans l'annee
@@ -291,7 +365,7 @@ export function getDepartmentalProvenance(clients: Client[]): string {
   if(clients.length == 0) {return "...";}
 
   // Initialiser le dictionaire
-  const dico = {};
+  const dico : { [key: string]: number } = {};
 
   // Parcourir les clients
   clients.forEach(client => {

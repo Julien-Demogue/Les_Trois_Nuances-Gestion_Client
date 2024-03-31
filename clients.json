@@ -46,7 +46,7 @@
     "registrationDate": "30/03/2024",
     "gender": "Homme",
     "specifications": "",
-    "lastVisitDate": "10/03/2021",
+    "lastVisitDate": "10/03/2024",
     "loyaltyPoints": 0,
     "id": 2
   },
@@ -83,5 +83,22 @@
     "lastVisitDate": "30/03/2024",
     "loyaltyPoints": 0,
     "id": 4
+  },
+  {
+    "firstName": "Dvqswdv",
+    "lastName": "Sdvsdv",
+    "gender": "Femme",
+    "birthday": "",
+    "email": "",
+    "telephone": "",
+    "address": "",
+    "postalCode": "",
+    "city": "",
+    "job": "",
+    "registrationDate": "31/03/2024",
+    "specifications": "",
+    "lastVisitDate": "31/03/2022",
+    "loyaltyPoints": 0,
+    "id": 5
   }
 ]
