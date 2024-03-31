@@ -85,7 +85,7 @@ import {Client,calculateAge,verifyClientInfos,formatClient,formatDate, getCurren
           <div class="specifications info-block" v-if="client.specifications != '' || editMode">
             <div><p class="info-title">Spécifications</p></div>
             <div style="width: 100%;"><p class="info textarea-display" v-if="!editMode">{{ client.specifications }}</p></div>
-            <textarea class="text-area" placeholder="Spécifications sur le client" v-model.trim="client.specifications" v-if="editMode" ></textarea>
+            <textarea class="text-area" v-model.trim="client.specifications" v-if="editMode" ></textarea>
           </div>
           <div class="registrationDate info-block" v-if="client.registrationDate != '' || editMode">
             <div><p class="info-title">Date d'inscription</p></div>
