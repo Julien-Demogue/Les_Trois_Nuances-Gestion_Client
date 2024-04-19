@@ -204,6 +204,8 @@ export function getAverageAge(clients:Client[]) : number {
 
 // Permet de recuperer le pourcentage d'un genre specifique dans la base
 function getAmountOfGender(clients:Client[],gender:string) : number {
+  if(clients.length == 0){return 0;}
+
   // Initialiser les valeurs
   let amount = 0;
   const totalClients = clients.length;
@@ -216,7 +218,7 @@ function getAmountOfGender(clients:Client[],gender:string) : number {
     }
   });
 
-  if(totalClients > 0){
+  if(totalClients > 0 && amount != 0){
     // Renvoyer le pourcentage du genre
     return Math.round((amount/clients.length)*100);
   }
@@ -293,7 +295,10 @@ export function getRecentlySeenMalePercent(clients: Client[]) : number{
   })
 
   // Renvoyer le pourcentage d'hommes venus dans l'annee
-  return Math.round((amount/maleAmount)*100);
+  if(maleAmount > 0){
+    return Math.round((amount/maleAmount)*100);
+  }
+  return 0;
 }
 
 // Permet d'obtenir le pourcentage de clientes femmes qui ont ete vues dans l'annee passee
@@ -325,7 +330,10 @@ export function getRecentlySeenFemalePercent(clients: Client[]) : number{
   })
 
   // Renvoyer le pourcentage d'hommes venus dans l'annee
-  return Math.round((amount/femaleAmount)*100);
+  if(femaleAmount > 0){
+    return Math.round((amount/femaleAmount)*100);
+  }
+  return 0;
 }
 
 // Permet d'obtenir le nombre de clients de clients inscrits dans l'annee
@@ -361,7 +369,7 @@ export function getNewClientsAmount(clients: Client[]): number {
 }
 
 // Permet d'obtenir la provenence departementale principale des clients
-export function getDepartmentalProvenance(clients: Client[]): string {
+export function getCityProvenance(clients: Client[]): string {
   // Arreter si aucun client n'est dans la liste
   if(clients.length == 0) {return "...";}
 
@@ -370,15 +378,15 @@ export function getDepartmentalProvenance(clients: Client[]): string {
 
   // Parcourir les clients
   clients.forEach(client => {
-    if(client.postalCode != ""){
+    if(client.city != ""){
       // Regarder si le code postal a deja ete ajoute dans le dictionaire
-      if(dico.hasOwnProperty(client.postalCode)){
+      if(dico.hasOwnProperty(client.city)){
         // Incrementer le nombre de code postal de ce type
-        dico[client.postalCode] += 1;
+        dico[client.city] += 1;
       }
       else{
         // Initialiser le nombre de code postal de ce type
-        dico[client.postalCode] = 1;
+        dico[client.city] = 1;
       }
     }
   });
@@ -401,4 +409,16 @@ export function getDepartmentalProvenance(clients: Client[]): string {
 
   // Renvoyer le code postal le frequent
   return postalCodeMax;
+}
+
+// Permet d'obtenir la moyenne du nombre de produits achetes par les clients
+export function getAverageProducts(clients: Client[]) : number {
+  if(clients.length == 0) {return 0;}
+
+  let sum = 0;
+  clients.forEach(client => {
+    sum += client.products.length;
+  })
+
+  return Number((sum/clients.length).toFixed(2));
 }

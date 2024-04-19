@@ -18,13 +18,15 @@ import * as tools from '../tools'
           <StatSlot title="Nombre de nouveaux clients dans les 12 derniers mois" :content=tools.getNewClientsAmount(clients).toString() />
           <StatSlot title="Age moyen des clients" :content=tools.getAverageAge(clients).toString() />
 
-          <StatSlot title="Provenance principale des clients" :content=tools.getDepartmentalProvenance(clients) />
+          <StatSlot title="Provenance principale des clients" :content=tools.getCityProvenance(clients) />
           <StatSlot title="Pourcentage de clientes femmes" :content="tools.getFemaleAmount(clients).toString() + '%'" />
           <StatSlot title="Pourcentage de clients hommes" :content="tools.getMaleAmount(clients).toString() + '%'" />
 
           <StatSlot title="Pourcentage de clients venus dans les 12 derniers mois" :content="tools.getRecentlySeenClientsPercent(clients).toString() + '%'" />
           <StatSlot title="Pourcentage de femmes venues dans les 12 derniers mois" :content="tools.getRecentlySeenFemalePercent(clients).toString() + '%'" />
           <StatSlot title="Pourcentage d'hommes venus dans les 12 derniers mois" :content="tools.getRecentlySeenMalePercent(clients).toString() + '%'" />
+
+          <StatSlot title="Nombre moyen de produits achetés par les clients" :content="tools.getAverageProducts(clients).toString()" />
         </div>
       </div>
       <SideBar />
