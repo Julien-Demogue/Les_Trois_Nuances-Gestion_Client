@@ -15,16 +15,16 @@ import * as tools from '../tools'
         <div class="title"><p>Statistiques</p></div>
         <div class="stats-group">
           <StatSlot title="Nombre total de clients" :content=clients.length.toString() />
-          <StatSlot title="Nombre de nouveaux clients (moins d'un an)" :content=tools.getNewClientsAmount(clients).toString() />
+          <StatSlot title="Nombre de nouveaux clients dans les 12 derniers mois" :content=tools.getNewClientsAmount(clients).toString() />
           <StatSlot title="Age moyen des clients" :content=tools.getAverageAge(clients).toString() />
 
           <StatSlot title="Provenance principale des clients" :content=tools.getDepartmentalProvenance(clients) />
-          <StatSlot title="Pourcentage de femmes" :content="tools.getFemaleAmount(clients).toString() + '%'" />
-          <StatSlot title="Pourcentage d'hommes" :content="tools.getMaleAmount(clients).toString() + '%'" />
+          <StatSlot title="Pourcentage de clientes femmes" :content="tools.getFemaleAmount(clients).toString() + '%'" />
+          <StatSlot title="Pourcentage de clients hommes" :content="tools.getMaleAmount(clients).toString() + '%'" />
 
-          <StatSlot title="Pourcentage de clients venus dans l'année" :content="tools.getRecentlySeenClientsPercent(clients).toString() + '%'" />
-          <StatSlot title="Pourcentage de femmes venues dans l'année" :content="tools.getRecentlySeenFemalePercent(clients).toString() + '%'" />
-          <StatSlot title="Pourcentage d'hommes venus dans l'année" :content="tools.getRecentlySeenMalePercent(clients).toString() + '%'" />
+          <StatSlot title="Pourcentage de clients venus dans les 12 derniers mois" :content="tools.getRecentlySeenClientsPercent(clients).toString() + '%'" />
+          <StatSlot title="Pourcentage de femmes venues dans les 12 derniers mois" :content="tools.getRecentlySeenFemalePercent(clients).toString() + '%'" />
+          <StatSlot title="Pourcentage d'hommes venus dans les 12 derniers mois" :content="tools.getRecentlySeenMalePercent(clients).toString() + '%'" />
         </div>
       </div>
       <SideBar />

@@ -72,6 +72,7 @@ export default {
 
                 // Ajouter la date de derniere visite
                 this.client.lastVisitDate = getCurrentDate();
+                this.client.products = [];
                 if(this.client.registrationDate == ""){
                     this.client.registrationDate = getCurrentDate();
                 }

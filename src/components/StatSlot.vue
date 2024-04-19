@@ -42,7 +42,7 @@ export default {
 
 <style scoped>
 .stat-box{
-    width: 300px;
+    width: 350px;
     height: 150px;
     border: #fd2cf3 solid 2px;
     border-radius: 20px;
@@ -63,7 +63,7 @@ export default {
 }
 
 .stat-title{
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     width: 100%;
     color: #ffffff;
 }

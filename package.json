@@ -15,6 +15,7 @@
   "dependencies": {
     "@electron/rebuild": "^3.6.0",
     "@vuepic/vue-datepicker": "^8.1.1",
+    "dependency": "^0.0.1",
     "electron-json-storage": "^4.6.0",
     "electron-positioner": "^4.1.0",
     "electron-squirrel-startup": "^1.0.0",
@@ -29,6 +30,7 @@
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
+    "electron-builder": "^24.13.3",
     "@electron-forge/cli": "^7.2.0",
     "@electron-forge/maker-deb": "^7.2.0",
     "@electron-forge/maker-rpm": "^7.2.0",

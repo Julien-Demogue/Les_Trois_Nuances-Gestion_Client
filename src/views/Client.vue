@@ -20,7 +20,9 @@ import {Client,calculateAge,verifyClientInfos,formatClient,formatDate, getCurren
             <input type="text" class="input input-half" name="firstName" placeholder="nom" v-model.trim="client.lastName" >
           </div>
         </div>
-        <div class="informations">
+        <div class="separator-trio">
+          <div class="element-group">
+
           <div class="lastConsultation info-block" v-if="client.lastVisitDate != '' || editMode">
             <div class="info-line">
               <p class="info-title">Dernier rendez-vous</p>
@@ -28,71 +30,107 @@ import {Client,calculateAge,verifyClientInfos,formatClient,formatDate, getCurren
             </div>
             <p class="info">{{ client.lastVisitDate }}</p>
           </div>
-          <div class="loyaltyPoints info-block">
-            <div class="info-line">
-              <div><p class="info-title">Points de fidélité</p></div>
-              <div class="fast-edit-btn"><button class="btn resetPts" @click="onResetLP"><img class="icon" src="../img/refresh.png" alt="Refresh icons created by Dave Gandy - Flaticon"></button></div>
-            </div> 
-            <div class="info-line">
-              <div class="fast-edit-btn"><button class="btn removePts" @click="removeLP"><img class="icon" src="../img/moins.png" alt="Minus icons created by Freepik - Flaticon"></button></div>
-              <div><p class="info">{{ client.loyaltyPoints }}</p></div>
-              <div class="fast-edit-btn"><button class="btn addPts" @click="addLP"><img class="icon" src="../img/plus.png" alt="Plus icons created by srip - Flaticon"></button></div>
-            </div>     
-          </div>
+          
           <div class="birthday info-block" v-if="client.birthday != '' || editMode">
             <p class="info-title">Age</p>
             <p class="info" v-if="!editMode">{{ calculateAge(client.birthday) }} ans ({{ client.birthday }})</p>
             <input type="text" class="input" name="birthday" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date de naissance" v-model.trim.trim="client.birthday" @blur="client.birthday = formatDate(client.birthday)" v-if="editMode">
           </div>
-          <div class="gender radio-info-block" v-if="client.gender != '' || editMode">
-            <p class="info-title">Genre</p>
-            <p class="info" v-if="!editMode">{{ client.gender }}</p>
-            <div class="radio-input" v-if="editMode">
-                <div class="radio"><input type="radio" name="gender" value="Homme" v-model="client.gender"> Homme</div>
-                <div class="radio"><input type="radio" name="gender" value="Femme" v-model="client.gender"> Femme</div>
-            </div>
-          </div>
+
           <div class="funcion info-block" v-if="client.job != '' || editMode">
             <p class="info-title">Situation</p>
             <p class="info" v-if="!editMode">{{ client.job }}</p>
             <input type="text" class="input" name="job" v-model.trim="client.job" v-if="editMode">
           </div>
-          <div class="address info-block" v-if="client.address != '' || editMode">
-            <p class="info-title">Adresse</p>
-            <p class="info" v-if="!editMode">{{ client.address }}</p>
-            <input type="text" class="input input-half" name="address" v-model.trim="client.address" v-if="editMode">
-          </div>
+
           <div class="city info-block" v-if="client.city != '' || editMode">
             <p class="info-title">Ville</p>
             <p class="info" v-if="!editMode">{{ client.city }}</p>
             <input type="text" class="input input-half" name="city" v-model.trim="client.city" v-if="editMode">
           </div>
-          <div class="cp info-block" v-if="client.postalCode != '' || editMode">
-            <p class="info-title">Code Postal</p>
-            <p class="info" v-if="!editMode">{{ client.postalCode }}</p>
-            <input type="text" class="input input-half" name="postalCode" v-model.trim="client.postalCode" v-if="editMode">
-          </div>
+          
           <div class="email info-block" v-if="client.email != '' || editMode">
             <div><p class="info-title">Email</p></div>
             <div><p class="info" v-if="!editMode">{{ client.email }}</p></div>
             <input type="email" class="input" name="email" v-model.trim="client.email" v-if="editMode">
           </div>
-          <div class="telephone info-block" v-if="client.telephone != '' || editMode">
-            <div><p class="info-title">Téléphone</p></div>
-            <div><p class="info" v-if="!editMode">{{ client.telephone }}</p></div>
-            <input type="tel" class="input" name="telephone" v-model.trim="client.telephone" v-if="editMode">
+
+        </div>
+          <div class="element-group">
+
+            <div class="loyaltyPoints info-block">
+              <div class="info-line">
+                <div><p class="info-title">Points de fidélité</p></div>
+                <div class="fast-edit-btn"><button class="btn resetPts" @click="onResetLP"><img class="icon" src="../img/refresh.png" alt="Refresh icons created by Dave Gandy - Flaticon"></button></div>
+              </div> 
+              <div class="info-line">
+                <div class="fast-edit-btn"><button class="btn removePts" @click="removeLP"><img class="icon" src="../img/moins.png" alt="Minus icons created by Freepik - Flaticon"></button></div>
+                <div><p class="info">{{ client.loyaltyPoints }}</p></div>
+                <div class="fast-edit-btn"><button class="btn addPts" @click="addLP"><img class="icon" src="../img/plus.png" alt="Plus icons created by srip - Flaticon"></button></div>
+              </div>     
+            </div>
+
+            <div class="gender radio-info-block" v-if="client.gender != '' || editMode">
+              <p class="info-title">Genre</p>
+              <p class="info" v-if="!editMode">{{ client.gender }}</p>
+              <div class="radio-input" v-if="editMode">
+                  <div class="radio"><input type="radio" name="gender" value="Homme" v-model="client.gender"> Homme</div>
+                  <div class="radio"><input type="radio" name="gender" value="Femme" v-model="client.gender"> Femme</div>
+              </div>
+            </div>
+
+            <div class="address info-block" v-if="client.address != '' || editMode">
+              <p class="info-title">Adresse</p>
+              <p class="info" v-if="!editMode">{{ client.address }}</p>
+              <input type="text" class="input input-half" name="address" v-model.trim="client.address" v-if="editMode">
+            </div>
+
+            <div class="cp info-block" v-if="client.postalCode != '' || editMode">
+              <p class="info-title">Code Postal</p>
+              <p class="info" v-if="!editMode">{{ client.postalCode }}</p>
+              <input type="text" class="input input-half" name="postalCode" v-model.trim="client.postalCode" v-if="editMode">
+            </div>
+
+            <div class="telephone info-block" v-if="client.telephone != '' || editMode">
+              <div><p class="info-title">Téléphone</p></div>
+              <div><p class="info" v-if="!editMode">{{ client.telephone }}</p></div>
+              <input type="tel" class="input" name="telephone" v-model.trim="client.telephone" v-if="editMode">
+            </div>
           </div>
+          <div class="element-group">
+            <div><p class="info-title">Produits achetés</p></div>
+            <div class="add-product">
+              <input type="text" class="input input-half" name="products" v-model.trim="newProduct">
+              <div class="fast-edit-btn"><button class="btn addPts" @click="addProduct()"><img class="icon" src="../img/plus.png" alt="Plus icons created by srip - Flaticon"></button></div>
+            </div>
+            <div class="pdt-container" v-if="client.products.length > 0">
+              <div v-for="(product,i) in client.products" :key="i" class="product-line">
+                <p class="info">- {{ product }}</p>
+                <div class="fast-edit-btn"><button class="btn removePts" @click="removeProduct(Number(i))"><img class="icon" src="../img/moins.png" alt="Minus icons created by Freepik - Flaticon"></button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br><br>
+
+        <div class="element-group">
+
           <div class="specifications info-block" v-if="client.specifications != '' || editMode">
             <div><p class="info-title">Spécifications</p></div>
             <div style="width: 100%;"><p class="info textarea-display" v-if="!editMode">{{ client.specifications }}</p></div>
             <textarea class="text-area" v-model.trim="client.specifications" v-if="editMode" ></textarea>
           </div>
+
           <div class="registrationDate info-block" v-if="client.registrationDate != '' || editMode">
             <div><p class="info-title">Date d'inscription</p></div>
             <div><p class="info" v-if="!editMode">{{ client.registrationDate }}</p></div>
             <input type="text" class="input" name="registrationDate" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date d'inscription" v-model.trim.trim="client.registrationDate" @blur="client.registrationDate = formatDate(client.registrationDate)" v-if="editMode">
           </div>
+
         </div>
+        
+
         <div class="btnGroup" v-if="!editMode">
           <div class="delBtn"><button @click="onRemove" class="btn">Supprimer le client</button></div>
           <div class="editBtn"><button @click="switchEditMode(true)" class="btn">Modifier le client</button></div>
@@ -119,7 +157,8 @@ export default {
         popupMsg : "" as string,
         popupAcceptMethod : this.hidePopup() as Function,
         popupCancelMethod : this.hidePopup() as Function,
-        confirmationPopup : true as boolean
+        confirmationPopup : true as boolean,
+        newProduct : ""
       }
     },
     props: {
@@ -141,6 +180,18 @@ export default {
         this.changeAcceptPopupMethod(this.refreshLastVisit);
         this.changeCancelPopupMethod(this.hidePopup);
         this.setPopup(msg,true);
+      },
+      addProduct(){
+        if(this.newProduct == "")return;
+        const productList = this.client.products;
+        productList.push(this.newProduct);
+        editClientProperty(this.client.id,"products",productList);
+        this.newProduct = "";
+      },
+      removeProduct(id:number){
+        const productList = this.client.products;
+        productList.splice(id,1);
+        editClientProperty(this.client.id,"products",productList);
       },
       addLP(){
         editClientProperty(this.client.id,"loyaltyPoints",this.client.loyaltyPoints+1);
@@ -241,21 +292,51 @@ export default {
 </script>
 
 <style scoped>
-.informations {
+.separator-trio{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+}
+
+.element-group {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
+}
+
+.pdt-container{
+  border: solid black 1px;
   width: 80%;
+  max-height: 35vh;
+  border-radius: 8px;
+  border: #ff87f9 solid 2px; 
+  background-color: #f5a9ff;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.add-product{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.product-line{
+  display: flex;
+  justify-content:space-between;
 }
 
 .textarea-display {
-  /* text-align: left !important; */
   white-space: pre-line;
   word-wrap: break-word;
 }
 
-.informations p{
+.element-group p{
   text-align: center;
   color:#746c6c;
   font-size: 1.9rem;

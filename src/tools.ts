@@ -14,6 +14,7 @@ export interface Client{
     gender:string;
     loyaltyPoints:number;
     specifications:string;
+    products:Array<string>;
 }
 
 // Verifie si les informations du client sont correctes. renvoie une liste d'erreurs. vide si il tout est bon
