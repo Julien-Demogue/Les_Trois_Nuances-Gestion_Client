@@ -3,7 +3,7 @@ import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
 import Popup from '../components/Popup.vue';
 import { removeClient,getClient,editClient,editClientProperty } from '../dao';
-import {Client,calculateAge,verifyClientInfos,formatClient,formatDate, getCurrentDate} from '../tools'
+import {Client,verifyClientInfos,formatClient,formatDate, getCurrentDate,ageGroups} from '../tools'
 </script>
 
 <template>
@@ -25,34 +25,40 @@ import {Client,calculateAge,verifyClientInfos,formatClient,formatDate, getCurren
 
           <div class="lastConsultation info-block" v-if="client.lastVisitDate != '' || editMode">
             <div class="info-line">
-              <p class="info-title">Dernier rendez-vous</p>
+              <p class="info-title">Dernier passage</p>
               <div class="fast-edit-btn"><button class="btn resetPts" @click="onRefreshLastVisit"><img class="icon" src="../img/refresh.png" alt="Refresh icons created by Dave Gandy - Flaticon"></button></div> 
             </div>
             <p class="info">{{ client.lastVisitDate }}</p>
           </div>
+
+          <div class="registrationDate info-block" v-if="client.registrationDate != '' || editMode">
+            <div><p class="info-title">Date d'inscription</p></div>
+            <div><p class="info" v-if="!editMode">{{ client.registrationDate }}</p></div>
+            <input type="text" class="input" name="registrationDate" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date d'inscription" v-model.trim.trim="client.registrationDate" @blur="client.registrationDate = formatDate(client.registrationDate)" v-if="editMode">
+          </div>
           
-          <div class="birthday info-block" v-if="client.birthday != '' || editMode">
-            <p class="info-title">Age</p>
-            <p class="info" v-if="!editMode">{{ calculateAge(client.birthday) }} ans ({{ client.birthday }})</p>
-            <input type="text" class="input" name="birthday" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date de naissance" v-model.trim.trim="client.birthday" @blur="client.birthday = formatDate(client.birthday)" v-if="editMode">
+          <div class="birthday info-block" v-if="client.age != '' || editMode">
+            <p class="info-title">Tranche d'âge</p>
+            <p class="info" v-if="!editMode">{{ client.age }}</p>
+            <select class="input" v-model="client.age" :class="{'select-placeholder':client.age==''}" v-if="editMode">
+                <option class="option" selected value="">Tranche d'âge</option>
+                <option v-for="ageGroup in ageGroups" class="option" :value="ageGroup">{{ ageGroup }}</option>
+            </select>
+          </div>
+
+          <div class="gender radio-info-block" v-if="client.gender != '' || editMode">
+            <p class="info-title">Genre</p>
+            <p class="info" v-if="!editMode">{{ client.gender }}</p>
+            <div class="radio-input" v-if="editMode">
+                <div class="radio"><input type="radio" name="gender" value="Homme" v-model="client.gender"> Homme</div>
+                <div class="radio"><input type="radio" name="gender" value="Femme" v-model="client.gender"> Femme</div>
+            </div>
           </div>
 
           <div class="funcion info-block" v-if="client.job != '' || editMode">
             <p class="info-title">Situation</p>
             <p class="info" v-if="!editMode">{{ client.job }}</p>
             <input type="text" class="input" name="job" v-model.trim="client.job" v-if="editMode">
-          </div>
-
-          <div class="city info-block" v-if="client.city != '' || editMode">
-            <p class="info-title">Ville</p>
-            <p class="info" v-if="!editMode">{{ client.city }}</p>
-            <input type="text" class="input input-half" name="city" v-model.trim="client.city" v-if="editMode">
-          </div>
-          
-          <div class="email info-block" v-if="client.email != '' || editMode">
-            <div><p class="info-title">Email</p></div>
-            <div><p class="info" v-if="!editMode">{{ client.email }}</p></div>
-            <input type="email" class="input" name="email" v-model.trim="client.email" v-if="editMode">
           </div>
 
         </div>
@@ -70,25 +76,22 @@ import {Client,calculateAge,verifyClientInfos,formatClient,formatDate, getCurren
               </div>     
             </div>
 
-            <div class="gender radio-info-block" v-if="client.gender != '' || editMode">
-              <p class="info-title">Genre</p>
-              <p class="info" v-if="!editMode">{{ client.gender }}</p>
-              <div class="radio-input" v-if="editMode">
-                  <div class="radio"><input type="radio" name="gender" value="Homme" v-model="client.gender"> Homme</div>
-                  <div class="radio"><input type="radio" name="gender" value="Femme" v-model="client.gender"> Femme</div>
-              </div>
-            </div>
-
             <div class="address info-block" v-if="client.address != '' || editMode">
               <p class="info-title">Adresse</p>
               <p class="info" v-if="!editMode">{{ client.address }}</p>
-              <input type="text" class="input input-half" name="address" v-model.trim="client.address" v-if="editMode">
+              <input type="text" class="input" name="address" v-model.trim="client.address" v-if="editMode">
+            </div>
+
+            <div class="city info-block" v-if="client.city != '' || editMode">
+              <p class="info-title">Ville</p>
+              <p class="info" v-if="!editMode">{{ client.city }}</p>
+              <input type="text" class="input" name="city" v-model.trim="client.city" v-if="editMode">
             </div>
 
             <div class="cp info-block" v-if="client.postalCode != '' || editMode">
               <p class="info-title">Code Postal</p>
               <p class="info" v-if="!editMode">{{ client.postalCode }}</p>
-              <input type="text" class="input input-half" name="postalCode" v-model.trim="client.postalCode" v-if="editMode">
+              <input type="text" class="input" name="postalCode" v-model.trim="client.postalCode" v-if="editMode">
             </div>
 
             <div class="telephone info-block" v-if="client.telephone != '' || editMode">
@@ -100,13 +103,13 @@ import {Client,calculateAge,verifyClientInfos,formatClient,formatDate, getCurren
           <div class="element-group">
             <div><p class="info-title">Produits achetés</p></div>
             <div class="add-product">
-              <input type="text" class="input input-half" name="products" v-model.trim="newProduct">
+              <input type="text" class="input" name="products" v-model.trim="newProduct">
               <div class="fast-edit-btn"><button class="btn addPts" @click="addProduct()"><img class="icon" src="../img/plus.png" alt="Plus icons created by srip - Flaticon"></button></div>
             </div>
             <div class="pdt-container" v-if="client.products.length > 0">
               <div v-for="(product,i) in client.products" :key="i" class="product-line">
-                <p class="info">- {{ product }}</p>
-                <div class="fast-edit-btn"><button class="btn removePts" @click="removeProduct(Number(i))"><img class="icon" src="../img/moins.png" alt="Minus icons created by Freepik - Flaticon"></button></div>
+                <p class="info" :title="product">- {{ product }}</p>
+                <div class="fast-edit-btn"><button class="btn removeProduct" @click="removeProduct(Number(i))"><img class="icon" src="../img/moins.png" alt="Minus icons created by Freepik - Flaticon"></button></div>
               </div>
             </div>
           </div>
@@ -116,16 +119,16 @@ import {Client,calculateAge,verifyClientInfos,formatClient,formatDate, getCurren
 
         <div class="element-group">
 
+          <div class="email info-block" v-if="client.email != '' || editMode">
+            <div><p class="info-title">Email</p></div>
+            <div><p class="info" v-if="!editMode">{{ client.email }}</p></div>
+            <input type="email" class="input" name="email" v-model.trim="client.email" v-if="editMode">
+          </div>
+
           <div class="specifications info-block" v-if="client.specifications != '' || editMode">
             <div><p class="info-title">Spécifications</p></div>
             <div style="width: 100%;"><p class="info textarea-display" v-if="!editMode">{{ client.specifications }}</p></div>
             <textarea class="text-area" v-model.trim="client.specifications" v-if="editMode" ></textarea>
-          </div>
-
-          <div class="registrationDate info-block" v-if="client.registrationDate != '' || editMode">
-            <div><p class="info-title">Date d'inscription</p></div>
-            <div><p class="info" v-if="!editMode">{{ client.registrationDate }}</p></div>
-            <input type="text" class="input" name="registrationDate" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="date d'inscription" v-model.trim.trim="client.registrationDate" @blur="client.registrationDate = formatDate(client.registrationDate)" v-if="editMode">
           </div>
 
         </div>
@@ -302,11 +305,12 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .pdt-container{
   border: solid black 1px;
-  width: 80%;
+  width: 18vw;
   max-height: 35vh;
   border-radius: 8px;
   border: #ff87f9 solid 2px; 
@@ -318,10 +322,11 @@ export default {
 }
 
 .add-product{
-  width: 100%;
+  width: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
   margin-bottom: 10px;
   gap: 10px;
 }
@@ -329,6 +334,17 @@ export default {
 .product-line{
   display: flex;
   justify-content:space-between;
+}
+
+.product-line p{
+  font-size: 1.5rem !important;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.product-line p:hover{
+  cursor: pointer;
 }
 
 .textarea-display {
@@ -388,14 +404,14 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 80%;
+  max-width: 17vw;
 }
 
 .radio-info-block, .info-block{
   margin-bottom: 2rem;
 }
 
-.info-block input{
+.info-block input, .info-block select{
   text-align: center;
   text-indent: 0 !important;
   width: 15vw !important;
@@ -433,8 +449,13 @@ export default {
   background-color: #8DEF0F;
 }
 
-.removePts{
+.removePts,.removeProduct{
   background-color: #FD6666;
+}
+
+.removeProduct{
+  width: 23px !important;
+  height: 23px !important;
 }
 
 .resetPts,.refreshLC{

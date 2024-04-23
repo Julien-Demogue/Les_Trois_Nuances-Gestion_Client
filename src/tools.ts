@@ -1,21 +1,29 @@
 export interface Client{
-    id:number;
-    firstName:string;
-    lastName:string;
-    birthday:string;
-    email:string;
-    telephone:string;
-    address:string;
-    city:string;
-    postalCode:string;
-    job:string;
-    registrationDate:string;
-    lastVisitDate:string;
-    gender:string;
-    loyaltyPoints:number;
-    specifications:string;
-    products:Array<string>;
+  id:number;
+  firstName:string;
+  lastName:string;
+  age:string;
+  email:string;
+  telephone:string;
+  address:string;
+  city:string;
+  postalCode:string;
+  job:string;
+  registrationDate:string;
+  lastVisitDate:string;
+  gender:string;
+  loyaltyPoints:number;
+  specifications:string;
+  products:Array<string>;
 }
+
+export const ageGroups = [
+  "0-11",
+  "12-19",
+  "20-39",
+  "40-59",
+  "60+"
+]
 
 // Verifie si les informations du client sont correctes. renvoie une liste d'erreurs. vide si il tout est bon
 export function verifyClientInfos(client:Client) : Array<string> {
@@ -28,9 +36,6 @@ export function verifyClientInfos(client:Client) : Array<string> {
   }
   if(client.lastName != undefined && client.lastName != "" && !verifyName(client.lastName)){
     errorList.push("Le nom entré est invalide");
-  }
-  if(client.birthday != undefined && client.birthday != "" && !verifyDate(client.birthday)){
-    errorList.push("La date de naissance entrée est invalide");
   }
   if(client.email != undefined && client.email != "" && !verifyEmail(client.email)){
     errorList.push("L'email entré est invalide");
@@ -55,7 +60,7 @@ export function verifyClientInfos(client:Client) : Array<string> {
 export function formatClient(client:Client) : Client{
   client.firstName = formatName(client.firstName);
   client.lastName = formatName(client.lastName);
-  if (client.birthday != undefined) client.birthday = formatDate(client.birthday); else client.birthday = "";
+  if (client.age == undefined) client.age = "";
   if(client.email != undefined) client.email = formatEmail(client.email); else client.email = "";
   if(client.telephone != undefined) client.telephone = formatTelephone(client.telephone); else client.telephone = "";
   if(client.address == undefined) client.address = "";
@@ -180,26 +185,46 @@ export function getCurrentDate() : string{
 }
 
 // Permet de recuperer l'age moyen d'une liste de clients
-export function getAverageAge(clients:Client[]) : number {
-  // initialiser les valeurs a 0
-  let totalAge = 0;
-  let clientsAmount = 0;
+export function getAverageAge(clients:Client[]) : string {
+  // Arreter si aucun client n'est dans la liste
+  if(clients.length == 0) {return "...";}
 
-  // Parcourir la liste de clients
+  // Initialiser le dictionaire
+  const dico : { [key: string]: number } = {};
+
+  // Parcourir les clients
   clients.forEach(client => {
-    // Verifier si le client a une date d'anniversaire renseignee
-    if(client.birthday != ""){
-      // Incrementer les valeurs
-      clientsAmount++;
-      totalAge += calculateAge(client.birthday);
+    if(client.age != ""){
+      // Regarder si le code postal a deja ete ajoute dans le dictionaire
+      if(dico.hasOwnProperty(client.city)){
+        // Incrementer le nombre de code postal de ce type
+        dico[client.age] += 1;
+      }
+      else{
+        // Initialiser le nombre de code postal de ce type
+        dico[client.age] = 1;
+      }
     }
   });
 
-  if(clientsAmount > 0){
-    // Renvoyer la moyenne d'age
-    return Math.round(totalAge/clientsAmount);
+  // Arreter si aucun code postal n'a ete trouve
+  if(Object.keys(dico).length == 0) {return "..."};
+
+  // Initialiser les variables pour determiner le code postal le plus utilise
+  let maxAmount = -Infinity;
+  let ageMax = "";
+
+  // Parcourir le dictionaire
+  for (const [key, value] of Object.entries(dico)) {
+    // Determiner le code postal qui reviens le plus
+    if(value > maxAmount) {
+      maxAmount = value;
+      ageMax = key;
+    }
   }
-  return 0;
+
+  // Renvoyer le code postal le frequent
+  return ageMax;
 }
 
 // Permet de recuperer le pourcentage d'un genre specifique dans la base

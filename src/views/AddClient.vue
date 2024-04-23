@@ -3,7 +3,7 @@ import SideBar from '../components/SideBar.vue';
 import TopBar from '../components/TopBar.vue';
 import Popup from '../components/Popup.vue';
 import {addClient} from '../dao';
-import {Client,getCurrentDate,verifyClientInfos,formatClient,formatDate} from '../tools'
+import {Client,getCurrentDate,verifyClientInfos,formatClient,formatDate,ageGroups} from '../tools'
 </script>
 
 <template>
@@ -19,8 +19,13 @@ import {Client,getCurrentDate,verifyClientInfos,formatClient,formatDate} from '.
                         <input type="text" class="input input-half" name="lastName" placeholder="Prénom (obligatoire)" v-model.trim="client.firstName">
                         <input type="text" class="input input-half" name="firstName" placeholder="Nom (obligatoire)" v-model.trim="client.lastName">
                     </div>
-                    <input type="text" class="input" name="birthday" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Date de naissance" v-model.trim="client.birthday" @blur="client.birthday = formatDate(client.birthday)">
-                    <input type="text" class="input" name="job" placeholder="Situation" v-model.trim="client.job">
+                    <div class="input-group">
+                        <select class="input input-half" v-model="client.age" :class="{'select-placeholder':client.age==''}" >
+                            <option class="option" selected value="">Tranche d'âge</option>
+                            <option v-for="ageGroup in ageGroups" class="option" :value="ageGroup">{{ ageGroup }}</option>
+                        </select>
+                        <input type="text" class="input input-half" name="job" placeholder="Situation" v-model.trim="client.job">
+                    </div>
                     <div class="input-group">
                         <input type="email" class="input input-half" name="email" placeholder="Email" v-model.trim="client.email">
                         <input type="tel" class="input input-half" name="telephone" placeholder="Téléphone" v-model.trim="client.telephone">
@@ -61,8 +66,11 @@ export default {
             client : {} as Client,
             showPopup : false as boolean,
             popupMsg : "" as string,
-            popupAcceptMethod : this.hidePopup() as Function
+            popupAcceptMethod : this.hidePopup() as Function,
         }
+    },
+    mounted(){
+        this.client.age = "";
     },
     methods: {
         onValidate(){  
@@ -130,7 +138,7 @@ export default {
 }
 
 .input-mini{
-    width: 2vw;
+    width: 2.5vw;
     text-align: center;
     height: 3.4vh;
 }

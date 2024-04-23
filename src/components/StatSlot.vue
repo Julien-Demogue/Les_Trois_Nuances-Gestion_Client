@@ -42,8 +42,8 @@ export default {
 
 <style scoped>
 .stat-box{
-    width: 350px;
-    height: 150px;
+    width: 100%;
+    height: 170px;
     border: #fd2cf3 solid 2px;
     border-radius: 20px;
     background: #f5a9ff;

@@ -16,7 +16,7 @@ import * as tools from '../tools'
         <div class="stats-group">
           <StatSlot title="Nombre total de clients" :content=clients.length.toString() />
           <StatSlot title="Nombre de nouveaux clients dans les 12 derniers mois" :content=tools.getNewClientsAmount(clients).toString() />
-          <StatSlot title="Age moyen des clients" :content=tools.getAverageAge(clients).toString() />
+          <StatSlot title="Age moyen des clients" :content="tools.getAverageAge(clients).toString() + ' ans'" />
 
           <StatSlot title="Provenance principale des clients" :content=tools.getCityProvenance(clients) />
           <StatSlot title="Pourcentage de clientes femmes" :content="tools.getFemaleAmount(clients).toString() + '%'" />
