@@ -325,7 +325,7 @@ export default {
 .pdt-container{
   border: solid black 1px;
   width: 18vw;
-  max-height: 35vh;
+  max-height: 50vh;
   border-radius: 8px;
   border: #ff87f9 solid 2px; 
   background-color: #f5a9ff;
@@ -351,7 +351,7 @@ export default {
 }
 
 .product-line p{
-  font-size: 1.5rem !important;
+  font-size: 1.6vw !important;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -366,10 +366,10 @@ export default {
   word-wrap: break-word;
 }
 
-.element-group p{
+.info{
   text-align: center;
   color:#746c6c;
-  font-size: 1.9rem;
+  font-size: 1.9vw;
   font-weight: bold;
 }
 
@@ -410,6 +410,8 @@ export default {
 }
 
 .info-title{
+  text-align: center;
+  font-weight: bold;
   color:#fd4d97 !important;
   font-size: 1.8vw !important;
 }
