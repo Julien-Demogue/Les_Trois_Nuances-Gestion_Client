@@ -44,7 +44,7 @@ export default {
         height: 10vh;
         width: 100%;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 2fr 1fr;
     }
 
     .return-slot{

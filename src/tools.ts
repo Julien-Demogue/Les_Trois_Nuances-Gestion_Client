@@ -15,6 +15,8 @@ export interface Client{
   loyaltyPoints:number;
   specifications:string;
   products:Array<string>;
+  color:string;
+  cutStyle:string;
 }
 
 export const ageGroups = [
@@ -70,6 +72,8 @@ export function formatClient(client:Client) : Client{
   if(client.registrationDate != undefined) client.registrationDate = formatDate(client.registrationDate); else client.registrationDate = "";
   if(client.gender == undefined) client.gender = "";
   if(client.specifications == undefined) client.specifications = "";
+  if(client.color != undefined) client.color = formatName(client.color); else client.color = "";
+  if(client.cutStyle != undefined) client.cutStyle = formatName(client.cutStyle); else client.cutStyle = "";
   return client;
 }
 

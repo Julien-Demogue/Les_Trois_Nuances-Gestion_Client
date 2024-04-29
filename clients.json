@@ -6,16 +6,20 @@
     "job": "Etudiant",
     "email": "julien.demogue@sfr.fr",
     "telephone": "07 69 33 81 73",
-    "address": "3 carre de saxe",
+    "address": "3 carre de saxedequoicoubehapagnan",
     "city": "Rennes",
     "postalCode": "35200",
     "registrationDate": "15/03/2024",
     "lastVisitDate": "15/03/2024",
     "loyaltyPoints": 0,
     "id": "0",
-    "products": [],
-    "specifications": "",
-    "gender": "Homme"
+    "products": [
+      "qsdqsdqsdqsdqsdqsdqsdqsdqsdqdqsdqsdqsdqsd"
+    ],
+    "specifications": "qbndcqbusdfcvoihubqds<cvouih<sdbviohsbvjiohksd<bdv ijklsbvlji<sdvbnjklwxc<vbnljk<wxcbvljkxwcvbljkx<cwbhvjkl<wxbcvjklhxwcvij klsbvlji<sdvbnjklwxc<vbnljk<wxcbvljkxwcvbljkx<cwbhvjkl<wxbcvjklhxwcv",
+    "gender": "Homme",
+    "color": "Bleu",
+    "cutStyle": "Buzzcutdggv-Xvsdxv-Sxv-Cv"
   },
   {
     "firstName": "Marie",
@@ -33,7 +37,9 @@
     "id": 1,
     "products": [],
     "specifications": "",
-    "gender": ""
+    "gender": "",
+    "color": "",
+    "cutStyle": ""
   },
   {
     "firstName": "Alexandre",
@@ -51,7 +57,9 @@
     "id": 2,
     "products": [],
     "specifications": "",
-    "gender": ""
+    "gender": "",
+    "color": "",
+    "cutStyle": ""
   },
   {
     "firstName": "Sophia",
@@ -69,7 +77,9 @@
     "id": 3,
     "products": [],
     "specifications": "",
-    "gender": ""
+    "gender": "",
+    "color": "",
+    "cutStyle": ""
   },
   {
     "firstName": "David",
@@ -87,7 +97,9 @@
     "id": 4,
     "products": [],
     "specifications": "",
-    "gender": ""
+    "gender": "",
+    "color": "",
+    "cutStyle": ""
   },
   {
     "firstName": "Isabelle",
@@ -105,7 +117,9 @@
     "id": 5,
     "products": [],
     "specifications": "",
-    "gender": ""
+    "gender": "",
+    "color": "",
+    "cutStyle": ""
   },
   {
     "firstName": "Omar",
@@ -123,7 +137,9 @@
     "id": "6",
     "products": [],
     "specifications": "",
-    "gender": ""
+    "gender": "",
+    "color": "",
+    "cutStyle": ""
   },
   {
     "firstName": "Aïcha",
@@ -141,7 +157,9 @@
     "id": 7,
     "products": [],
     "specifications": "",
-    "gender": ""
+    "gender": "",
+    "color": "",
+    "cutStyle": ""
   },
   {
     "firstName": "Étienne",
@@ -159,7 +177,9 @@
     "id": 8,
     "products": [],
     "specifications": "",
-    "gender": ""
+    "gender": "",
+    "color": "",
+    "cutStyle": ""
   },
   {
     "firstName": "Léa",
@@ -177,6 +197,8 @@
     "id": 9,
     "products": [],
     "specifications": "",
-    "gender": ""
+    "gender": "",
+    "color": "",
+    "cutStyle": ""
   }
 ]

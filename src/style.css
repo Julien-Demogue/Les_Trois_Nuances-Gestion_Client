@@ -8,6 +8,7 @@
 
 .content{
   background-color: #f7d2fc;
+  overflow-x: hidden;
 }
 
 .btn{

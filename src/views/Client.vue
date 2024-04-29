@@ -31,6 +31,18 @@ import {Client,verifyClientInfos,formatClient,formatDate, getCurrentDate,ageGrou
             <p class="info">{{ client.lastVisitDate }}</p>
           </div>
 
+          <div class="loyaltyPoints info-block">
+            <div class="info-line">
+              <div><p class="info-title">Points de fidélité</p></div>
+              <div class="fast-edit-btn"><button class="btn resetPts" @click="onResetLP"><img class="icon" src="../img/refresh.png" alt="Refresh icons created by Dave Gandy - Flaticon"></button></div>
+            </div> 
+            <div class="info-line">
+              <div class="fast-edit-btn"><button class="btn removePts" @click="removeLP"><img class="icon" src="../img/moins.png" alt="Minus icons created by Freepik - Flaticon"></button></div>
+              <div><p class="info">{{ client.loyaltyPoints }}</p></div>
+              <div class="fast-edit-btn"><button class="btn addPts" @click="addLP"><img class="icon" src="../img/plus.png" alt="Plus icons created by srip - Flaticon"></button></div>
+            </div>     
+          </div>
+
           <div class="registrationDate info-block" v-if="client.registrationDate != '' || editMode">
             <div><p class="info-title">Date d'inscription</p></div>
             <div><p class="info" v-if="!editMode">{{ client.registrationDate }}</p></div>
@@ -64,18 +76,6 @@ import {Client,verifyClientInfos,formatClient,formatDate, getCurrentDate,ageGrou
         </div>
           <div class="element-group">
 
-            <div class="loyaltyPoints info-block">
-              <div class="info-line">
-                <div><p class="info-title">Points de fidélité</p></div>
-                <div class="fast-edit-btn"><button class="btn resetPts" @click="onResetLP"><img class="icon" src="../img/refresh.png" alt="Refresh icons created by Dave Gandy - Flaticon"></button></div>
-              </div> 
-              <div class="info-line">
-                <div class="fast-edit-btn"><button class="btn removePts" @click="removeLP"><img class="icon" src="../img/moins.png" alt="Minus icons created by Freepik - Flaticon"></button></div>
-                <div><p class="info">{{ client.loyaltyPoints }}</p></div>
-                <div class="fast-edit-btn"><button class="btn addPts" @click="addLP"><img class="icon" src="../img/plus.png" alt="Plus icons created by srip - Flaticon"></button></div>
-              </div>     
-            </div>
-
             <div class="address info-block" v-if="client.address != '' || editMode">
               <p class="info-title">Adresse</p>
               <p class="info" v-if="!editMode">{{ client.address }}</p>
@@ -99,7 +99,21 @@ import {Client,verifyClientInfos,formatClient,formatDate, getCurrentDate,ageGrou
               <div><p class="info" v-if="!editMode">{{ client.telephone }}</p></div>
               <input type="tel" class="input" name="telephone" v-model.trim="client.telephone" v-if="editMode">
             </div>
+
+            <div class="color info-block" v-if="client.color != '' || editMode">
+              <p class="info-title">Couleur</p>
+              <p class="info" v-if="!editMode">{{ client.color }}</p>
+              <input type="text" class="input" name="color" v-model.trim="client.color" v-if="editMode">
+            </div>
+
+            <div class="cutStyle info-block" v-if="client.cutStyle != '' || editMode">
+              <p class="info-title">Type de coupe</p>
+              <p class="info" v-if="!editMode">{{ client.cutStyle }}</p>
+              <input type="text" class="input" name="cutStyle" v-model.trim="client.cutStyle" v-if="editMode">
+            </div>
+
           </div>
+
           <div class="element-group">
             <div><p class="info-title">Produits achetés</p></div>
             <div class="add-product">
@@ -127,7 +141,7 @@ import {Client,verifyClientInfos,formatClient,formatDate, getCurrentDate,ageGrou
 
           <div class="specifications info-block" v-if="client.specifications != '' || editMode">
             <div><p class="info-title">Spécifications</p></div>
-            <div style="width: 100%;"><p class="info textarea-display" v-if="!editMode">{{ client.specifications }}</p></div>
+            <div><p class="info textarea-display" v-if="!editMode">{{ client.specifications }}</p></div>
             <textarea class="text-area" v-model.trim="client.specifications" v-if="editMode" ></textarea>
           </div>
 
@@ -397,6 +411,7 @@ export default {
 
 .info-title{
   color:#fd4d97 !important;
+  font-size: 1.8vw !important;
 }
 
 .info-block{
