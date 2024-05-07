@@ -10,7 +10,7 @@ import * as tools from '../tools'
 <div class="page">
     <TopBar/>
     <div class="page-content">
-      <SideBar />
+      <SideBar side="left" />
       <div class="content">
         <div class="title"><p>Statistiques</p></div>
         <div class="stats-group">
@@ -29,7 +29,7 @@ import * as tools from '../tools'
           <StatSlot title="Nombre moyen de produits achetés par les clients" :content="tools.getAverageProducts(clients).toString()" />
         </div>
       </div>
-      <SideBar />
+      <SideBar side="right" />
     </div>
 </div>
 </template>

@@ -10,7 +10,7 @@ import {Client,getCurrentDate,verifyClientInfos,formatClient,formatDate,ageGroup
 <div class="page">
     <TopBar previousPage="/" />
     <div class="page-content">
-        <SideBar />
+        <SideBar side="left" />
         <div class="content">
             <div class="title"><p>Ajouter un client</p></div>
           
@@ -53,7 +53,7 @@ import {Client,getCurrentDate,verifyClientInfos,formatClient,formatDate,ageGroup
   
             
         </div>
-        <SideBar />
+        <SideBar side="right" />
         <Popup v-if="showPopup" :msg=popupMsg :acceptMethod=popupAcceptMethod />
     </div>
 </div>

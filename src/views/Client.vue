@@ -11,7 +11,7 @@ import {Client,verifyClientInfos,formatClient,formatDate, getCurrentDate,ageGrou
     <TopBar :showReturnBtn="false" v-if="editMode"/>
     <TopBar previousPage="/search-client" v-else/>
     <div class="page-content">
-      <SideBar />
+      <SideBar side="left" />
       <div class="content">
         <div class="title">
           <p v-if="!editMode">{{ client.firstName }} {{ client.lastName }}</p>
@@ -158,7 +158,7 @@ import {Client,verifyClientInfos,formatClient,formatDate, getCurrentDate,ageGrou
         </div>
         
       </div>
-      <SideBar />
+      <SideBar side="right" />
       <Popup v-if="showPopup" :confirmation=confirmationPopup :msg=popupMsg :acceptMethod=popupAcceptMethod :cancelMethod=popupCancelMethod />
     </div>
 </div>

@@ -10,7 +10,7 @@ import {Client} from '../tools'
 <div class="page">
     <TopBar previousPage="/" />
     <div class="page-content">
-      <SideBar />
+      <SideBar side="left" />
       <div class="content">
         <div class="title"><p>Rechercher un client</p></div>
         <div class="search-form">
@@ -26,7 +26,7 @@ import {Client} from '../tools'
             </div>
         </div>
       </div>
-      <SideBar />
+      <SideBar side="right" />
     </div>
 </div>
 </template>

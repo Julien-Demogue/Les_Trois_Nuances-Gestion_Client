@@ -8,7 +8,7 @@ const { ipcRenderer  } = require ("electron");
 <div class="page">
     <TopBar :showReturnBtn="false"/>
     <div class="page-content">
-      <SideBar />
+      <SideBar side="left" />
       <div class="content">
         <div class="title"><p>Menu</p></div>
         <div class="find-btn"><router-link to="/search-client"><button class="btn">Rechercher un client</button></router-link></div>
@@ -23,7 +23,7 @@ const { ipcRenderer  } = require ("electron");
         </div>
         
       </div>
-      <SideBar />
+      <SideBar side="right" />
     </div>
 </div>
 </template>
