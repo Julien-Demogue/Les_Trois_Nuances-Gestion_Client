@@ -101,7 +101,7 @@ import {Client,verifyClientInfos,formatClient,formatDate, getCurrentDate,ageGrou
             </div>
 
             <div class="color info-block" v-if="client.color != '' || editMode">
-              <p class="info-title">Couleur</p>
+              <p class="info-title">Coloration</p>
               <p class="info" v-if="!editMode">{{ client.color }}</p>
               <input type="text" class="input" name="color" v-model.trim="client.color" v-if="editMode">
             </div>

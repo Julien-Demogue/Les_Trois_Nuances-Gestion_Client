@@ -4,7 +4,7 @@
 <template>
     <div class="side-bar">
         <img src="../img/partie_droite.png" v-if="side == 'right' ">
-        <img src="../img/partie_droite.png" v-if="side == 'left' ">
+        <img src="../img/partie_gauche.png" v-if="side == 'left' ">
     </div>
 </template>
 
