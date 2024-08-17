@@ -30,7 +30,7 @@ import {Client,verifyClientInfos,formatClient,formatDate, getCurrentDate,ageGrou
             </div>
             <div class="info-line">
               <p class="info">{{ client.lastVisitDate[client.lastVisitDate.length-1] }}</p>
-              <div class="fast-edit-btn"><button class="btn visitHistory" @click=""><img class="icon" src="../img/history.png" alt="Historyicon created by Tempo_doloe - Flaticon"></button></div> 
+              <div class="fast-edit-btn"><button class="btn visitHistory" @click="showVisitHistory"><img class="icon" src="../img/history.png" alt="Historyicon created by Tempo_doloe - Flaticon"></button></div> 
             </div>
           </div>
 
@@ -189,6 +189,14 @@ export default {
       }
     },
     methods:{
+      showVisitHistory(){
+        let msg = "Dernieres visites" + "<br>";
+        for (let i = this.client.lastVisitDate.length - 1; i >= 0; i--) {
+          msg += "<br>" + this.client.lastVisitDate[i] ;
+        }
+        this.changeAcceptPopupMethod(this.hidePopup);
+        this.setPopup(msg);
+      },
       onResetLP(){
         let msg = "Voulez-vous vraiment réinitialiser les points de fidélité de ce client ?";
         this.changeAcceptPopupMethod(this.resetLP);

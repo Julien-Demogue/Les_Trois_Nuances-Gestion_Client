@@ -94,20 +94,22 @@ export default {
     transition: all 0.3s ease;
     font-family: Helvetica, Arial, sans-serif;
     border: #fd2cf3 solid 3px;
+    max-height: 50vh;
 }
 
 .popup-msg{
+    max-height: 40vh;
+    overflow-y: auto;
     display: table-cell;
     vertical-align: middle;
     text-align: center;
     display: flex;
-    align-items: center;
     justify-content: center;
     font-size: 1.4rem;
-    padding-bottom: 3vh;
 }
 
 .group-btn, .popup-btn{
+    padding-top: 3vh;
     display:flex;
     align-items: center;
     justify-content: center;
