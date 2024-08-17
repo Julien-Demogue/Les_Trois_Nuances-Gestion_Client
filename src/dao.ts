@@ -53,7 +53,7 @@ export async function editClient(id: number, client: Client): Promise<void> {
     const data = await fs.readFile(absolutePath, 'utf8');
     const clients: Client[] = JSON.parse(data);
     
-    const index = clients.findIndex(c => c.id === id);
+    const index = clients.findIndex(c => c.id.toString() === id.toString());
     
     if (index !== -1) {
       clients[index] = { ...client, id };
@@ -72,10 +72,9 @@ export async function editClientProperty(id: number, property: string, value: an
     const data = await fs.readFile(absolutePath, 'utf8');
     const clients: Client[] = JSON.parse(data);
     
-    const index = clients.findIndex(client => client.id === id);
-    
+    const index = clients.findIndex(client => client.id.toString() === id.toString());
     if (index !== -1) {
-      clients[index][property] = value;
+      (clients[index] as any)[property] = value;
       await safeWriteFile(absolutePath, JSON.stringify(clients, null, 2));
       console.log(`Propriété "${property}" du client ${id} modifiée avec succès !`);
     } else {
@@ -102,8 +101,10 @@ export async function getClient(id: number): Promise<Client | undefined> {
     const data = await fs.readFile(absolutePath, 'utf8');
     const clients: Client[] = JSON.parse(data);
     
-    return clients.find(client => client.id === id);
+    const client = clients.find(client => client.id.toString() === id.toString());
+    return client;
   } catch (err) {
+    alert("erreur");
     console.error(err);
     throw err;
   }
