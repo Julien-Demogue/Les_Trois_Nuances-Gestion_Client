@@ -1,175 +1,110 @@
-import fs from 'fs';
-import {Client} from './tools'
+import fs from 'fs/promises';
 import path from 'path';
+import { Client } from './tools';  // Assurez-vous que ce type est correctement défini dans tools.ts
+
 const clientsFile = 'clients.json';
 const absolutePath = path.resolve(clientsFile);
 
-export function addClient(client:Client) {
-  // Lire le fichier JSON
-  fs.readFile(absolutePath, 'utf8', (err, data) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
+let writeQueue = Promise.resolve(); // File d'attente pour les écritures
 
-    // analyser le JSON en objet
-    const clients = JSON.parse(data);
-
-    // Generer un nouvel ID unique
-    const previousID = Math.max(...clients.map((client:Client) => client.id))
-    let newId = 0
-    if(previousID != -Infinity) {
-      newId = Math.max(...clients.map((client:Client) => client.id)) + 1;
-    }
-    client.id = newId;
-
-    // ajouter le nouveau client a l'objet
-    clients.push({...client});
-
-    // ecrire le nouveau contenu JSON dans le fichier
-    fs.writeFile(absolutePath, JSON.stringify(clients,null,2), err => {
-      if (err) {
-        console.error(err);
-        return;
-      }
-
-      console.log(`Ligne ${newId} ajoutee avec succes !`);
-    });
-  });
+async function safeWriteFile(path: string, data: string): Promise<void> {
+  writeQueue = writeQueue.then(() => fs.writeFile(path, data));
+  await writeQueue; // Retourne la promesse pour attendre la fin de l'écriture
 }
 
-export function removeClient(id:Number) {
-  // Lire le fichier JSON
-  fs.readFile(absolutePath, 'utf8', (err, data) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-    // analyser le JSON en objet
-    const clients = JSON.parse(data);
+export async function addClient(client: Client): Promise<void> {
+  try {
+    const data = await fs.readFile(absolutePath, 'utf8');
+    const clients: Client[] = JSON.parse(data);
+    
+    const previousID = Math.max(...clients.map(c => c.id));
+    client.id = previousID !== -Infinity ? previousID + 1 : 0;
+    
+    clients.push({ ...client });
+    
+    await safeWriteFile(absolutePath, JSON.stringify(clients, null, 2));
+    console.log(`Ligne ${client.id} ajoutée avec succès !`);
+  } catch (err) {
+    console.error(err);
+  }
+}
 
-    // Trouver l'index de la ligne a supprimer
-    const index = clients.findIndex((client:Client) => client.id == id);
-
-    // Si l'index est trouve, supprimer la ligne
+export async function removeClient(id: number): Promise<void> {
+  try {
+    const data = await fs.readFile(absolutePath, 'utf8');
+    const clients: Client[] = JSON.parse(data);
+    
+    const index = clients.findIndex(client => client.id === id);
+    
     if (index !== -1) {
       clients.splice(index, 1);
-
-      // ecrire le nouveau contenu JSON dans le fichier
-      fs.writeFile(absolutePath, JSON.stringify(clients,null,2), err => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-
-        console.log(`Ligne '${id}' supprimee avec succes !`);
-      });
+      await safeWriteFile(absolutePath, JSON.stringify(clients, null, 2));
+      console.log(`Ligne '${id}' supprimée avec succès !`);
     } else {
-      console.error(`Ligne avec l'ID '${id}' non trouvee.`);
+      console.error(`Ligne avec l'ID '${id}' non trouvée.`);
     }
-  });
+  } catch (err) {
+    console.error(err);
+  }
 }
 
-export function editClient(id:Number, client:Client) {
-  // Lire le fichier JSON
-  fs.readFile(absolutePath, 'utf8', (err, data) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-
-    // analyser le JSON en objet
-    const clients = JSON.parse(data);
-
-    // Trouver l'index de la ligne a modifier
-    const index = clients.findIndex((client:Client) => client.id == id);
-
-    // Si l'index est trouve, modifier la ligne
+export async function editClient(id: number, client: Client): Promise<void> {
+  try {
+    const data = await fs.readFile(absolutePath, 'utf8');
+    const clients: Client[] = JSON.parse(data);
+    
+    const index = clients.findIndex(c => c.id === id);
+    
     if (index !== -1) {
       clients[index] = { ...client, id };
-
-      // ecrire le nouveau contenu JSON dans le fichier
-      fs.writeFile(absolutePath, JSON.stringify(clients,null,2), err => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-
-        console.log(`Ligne ${id} modifiee avec succes !`);
-      });
+      await safeWriteFile(absolutePath, JSON.stringify(clients, null, 2));
+      console.log(`Ligne ${id} modifiée avec succès !`);
     } else {
-      console.log(`Ligne avec l'ID ${id} non trouvee.`);
+      console.log(`Ligne avec l'ID ${id} non trouvée.`);
     }
-  });
+  } catch (err) {
+    console.error(err);
+  }
 }
 
-export function editClientProperty(id: number, property: string, value: any) {
-  // Lire le fichier JSON
-  fs.readFile(absolutePath, 'utf8', (err, data) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-
-    // Analyser le JSON en objet
-    const clients = JSON.parse(data);
-
-    // Trouver l'index du client a modifier
-    const index = clients.findIndex((client: Client) => client.id === id);
-
-    // Si l'index est trouve, modifier la propriete
+export async function editClientProperty(id: number, property: string, value: any): Promise<void> {
+  try {
+    const data = await fs.readFile(absolutePath, 'utf8');
+    const clients: Client[] = JSON.parse(data);
+    
+    const index = clients.findIndex(client => client.id === id);
+    
     if (index !== -1) {
       clients[index][property] = value;
-
-      // Ecrire le nouveau contenu JSON dans le fichier
-      fs.writeFile(absolutePath, JSON.stringify(clients, null, 2), err => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-
-        console.log(`Propriete "${property}" du client ${id} modifiee avec succes !`);
-      });
+      await safeWriteFile(absolutePath, JSON.stringify(clients, null, 2));
+      console.log(`Propriété "${property}" du client ${id} modifiée avec succès !`);
     } else {
-      console.log(`Client avec l'ID ${id} non trouve.`);
+      console.log(`Client avec l'ID ${id} non trouvé.`);
     }
-  });
+  } catch (err) {
+    console.error(err);
+  }
 }
 
-export function getClients(): Promise<Client[]> {
-  // Lire le fichier JSON
-  return new Promise((resolve, reject) => {
-    fs.readFile(absolutePath, 'utf8', (err, data) => {
-      if (err) {
-        reject(err);
-        return;
-      }
-
-      // Analyser le JSON en objet
-      const clients = JSON.parse(data);
-
-      // Resoudre la promesse avec le tableau de clients
-      resolve(clients);
-    });
-  });
+export async function getClients(): Promise<Client[]> {
+  try {
+    const data = await fs.readFile(absolutePath, 'utf8');
+    const clients: Client[] = JSON.parse(data);
+    return clients;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
 }
 
-export function getClient(id: Number): Promise<Client> {
-  return new Promise((resolve, reject) => {
-    // Lire le JSON
-    fs.readFile(absolutePath, 'utf8', (err, data) => {
-      if (err) {
-        reject(err);
-        return;
-      }
-
-      // analyser le JSON en objet
-      const clients = JSON.parse(data);
-
-      // Trouver l'index de la ligne a modifier
-      const index = clients.findIndex((client:Client) => client.id == id);
-
-      resolve(clients[index]); 
-    });  
-  });
+export async function getClient(id: number): Promise<Client | undefined> {
+  try {
+    const data = await fs.readFile(absolutePath, 'utf8');
+    const clients: Client[] = JSON.parse(data);
+    
+    return clients.find(client => client.id === id);
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
 }
