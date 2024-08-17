@@ -23,12 +23,15 @@ import {Client,verifyClientInfos,formatClient,formatDate, getCurrentDate,ageGrou
         <div class="separator-trio">
           <div class="element-group">
 
-          <div class="lastConsultation info-block" v-if="client.lastVisitDate != '' || editMode">
+          <div class="lastConsultation info-block" v-if="client.lastVisitDate.length > 0 || editMode">
             <div class="info-line">
               <p class="info-title">Dernier passage</p>
               <div class="fast-edit-btn"><button class="btn resetPts" @click="onRefreshLastVisit"><img class="icon" src="../img/refresh.png" alt="Refresh icons created by Dave Gandy - Flaticon"></button></div> 
             </div>
-            <p class="info">{{ client.lastVisitDate }}</p>
+            <div class="info-line">
+              <p class="info">{{ client.lastVisitDate[client.lastVisitDate.length-1] }}</p>
+              <div class="fast-edit-btn"><button class="btn visitHistory" @click=""><img class="icon" src="../img/history.png" alt="Historyicon created by Tempo_doloe - Flaticon"></button></div> 
+            </div>
           </div>
 
           <div class="loyaltyPoints info-block">
@@ -226,9 +229,10 @@ export default {
         this.hidePopup();
       },
       refreshLastVisit(){
+        const history = this.client.lastVisitDate;
         let today = getCurrentDate();
-        editClientProperty(this.client.id,"lastVisitDate",today);
-        this.client.lastVisitDate = today;
+        this.client.lastVisitDate.push(today);
+        editClientProperty(this.client.id,"lastVisitDate",history);
         this.hidePopup();
       },
       onRemove(){
@@ -302,7 +306,9 @@ export default {
     },
     beforeMount(){
       getClient(this.clientId).then((client) => {
-        this.client = client;
+        if(client != undefined) {
+          this.client = client;
+        }
       });
     },
 };
@@ -477,6 +483,10 @@ export default {
 
 .resetPts,.refreshLC{
   background-color: #F6DC73;
+}
+
+.visitHistory{
+  background-color: #ffa32b;
 }
 
 .icon{

@@ -14,7 +14,7 @@
 
     </div>
     <div class="right-side">
-        <div class="dateDerniereVisite element">{{ client.lastVisitDate }}</div>
+        <div class="dateDerniereVisite element">{{ client.lastVisitDate[client.lastVisitDate.length-1] }}</div>
     </div>
 </div>
 </template>

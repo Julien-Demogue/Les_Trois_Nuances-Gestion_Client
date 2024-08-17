@@ -10,13 +10,14 @@ export interface Client{
   postalCode:string;
   job:string;
   registrationDate:string;
-  lastVisitDate:string;
+  lastVisitDate:Array<string>;
   gender:string;
   loyaltyPoints:number;
   specifications:string;
   products:Array<string>;
   color:string;
   cutStyle:string;
+  [key: string]: any;
 }
 
 export const ageGroups = [
@@ -283,7 +284,7 @@ export function getRecentlySeenClientsPercent(clients:Client[]) : number {
     const now = new Date();
 
     // Recuperer la date de derniere visite
-    const lastVisitDate = stringToDate(client.lastVisitDate);
+    const lastVisitDate = stringToDate(client.lastVisitDate[client.lastVisitDate.length-1]);
 
     // Incrementer le nombre de clients venus il y a moins d'un an
     if(getYearsDiffBetween(now,lastVisitDate) <= 0){
@@ -314,7 +315,7 @@ export function getRecentlySeenMalePercent(clients: Client[]) : number{
       const now = new Date();
 
       // Recuperer la date de derniere visite
-      const lastVisitDate = stringToDate(client.lastVisitDate);
+      const lastVisitDate = stringToDate(client.lastVisitDate[client.lastVisitDate.length-1]);
 
       // Incrementer le nombre d'hommes venus il y a moins d'un an
       if(getYearsDiffBetween(now,lastVisitDate) <= 0){
@@ -349,7 +350,7 @@ export function getRecentlySeenFemalePercent(clients: Client[]) : number{
       const now = new Date();
 
       // Recuperer la date de derniere visite
-      const lastVisitDate = stringToDate(client.lastVisitDate);
+      const lastVisitDate = stringToDate(client.lastVisitDate[client.lastVisitDate.length-1]);
 
       // Incrementer le nombre d'hommes venus il y a moins d'un an
       if(getYearsDiffBetween(now,lastVisitDate) <= 0){
