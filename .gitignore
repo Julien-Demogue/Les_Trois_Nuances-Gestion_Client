@@ -7,3 +7,4 @@ out/
 gestion-client-win32-x64
 build
 release
+clients.json
