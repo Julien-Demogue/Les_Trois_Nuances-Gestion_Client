@@ -190,7 +190,7 @@ export default {
     },
     methods:{
       showVisitHistory(){
-        let msg = "Dernieres visites" + "<br>";
+        let msg = "Dernières visites" + "<br>";
         for (let i = this.client.lastVisitDate.length - 1; i >= 0; i--) {
           msg += "<br>" + this.client.lastVisitDate[i] ;
         }
