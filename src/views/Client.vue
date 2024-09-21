@@ -292,7 +292,9 @@ export default {
       applyChanges(){
         this.client = formatClient(this.client);
         editClient(this.clientId, this.client);
-        this.reloadPage();
+        let msg = "Client modifié";
+        this.setPopup(msg,false);
+        this.changeAcceptPopupMethod(this.reloadPage);
       },
       reloadPage(){
         location.reload();
